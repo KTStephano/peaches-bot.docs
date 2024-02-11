@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Documentation | Peaches</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Documentation" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Documentation and tutorials related to the Discord bot Peaches" />
+<meta property="og:description" content="Documentation and tutorials related to the Discord bot Peaches" />
+<link rel="canonical" href="http://localhost:4000/docs" />
+<meta property="og:url" content="http://localhost:4000/docs" />
+<meta property="og:site_name" content="Peaches" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Documentation" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Documentation and tutorials related to the Discord bot Peaches","headline":"Documentation","url":"http://localhost:4000/docs"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Peaches" />
+</head>
+<!--
+  
+  -->
+
+  <body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Peaches</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/">Home</a><a class="page-link" href="/docs">Documentation</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Documentation</h1>
+    <p class="post-meta"><time class="dt-published" datetime="" itemprop="datePublished">
+        
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="table-of-contents">Table of Contents</h1>
+<ul id="markdown-toc">
+  <li><a href="#table-of-contents" id="markdown-toc-table-of-contents">Table of Contents</a></li>
+  <li><a href="#programmable-stages" id="markdown-toc-programmable-stages">Programmable Stages</a></li>
+  <li><a href="#math-constants" id="markdown-toc-math-constants">Math Constants</a>    <ul>
+      <li><a href="#maxint" id="markdown-toc-maxint">MaxInt</a></li>
+      <li><a href="#minint" id="markdown-toc-minint">MinInt</a></li>
+      <li><a href="#maxint64" id="markdown-toc-maxint64">MaxInt64</a></li>
+      <li><a href="#minint64" id="markdown-toc-minint64">MinInt64</a></li>
+      <li><a href="#maxfloat" id="markdown-toc-maxfloat">MaxFloat</a></li>
+      <li><a href="#maxdouble" id="markdown-toc-maxdouble">MaxDouble</a></li>
+      <li><a href="#pi" id="markdown-toc-pi">Pi</a></li>
+      <li><a href="#e" id="markdown-toc-e">E</a></li>
+      <li><a href="#sqrte" id="markdown-toc-sqrte">SqrtE</a></li>
+      <li><a href="#phi" id="markdown-toc-phi">Phi</a></li>
+      <li><a href="#sqrtphi" id="markdown-toc-sqrtphi">SqrtPhi</a></li>
+    </ul>
+  </li>
+  <li><a href="#context" id="markdown-toc-context">Context</a>    <ul>
+      <li><a href="#contextguild" id="markdown-toc-contextguild">context.Guild</a></li>
+      <li><a href="#contextmember" id="markdown-toc-contextmember">context.Member</a></li>
+      <li><a href="#contextmemberuser" id="markdown-toc-contextmemberuser">context.Member.User</a></li>
+      <li><a href="#contextmessage" id="markdown-toc-contextmessage">context.Message</a></li>
+      <li><a href="#contextinputs" id="markdown-toc-contextinputs">context.Inputs</a></li>
+      <li><a href="#contextauditentry" id="markdown-toc-contextauditentry">context.AuditEntry</a></li>
+      <li><a href="#contextinteraction" id="markdown-toc-contextinteraction">context.Interaction</a></li>
+    </ul>
+  </li>
+  <li><a href="#types" id="markdown-toc-types">Types</a>    <ul>
+      <li><a href="#enum-optiontype" id="markdown-toc-enum-optiontype">enum OptionType</a></li>
+      <li><a href="#enum-channeltype" id="markdown-toc-enum-channeltype">enum ChannelType</a></li>
+      <li><a href="#bitfield-discordpermission" id="markdown-toc-bitfield-discordpermission">bitfield DiscordPermission</a></li>
+      <li><a href="#enum-buttonstyle" id="markdown-toc-enum-buttonstyle">enum ButtonStyle</a></li>
+      <li><a href="#enum-componenttype" id="markdown-toc-enum-componenttype">enum ComponentType</a></li>
+      <li><a href="#type-sliceany" id="markdown-toc-type-sliceany">type Slice[Any]</a></li>
+      <li><a href="#type-smapstringany" id="markdown-toc-type-smapstringany">type SMap[String]Any</a></li>
+      <li><a href="#type-mapcomparableany" id="markdown-toc-type-mapcomparableany">type Map[Comparable]Any</a></li>
+      <li><a href="#type-slashcommandinputdata" id="markdown-toc-type-slashcommandinputdata">type SlashCommandInputData</a></li>
+      <li><a href="#type-auditlogtriggerdata" id="markdown-toc-type-auditlogtriggerdata">type AuditLogTriggerData</a></li>
+      <li><a href="#type-messagecomponentinteractiondata" id="markdown-toc-type-messagecomponentinteractiondata">type MessageComponentInteractionData</a></li>
+      <li><a href="#type-cmdchoice" id="markdown-toc-type-cmdchoice">type CmdChoice</a></li>
+      <li><a href="#type-cmdoption" id="markdown-toc-type-cmdoption">type CmdOption</a></li>
+      <li><a href="#type-embed" id="markdown-toc-type-embed">type Embed</a></li>
+      <li><a href="#type-embedfooter" id="markdown-toc-type-embedfooter">type EmbedFooter</a></li>
+      <li><a href="#type-embedimage" id="markdown-toc-type-embedimage">type EmbedImage</a></li>
+      <li><a href="#type-embedthumbnail" id="markdown-toc-type-embedthumbnail">type EmbedThumbnail</a></li>
+      <li><a href="#type-embedvideo" id="markdown-toc-type-embedvideo">type EmbedVideo</a></li>
+      <li><a href="#type-embedprovider" id="markdown-toc-type-embedprovider">type EmbedProvider</a></li>
+      <li><a href="#type-embedfield" id="markdown-toc-type-embedfield">type EmbedField</a></li>
+      <li><a href="#type-embedauthor" id="markdown-toc-type-embedauthor">type EmbedAuthor</a></li>
+    </ul>
+  </li>
+  <li><a href="#functions" id="markdown-toc-functions">Functions</a>    <ul>
+      <li><a href="#addoptions-args" id="markdown-toc-addoptions-args">addOptions …args</a></li>
+      <li><a href="#setdefaultpermissions-args" id="markdown-toc-setdefaultpermissions-args">setDefaultPermissions …args</a></li>
+      <li><a href="#tostring-arg" id="markdown-toc-tostring-arg">toString arg</a></li>
+      <li><a href="#toint64-arg" id="markdown-toc-toint64-arg">toInt64 arg</a></li>
+      <li><a href="#tofloat64-arg" id="markdown-toc-tofloat64-arg">toFloat64 arg</a></li>
+      <li><a href="#toid-arg" id="markdown-toc-toid-arg">toID arg</a></li>
+      <li><a href="#currenttime" id="markdown-toc-currenttime">currentTime</a></li>
+      <li><a href="#totime-arg" id="markdown-toc-totime-arg">toTime arg</a></li>
+      <li><a href="#printf-format-args" id="markdown-toc-printf-format-args">printf format …args</a></li>
+      <li><a href="#print-args" id="markdown-toc-print-args">print …args</a></li>
+      <li><a href="#println-args" id="markdown-toc-println-args">println …args</a></li>
+      <li><a href="#lower-string" id="markdown-toc-lower-string">lower string</a></li>
+      <li><a href="#upper-string" id="markdown-toc-upper-string">upper string</a></li>
+      <li><a href="#split-string-separator" id="markdown-toc-split-string-separator">split string separator</a></li>
+      <li><a href="#trimwhitespace-string" id="markdown-toc-trimwhitespace-string">trimWhitespace string</a></li>
+      <li><a href="#replaceone-string-old-new" id="markdown-toc-replaceone-string-old-new">replaceOne string old new</a></li>
+      <li><a href="#replaceall-string-old-new" id="markdown-toc-replaceall-string-old-new">replaceAll string old new</a></li>
+      <li><a href="#add-args" id="markdown-toc-add-args">add …args</a></li>
+      <li><a href="#mult-args" id="markdown-toc-mult-args">mult …args</a></li>
+      <li><a href="#sqrt-num" id="markdown-toc-sqrt-num">sqrt num</a></li>
+      <li><a href="#cbrt-num" id="markdown-toc-cbrt-num">cbrt num</a></li>
+      <li><a href="#round-num" id="markdown-toc-round-num">round num</a></li>
+      <li><a href="#floor-num" id="markdown-toc-floor-num">floor num</a></li>
+      <li><a href="#ceil-num" id="markdown-toc-ceil-num">ceil num</a></li>
+      <li><a href="#randchoice-slice" id="markdown-toc-randchoice-slice">randChoice slice</a></li>
+      <li><a href="#rand" id="markdown-toc-rand">rand</a></li>
+      <li><a href="#randn-limit" id="markdown-toc-randn-limit">randn limit</a></li>
+      <li><a href="#contains-container-item" id="markdown-toc-contains-container-item">contains container item</a></li>
+      <li><a href="#prefix-string-prefix" id="markdown-toc-prefix-string-prefix">prefix string prefix</a></li>
+      <li><a href="#suffix-string-suffix" id="markdown-toc-suffix-string-suffix">suffix string suffix</a></li>
+      <li><a href="#getchannel-id" id="markdown-toc-getchannel-id">getChannel id</a></li>
+      <li><a href="#getthread-id" id="markdown-toc-getthread-id">getThread id</a></li>
+      <li><a href="#getchannelorthread-id" id="markdown-toc-getchannelorthread-id">getChannelOrThread id</a></li>
+      <li><a href="#getmember-id" id="markdown-toc-getmember-id">getMember id</a></li>
+      <li><a href="#senddm-id-message" id="markdown-toc-senddm-id-message">sendDM id message</a></li>
+      <li><a href="#getmessage-channelid-messageid" id="markdown-toc-getmessage-channelid-messageid">getMessage channelID messageID</a></li>
+      <li><a href="#sendmessageretid-channelid-message" id="markdown-toc-sendmessageretid-channelid-message">sendMessageRetID channelID message</a></li>
+      <li><a href="#sendmessage-channelid-message" id="markdown-toc-sendmessage-channelid-message">sendMessage channelID message</a></li>
+      <li><a href="#editmessage-channelid-messageid-message" id="markdown-toc-editmessage-channelid-messageid-message">editMessage channelID messageID message</a></li>
+      <li><a href="#editwebhookmessage-channelid-webhookid-messageid-message" id="markdown-toc-editwebhookmessage-channelid-webhookid-messageid-message">editWebhookMessage channelID webhookID messageID message</a></li>
+      <li><a href="#deletemessage-channelid-messageid" id="markdown-toc-deletemessage-channelid-messageid">deleteMessage channelID messageID</a></li>
+      <li><a href="#getrole-roleid" id="markdown-toc-getrole-roleid">getRole roleID</a></li>
+      <li><a href="#giverole-userid-roleid" id="markdown-toc-giverole-userid-roleid">giveRole userID roleID</a></li>
+      <li><a href="#takerole-userid-roleid" id="markdown-toc-takerole-userid-roleid">takeRole userID roleID</a></li>
+      <li><a href="#hasrole-userid-roleid" id="markdown-toc-hasrole-userid-roleid">hasRole userID roleID</a></li>
+      <li><a href="#sleep-seconds" id="markdown-toc-sleep-seconds">sleep seconds</a></li>
+      <li><a href="#dbget-id-key" id="markdown-toc-dbget-id-key">dbGet id key</a></li>
+      <li><a href="#dbget-id-key-data" id="markdown-toc-dbget-id-key-data">dbGet id key data</a></li>
+      <li><a href="#dbdel-id-key" id="markdown-toc-dbdel-id-key">dbDel id key</a></li>
+      <li><a href="#respond-message" id="markdown-toc-respond-message">respond message</a></li>
+      <li><a href="#respondephemeral-message" id="markdown-toc-respondephemeral-message">respondEphemeral message</a></li>
+      <li><a href="#deleteresponse" id="markdown-toc-deleteresponse">deleteResponse</a></li>
+      <li><a href="#responseid" id="markdown-toc-responseid">responseID</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="programmable-stages">Programmable Stages</h1>
+
+<p>There are two stages that can be programmed.</p>
+
+<p>The first is the <strong>command creation</strong> stage. This will only be run when the command is first being created. It allows you to write code that sets the command’s various input options and their choices as well as its default permissions. If you later need to change the command setup (name, description, options), you will need to re-run this step. Changing permissions can be done for any command from inside of Server Settings &gt; Integrations &gt; Peaches.</p>
+
+<p>The second is the <strong>trigger execution</strong> stage. There are multiple types of triggers, one of them being a slash command being entered by a user.</p>
+
+<h1 id="math-constants">Math Constants</h1>
+
+<h3 id="maxint">MaxInt</h3>
+<h3 id="minint">MinInt</h3>
+<h3 id="maxint64">MaxInt64</h3>
+<h3 id="minint64">MinInt64</h3>
+<h3 id="maxfloat">MaxFloat</h3>
+<h3 id="maxdouble">MaxDouble</h3>
+<h3 id="pi">Pi</h3>
+<h3 id="e">E</h3>
+<h3 id="sqrte">SqrtE</h3>
+<h3 id="phi">Phi</h3>
+<h3 id="sqrtphi">SqrtPhi</h3>
+
+<h1 id="context">Context</h1>
+
+<p>When the <strong>trigger execution</strong> stage is run, it is initialized with a context that informs the code about what triggered it. This can include information about the guild, member, channel, etc. It can be retrieved through the <code class="language-plaintext highlighter-rouge">context</code> builtin variable.</p>
+
+<h3 id="contextguild">context.Guild</h3>
+
+<p><strong>Fields</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.ID</td>
+      <td>The ID of the guild</td>
+    </tr>
+    <tr>
+      <td>.Name</td>
+      <td>The name of the guild (2–100 characters)</td>
+    </tr>
+    <tr>
+      <td>.Icon</td>
+      <td>The hash of the guild’s icon</td>
+    </tr>
+    <tr>
+      <td>.Region</td>
+      <td>The voice region of the guild</td>
+    </tr>
+    <tr>
+      <td>.AfkChannelID</td>
+      <td>The ID of the AFK voice channel</td>
+    </tr>
+    <tr>
+      <td>.OwnerID</td>
+      <td>The user ID of the owner of the guild</td>
+    </tr>
+    <tr>
+      <td>.DiscoverySplash</td>
+      <td>The hash of the guild’s discovery splash</td>
+    </tr>
+    <tr>
+      <td>.Splash</td>
+      <td>The hash of the guild’s splash</td>
+    </tr>
+    <tr>
+      <td>.AfkTimeout</td>
+      <td>The timeout, in seconds, before a user is considered AFK in voice</td>
+    </tr>
+    <tr>
+      <td>.MemberCount</td>
+      <td>The number of members in the guild</td>
+    </tr>
+    <tr>
+      <td>.Features</td>
+      <td>The list of enabled guild features</td>
+    </tr>
+    <tr>
+      <td>.WidgetEnabled</td>
+      <td>Whether or not the Server Widget is enabled</td>
+    </tr>
+    <tr>
+      <td>.WidgetChannelID</td>
+      <td>The Channel ID for the Server Widget</td>
+    </tr>
+    <tr>
+      <td>.SystemChannelID</td>
+      <td>The Channel ID to which system messages are sent (eg join and leave messages)</td>
+    </tr>
+    <tr>
+      <td>.SystemChannelFlags</td>
+      <td>The System channel flags</td>
+    </tr>
+    <tr>
+      <td>.RulesChannelID</td>
+      <td>The ID of the rules channel ID, used for rules</td>
+    </tr>
+    <tr>
+      <td>.VanityURLCode</td>
+      <td>the vanity url code for the guild</td>
+    </tr>
+    <tr>
+      <td>.Description</td>
+      <td>the description for the guild</td>
+    </tr>
+    <tr>
+      <td>.Banner</td>
+      <td>The hash of the guild’s banner</td>
+    </tr>
+    <tr>
+      <td>.PremiumTier</td>
+      <td>The premium tier of the guild</td>
+    </tr>
+    <tr>
+      <td>.PremiumSubscriptionCount</td>
+      <td>The total number of users currently boosting this server</td>
+    </tr>
+    <tr>
+      <td>.PreferredLocale</td>
+      <td>The preferred locale of a guild with the “PUBLIC” feature; used in server discovery and notices from Discord; defaults to “en-US”</td>
+    </tr>
+    <tr>
+      <td>.PublicUpdatesChannelID</td>
+      <td>The id of the channel where admins and moderators of guilds with the “PUBLIC” feature receive notices from Discord</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="contextmember">context.Member</h3>
+
+<p><strong>May be nil if a member did not trigger the code</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.GuildID</td>
+      <td>The guild ID on which the member exists</td>
+    </tr>
+    <tr>
+      <td>.JoinedAt</td>
+      <td>The time at which the member joined the guild</td>
+    </tr>
+    <tr>
+      <td>.Nick</td>
+      <td>The nickname of the member, if they have one</td>
+    </tr>
+    <tr>
+      <td>.Avatar</td>
+      <td>The hash of the avatar for the guild member, if any</td>
+    </tr>
+    <tr>
+      <td>.User</td>
+      <td>The underlying user on which the member is based</td>
+    </tr>
+    <tr>
+      <td>.Roles</td>
+      <td>A list of IDs of the roles which are possessed by the member</td>
+    </tr>
+    <tr>
+      <td>.PremiumSince</td>
+      <td>When the user used their Nitro boost on the server</td>
+    </tr>
+    <tr>
+      <td>.Pending</td>
+      <td>Is true while the member hasn’t accepted the membership screen</td>
+    </tr>
+    <tr>
+      <td>.Permissions</td>
+      <td>Total permissions of the member in the channel, including overrides, returned when in the interaction object</td>
+    </tr>
+    <tr>
+      <td>.CommunicationDisabledUntil</td>
+      <td>The time at which the member’s timeout will expire (time in the past or nil if the user is not timed out)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="contextmemberuser">context.Member.User</h3>
+
+<p><strong>May be nil if a member did not trigger the code</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.ID</td>
+      <td>The ID of the user</td>
+    </tr>
+    <tr>
+      <td>.Username</td>
+      <td>The user’s username</td>
+    </tr>
+    <tr>
+      <td>.Avatar</td>
+      <td>The hash of the user’s avatar.</td>
+    </tr>
+    <tr>
+      <td>.Locale</td>
+      <td>The user’s chosen language option</td>
+    </tr>
+    <tr>
+      <td>.GlobalName</td>
+      <td>The user’s display name, if it is set (for bots, this is the application name)</td>
+    </tr>
+    <tr>
+      <td>.Verified</td>
+      <td>Whether the user’s email is verified</td>
+    </tr>
+    <tr>
+      <td>.MFAEnabled</td>
+      <td>Whether the user has multi-factor authentication enabled</td>
+    </tr>
+    <tr>
+      <td>.Banner</td>
+      <td>The hash of the user’s banner image</td>
+    </tr>
+    <tr>
+      <td>.AccentColor</td>
+      <td>User’s banner color, encoded as an integer representation of hexadecimal color code</td>
+    </tr>
+    <tr>
+      <td>.Bot</td>
+      <td>Whether the user is a bot</td>
+    </tr>
+    <tr>
+      <td>.PublicFlags</td>
+      <td>The public flags on a user’s account</td>
+    </tr>
+    <tr>
+      <td>.PremiumType</td>
+      <td>The type of Nitro subscription on a user’s account</td>
+    </tr>
+    <tr>
+      <td>.System</td>
+      <td>Whether the user is an Official Discord System user (part of the urgent message system)</td>
+    </tr>
+    <tr>
+      <td>.Flags</td>
+      <td>The flags on a user’s account</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="contextmessage">context.Message</h3>
+
+<p><strong>May be nil if a message did not trigger the code</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.ID</td>
+      <td>The ID of the message</td>
+    </tr>
+    <tr>
+      <td>.ChannelID</td>
+      <td>The ID of the channel in which the message was sent</td>
+    </tr>
+    <tr>
+      <td>.GuildID</td>
+      <td>The ID of the guild in which the message was sent</td>
+    </tr>
+    <tr>
+      <td>.Content</td>
+      <td>The content of the message</td>
+    </tr>
+    <tr>
+      <td>.Timestamp</td>
+      <td>The time at which the messsage was sent</td>
+    </tr>
+    <tr>
+      <td>.EditedTimestamp</td>
+      <td>The time at which the last edit of the message</td>
+    </tr>
+    <tr>
+      <td>.MentionRoles</td>
+      <td>The roles mentioned in the message</td>
+    </tr>
+    <tr>
+      <td>.TTS</td>
+      <td>Whether the message is text-to-speech</td>
+    </tr>
+    <tr>
+      <td>.MentionEveryone</td>
+      <td>Whether the message mentions everyone</td>
+    </tr>
+    <tr>
+      <td>.Author</td>
+      <td>The author of the message. This is not guaranteed to be a valid user (webhook-sent messages do not possess a full author).</td>
+    </tr>
+    <tr>
+      <td>.Attachments</td>
+      <td>A list of attachments present in the message</td>
+    </tr>
+    <tr>
+      <td>.Components</td>
+      <td>A list of components attached to the message</td>
+    </tr>
+    <tr>
+      <td>.Embeds</td>
+      <td>A list of embeds present in the message</td>
+    </tr>
+    <tr>
+      <td>.Mentions</td>
+      <td>A list of users mentioned in the message</td>
+    </tr>
+    <tr>
+      <td>.Reactions</td>
+      <td>A list of reactions to the message</td>
+    </tr>
+    <tr>
+      <td>.Pinned</td>
+      <td>Whether the message is pinned or not</td>
+    </tr>
+    <tr>
+      <td>.Type</td>
+      <td>The type of the message</td>
+    </tr>
+    <tr>
+      <td>.WebhookID</td>
+      <td>The webhook ID of the message, if it was generated by a webhook</td>
+    </tr>
+    <tr>
+      <td>.Member</td>
+      <td>Member properties for this message’s author (contains only partial information)</td>
+    </tr>
+    <tr>
+      <td>.MentionChannels</td>
+      <td>Channels specifically mentioned in this message</td>
+    </tr>
+    <tr>
+      <td>.ReferencedMessage</td>
+      <td>The message associated with the message_reference. NOTE: This field is only returned for messages with a type of 19 (REPLY) or 21 (THREAD_STARTER_MESSAGE).</td>
+    </tr>
+    <tr>
+      <td>.Flags</td>
+      <td>The flags of the message, which describe extra features of a message</td>
+    </tr>
+    <tr>
+      <td>.Thread</td>
+      <td>The thread that was started from this message, includes thread member object</td>
+    </tr>
+    <tr>
+      <td>.StickerItems</td>
+      <td>An array of Sticker objects, if any were sent</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="contextinputs">context.Inputs</h3>
+
+<p>A slice of inputs to a Slash Command. Type is <a href="/docs#type-slashcommandinputdata">*SlashCommandInputData</a>.</p>
+
+<h3 id="contextauditentry">context.AuditEntry</h3>
+
+<p><strong>Only valid for triggers involving audit log entries</strong></p>
+
+<p>An <a href="/docs#type-auditlogtriggerdata">*AuditLogTriggerData</a> object.</p>
+
+<h3 id="contextinteraction">context.Interaction</h3>
+
+<p><strong>Only valid for triggers involving webhook interactions, such as buttons</strong></p>
+
+<p>A <a href="/docs#type-messagecomponentinteractiondata">*MessageComponentInteractionData</a> object.</p>
+
+<h1 id="types">Types</h1>
+
+<h3 id="enum-optiontype">enum OptionType</h3>
+
+<p>Can be one of OptionString, OptionInteger, OptionBoolean, OptionUser, OptionChannel, OptionRole, OptionMentionable, OptionNumber.</p>
+
+<h3 id="enum-channeltype">enum ChannelType</h3>
+
+<p>Can be one of ChannelGuildText, ChannelDM, ChannelGuildVoice, ChannelGuildGroupDM, ChannelGuildCategory, ChannelGuildNews, ChannelGuildStore, ChannelGuildNewsThread, ChannelGuildPublicThread, ChannelGuildPrivateThread, ChannelGuildStageVoice, ChannelGuildForum.</p>
+
+<h3 id="bitfield-discordpermission">bitfield DiscordPermission</h3>
+
+<p>Can be one of PermissionCreateInstantInvite, PermissionKickMembers, PermissionBanMembers, PermissionAdministrator, PermissionManageChannels, PermissionManageGuild, PermissionAddReactions, PermissionViewAuditLog, PermissionPrioritySpeaker, PermissionStream, PermissionViewChannel, PermissionSendMessages, PermissionSendTTSMessages, PermissionManageMessages, PermissionEmbedLinks, PermissionAttachFiles, PermissionReadMessageHistory, PermissionMentionEveryone, PermissionUseExternalEmojis, PermissionViewGuildInsights, PermissionConnect, PermissionSpeak, PermissionMuteMembers, PermissionDeafenMembers, PermissionMoveMembers, PermissionUseVAD, PermissionChangeNickname, PermissionManageNicknames, PermissionManageRoles, PermissionManageWebhooks, PermissionManageGuildExpressions, PermissionUseApplicationCommands, PermissionRequestToSpeak, PermissionManageEvents, PermissionManageThreads, PermissionCreatePublicThreads, PermissionCreatePrivateThreads, PermissionUseExternalStickers, PermissionSendMessagesInThreads, PermissionUseEmbeddedActivities, PermissionTimeoutMembers, PermissionViewCreatorMonetizationAnalytics, PermissionUseSoundboard, PermissionCreateGuildExpressions, PermissionCreateEvents, PermissionUseExternalSounds, PermissionSendVoiceMessages.</p>
+
+<h3 id="enum-buttonstyle">enum ButtonStyle</h3>
+
+<p>Can be one of PrimaryButton, SecondaryButton, SuccessButton, DangerButton, LinkButton.</p>
+
+<h3 id="enum-componenttype">enum ComponentType</h3>
+
+<p>Can be one of ActionsRowComponent, ButtonComponent, SelectMenuComponent, TextInputComponent, UserSelectMenuComponent, RoleSelectMenuComponent, MentionableSelectMenuComponent, ChannelSelectMenuComponent.</p>
+
+<h3 id="type-sliceany">type Slice[Any]</h3>
+
+<p>A Slice is a dynamic array of objects with type Any. It will try to use existing space when appending items, but once space is used up it will perform a resize+copy and return a pointer to the new Slice.</p>
+
+<p><strong>Fields</strong></p>
+
+<p>None</p>
+
+<p><strong>Functions</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.Append …args</td>
+      <td>returns Slice</td>
+      <td>Takes a list of objects to append to the slice</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Examples</strong></p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">array</span> <span class="o">:=</span> <span class="n">Slice</span><span class="p">}}</span>
+<span class="p">{{</span><span class="err">$</span><span class="n">array</span> <span class="o">=</span> <span class="err">$</span><span class="n">array</span><span class="o">.</span><span class="n">Append</span> <span class="m">1</span> <span class="m">2</span> <span class="s">"hello"</span> <span class="no">true</span> <span class="no">false</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span><span class="p">}}</span>
+<span class="p">{{</span><span class="n">contains</span> <span class="err">$</span><span class="n">array</span> <span class="m">1</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* true */</span><span class="p">}}</span>
+<span class="p">{{</span><span class="n">contains</span> <span class="err">$</span><span class="n">array</span> <span class="m">100</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* false */</span><span class="p">}}</span></code></pre></figure>
+
+<h3 id="type-smapstringany">type SMap[String]Any</h3>
+
+<p>An SMap (String Map) maps string keys to any type.</p>
+
+<p><strong>Fields</strong></p>
+
+<p>None</p>
+
+<p><strong>Functions</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.Get key</td>
+      <td>returns value</td>
+      <td>Takes a string key and returns its value (or nil)</td>
+    </tr>
+    <tr>
+      <td>.Insert key value</td>
+      <td>returns none</td>
+      <td>Inserts or updates a key, value pair</td>
+    </tr>
+    <tr>
+      <td>.Remove key</td>
+      <td>returns none</td>
+      <td>Removes entry from map</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Examples</strong></p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="c">/* SMap key value key value .... */</span><span class="p">}}</span>
+<span class="p">{{</span><span class="err">$</span><span class="k">map</span> <span class="o">:=</span> <span class="n">SMap</span> <span class="s">"hello"</span> <span class="no">true</span> <span class="s">"world"</span> <span class="m">123</span> <span class="s">"!"</span> <span class="m">5.0</span><span class="p">}}</span>
+<span class="p">{{</span><span class="n">contains</span> <span class="err">$</span><span class="k">map</span> <span class="s">"hello"</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* true */</span><span class="p">}}</span>
+<span class="p">{{</span><span class="n">contains</span> <span class="err">$</span><span class="k">map</span> <span class="s">"earth"</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* false */</span><span class="p">}}</span>
+<span class="p">{{</span><span class="err">$</span><span class="k">map</span><span class="o">.</span><span class="n">Insert</span> <span class="s">"earth"</span> <span class="no">true</span><span class="p">}}</span>
+<span class="p">{{</span><span class="err">$</span><span class="k">map</span><span class="o">.</span><span class="n">Remove</span> <span class="s">"hello"</span><span class="p">}}</span></code></pre></figure>
+
+<h3 id="type-mapcomparableany">type Map[Comparable]Any</h3>
+
+<p>A Map maps any comparable type to a value. This can include int, bool, float, pointers, etc.</p>
+
+<p><strong>Fields</strong></p>
+
+<p>None</p>
+
+<p><strong>Functions</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.Get key</td>
+      <td>returns value</td>
+      <td>Takes a key and returns its value (or nil)</td>
+    </tr>
+    <tr>
+      <td>.Insert key value</td>
+      <td>returns none</td>
+      <td>Inserts or updates a key, value pair</td>
+    </tr>
+    <tr>
+      <td>.Remove key</td>
+      <td>returns none</td>
+      <td>Removes entry from map</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Examples</strong></p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="c">/* Map key value key value .... */</span><span class="p">}}</span>
+<span class="p">{{</span><span class="err">$</span><span class="k">map</span> <span class="o">:=</span> <span class="n">Map</span> <span class="m">512</span> <span class="no">true</span> <span class="s">"hello"</span> <span class="no">false</span><span class="p">}}</span>
+<span class="p">{{</span><span class="n">contains</span> <span class="err">$</span><span class="k">map</span> <span class="m">512</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* true */</span><span class="p">}}</span>
+<span class="p">{{</span><span class="n">contains</span> <span class="err">$</span><span class="k">map</span> <span class="no">true</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* false */</span><span class="p">}}</span></code></pre></figure>
+
+<h3 id="type-slashcommandinputdata">type SlashCommandInputData</h3>
+
+<p>A Slice of these objects are passed into slash commands when they accept user input.</p>
+
+<p><strong>Fields</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.Name</td>
+      <td>String</td>
+      <td>Name of the input</td>
+    </tr>
+    <tr>
+      <td>.Type</td>
+      <td><a href="/docs/#enum-optiontype">OptionType</a></td>
+      <td>Type of the option</td>
+    </tr>
+    <tr>
+      <td>.Value</td>
+      <td>any</td>
+      <td>Data passed in as user input (see functions for conversion)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Functions</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.Bool</td>
+      <td>returns boolean value of option</td>
+    </tr>
+    <tr>
+      <td>.Integer</td>
+      <td>returns int64 value of option</td>
+    </tr>
+    <tr>
+      <td>.Float</td>
+      <td>returns float64 (double) value of the option</td>
+    </tr>
+    <tr>
+      <td>.String</td>
+      <td>returns string value of the option</td>
+    </tr>
+    <tr>
+      <td>.User</td>
+      <td>returns *User object</td>
+    </tr>
+    <tr>
+      <td>.Role</td>
+      <td>returns *Role object</td>
+    </tr>
+    <tr>
+      <td>.Channel</td>
+      <td>returns *Channel object</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="type-auditlogtriggerdata">type AuditLogTriggerData</h3>
+
+<p><strong>Fields</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Action</td>
+      <td>String</td>
+      <td>Type of action the entry represents</td>
+    </tr>
+    <tr>
+      <td>Reason</td>
+      <td>String</td>
+      <td>Optional reason supplied by moderator/admin</td>
+    </tr>
+    <tr>
+      <td>Moderator</td>
+      <td>Member</td>
+      <td>Moderator responsible (may be nil)</td>
+    </tr>
+    <tr>
+      <td>Target</td>
+      <td>any</td>
+      <td>Target of the action</td>
+    </tr>
+    <tr>
+      <td>Until</td>
+      <td>Time</td>
+      <td>For timeouts, represents time when it expires</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Functions</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>AsMember</td>
+      <td>Member</td>
+      <td>Converts audit log target to a Member object</td>
+    </tr>
+    <tr>
+      <td>AsChannel</td>
+      <td>Channel</td>
+      <td>Converts audit log target to a Channel object</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="type-messagecomponentinteractiondata">type MessageComponentInteractionData</h3>
+
+<p><strong>Fields</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>CustomID</td>
+      <td>String</td>
+      <td>Trigger-supplied custom ID for the component</td>
+    </tr>
+    <tr>
+      <td>ComponentType</td>
+      <td><a href="/docs#enum-componenttype">ComponentType</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Values</td>
+      <td>Slice[String]</td>
+      <td>Only filled when ComponentType is SelectMenuComponent (3). Otherwise is nil.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Functions</strong></p>
+
+<p>None</p>
+
+<h3 id="type-cmdchoice">type CmdChoice</h3>
+
+<p><strong>Fields</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.Name</td>
+      <td>String</td>
+      <td><strong>required</strong></td>
+      <td>Name that appears in the slash command selection menu</td>
+    </tr>
+    <tr>
+      <td>.Value</td>
+      <td>Any</td>
+      <td><strong>required</strong></td>
+      <td>Value assigned to the choice for use by the code</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Examples</strong></p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">choice</span> <span class="o">:=</span> <span class="n">CmdChoice</span>
+    <span class="n">Name</span><span class="o">:</span> <span class="s">"green-color"</span>
+    <span class="n">Value</span><span class="o">:</span> <span class="m">192156505070501888</span>
+<span class="p">}}</span></code></pre></figure>
+
+<h3 id="type-cmdoption">type CmdOption</h3>
+
+<p><strong>Fields</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.Type</td>
+      <td><a href="/docs#enum-optiontype">OptionType</a></td>
+      <td><strong>required</strong></td>
+      <td>Type of data this option can contain. This determines what inputs the Discord UI will accept.</td>
+    </tr>
+    <tr>
+      <td>.Name</td>
+      <td>String</td>
+      <td><strong>required</strong></td>
+      <td>Top-level name of the option</td>
+    </tr>
+    <tr>
+      <td>.Description</td>
+      <td>String</td>
+      <td><strong>required</strong></td>
+      <td>Short explanation of the option</td>
+    </tr>
+    <tr>
+      <td>.ChannelTypes</td>
+      <td>Slice[<a href="/docs#enum-channeltype">ChannelType</a>]</td>
+      <td><strong>optional</strong></td>
+      <td>A slice of channel types that this option accepts</td>
+    </tr>
+    <tr>
+      <td>.Required</td>
+      <td>Bool</td>
+      <td><strong>optional</strong> (default false)</td>
+      <td>Whether this option is required or not</td>
+    </tr>
+    <tr>
+      <td>.Autocomplete</td>
+      <td>Bool</td>
+      <td><strong>optional</strong> (default false)</td>
+      <td>…</td>
+    </tr>
+    <tr>
+      <td>.Choices</td>
+      <td>Slice[OptionType]</td>
+      <td><strong>optional</strong></td>
+      <td>…</td>
+    </tr>
+    <tr>
+      <td>.MinValue</td>
+      <td>Double</td>
+      <td><strong>optional</strong></td>
+      <td>…</td>
+    </tr>
+    <tr>
+      <td>.MaxValue</td>
+      <td>Double</td>
+      <td><strong>optional</strong></td>
+      <td>…</td>
+    </tr>
+    <tr>
+      <td>.MinLength</td>
+      <td>Int64</td>
+      <td><strong>optional</strong></td>
+      <td>…</td>
+    </tr>
+    <tr>
+      <td>.MaxLength</td>
+      <td>Int64</td>
+      <td><strong>optional</strong></td>
+      <td>…</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Examples</strong></p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">option</span> <span class="o">:=</span> <span class="n">CmdOption</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">OptionString</span>
+    <span class="n">Name</span><span class="o">:</span> <span class="s">"message"</span>
+    <span class="n">Description</span><span class="o">:</span> <span class="s">"Optional message to include"</span>
+    <span class="n">Required</span><span class="o">:</span> <span class="no">false</span>
+<span class="p">}}</span></code></pre></figure>
+
+<h3 id="type-embed">type Embed</h3>
+
+<p><strong>Fields</strong></p>
+
+<p>All fields for Embed technically optional, but at least one should have data.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.URL</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Title</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Description</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Timestamp</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Color</td>
+      <td>int</td>
+      <td><strong>optional</strong></td>
+      <td>Integer value of a hex color</td>
+    </tr>
+    <tr>
+      <td>.Footer</td>
+      <td>EmbedFooter</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Image</td>
+      <td>EmbedImage</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Thumbnail</td>
+      <td>EmbedThumbnail</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Video</td>
+      <td>EmbedVideo</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Provider</td>
+      <td>EmbedProvider</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Author</td>
+      <td>EmbedAuthor</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Fields</td>
+      <td>Slice[EmbedField]</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">e</span> <span class="o">:=</span> <span class="n">Embed</span>
+    <span class="n">Title</span><span class="o">:</span> <span class="s">"Embed Title Here"</span>
+    <span class="n">Description</span><span class="o">:</span> <span class="s">"Content here describing things"</span>
+<span class="p">}}</span></code></pre></figure>
+
+<h3 id="type-embedfooter">type EmbedFooter</h3>
+
+<p>All fields for EmbedFooter technically optional, but at least one should have data.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.Text</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+    </tr>
+    <tr>
+      <td>.IconURL</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+    </tr>
+    <tr>
+      <td>.ProxyIconURL</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="type-embedimage">type EmbedImage</h3>
+
+<p>All fields for EmbedImage technically optional, but at least one should have data.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.URL</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+    </tr>
+    <tr>
+      <td>.ProxyURL</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+    </tr>
+    <tr>
+      <td>.Width</td>
+      <td>int</td>
+      <td><strong>optional</strong></td>
+    </tr>
+    <tr>
+      <td>.Height</td>
+      <td>int</td>
+      <td><strong>optional</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="type-embedthumbnail">type EmbedThumbnail</h3>
+
+<p>All fields for EmbedThumbnail technically optional, but at least one should have data.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.URL</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+    </tr>
+    <tr>
+      <td>.ProxyURL</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+    </tr>
+    <tr>
+      <td>.Width</td>
+      <td>int</td>
+      <td><strong>optional</strong></td>
+    </tr>
+    <tr>
+      <td>.Height</td>
+      <td>int</td>
+      <td><strong>optional</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="type-embedvideo">type EmbedVideo</h3>
+
+<p>All fields for EmbedThumbnail technically optional, but at least one should have data.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.URL</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+    </tr>
+    <tr>
+      <td>.Width</td>
+      <td>int</td>
+      <td><strong>optional</strong></td>
+    </tr>
+    <tr>
+      <td>.Height</td>
+      <td>int</td>
+      <td><strong>optional</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="type-embedprovider">type EmbedProvider</h3>
+
+<p>All fields for EmbedProvider technically optional, but at least one should have data.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.URL</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+    </tr>
+    <tr>
+      <td>.Name</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="type-embedfield">type EmbedField</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.Name</td>
+      <td>String</td>
+      <td><strong>required</strong></td>
+    </tr>
+    <tr>
+      <td>.Value</td>
+      <td>String</td>
+      <td><strong>required</strong></td>
+    </tr>
+    <tr>
+      <td>.Inline</td>
+      <td>bool</td>
+      <td><strong>optional</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="type-embedauthor">type EmbedAuthor</h3>
+
+<p>All fields for EmbedAuthor technically optional, but at least one should have data.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.URL</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+    </tr>
+    <tr>
+      <td>.Name</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+    </tr>
+    <tr>
+      <td>.IconURL</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+    </tr>
+    <tr>
+      <td>.ProxyIconURL</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="functions">Functions</h1>
+
+<h3 id="addoptions-args">addOptions …args</h3>
+
+<p>Stage: <strong>command creation</strong></p>
+
+<p>Takes a space-separated list of <a href="/docs#type-cmdoption">CmdOption</a>. This will append the options (in order) to the list of all options for the command currently being created.</p>
+
+<h3 id="setdefaultpermissions-args">setDefaultPermissions …args</h3>
+
+<p>Stage: <strong>command creation</strong></p>
+
+<p>Takes a space-separated list of <a href="/docs/#bitfield-discordpermission">DiscordPermission</a>. This will join the options together to represent a default set of permissions that a member should have in order to use this command.</p>
+
+<h3 id="tostring-arg">toString arg</h3>
+
+<p>Converts arg to its string representation. Returns empty string if it fails.</p>
+
+<h3 id="toint64-arg">toInt64 arg</h3>
+
+<p>Converts arg to int64. Returns 0 if it fails.</p>
+
+<h3 id="tofloat64-arg">toFloat64 arg</h3>
+
+<p>Converts arg to float64 (double). Returns 0.0 if it fails.</p>
+
+<h3 id="toid-arg">toID arg</h3>
+
+<p>Converts arg to an ID type. An ID represents a Discord snowflake, which is a 64-bit value. The underlying type is int64.</p>
+
+<h3 id="currenttime">currentTime</h3>
+
+<p>Returns current time stamp, converted to US/Denver location.</p>
+
+<h3 id="totime-arg">toTime arg</h3>
+
+<p>Takes a string or int and attempts to convert it to a Time object.</p>
+
+<h3 id="printf-format-args">printf format …args</h3>
+
+<p>Takes a format string and a series of arguments and converts them to a string. This is equivalent to Sprintf in other languages.</p>
+
+<h3 id="print-args">print …args</h3>
+
+<p>Takes a list of arguments and converts them to a string. This is equivalent to Sprint in other languages.</p>
+
+<h3 id="println-args">println …args</h3>
+
+<p>Takes a list of arguments and converts them to a string, inserting a newline at the end. This is equivalent to Sprintln in other languages.</p>
+
+<h3 id="lower-string">lower string</h3>
+
+<p>Takes a string and converts all characters to lowercase.</p>
+
+<h3 id="upper-string">upper string</h3>
+
+<p>Takes a string and converts all characters to uppercase.</p>
+
+<h3 id="split-string-separator">split string separator</h3>
+
+<p>Takes a string and separator and returns a Slice.</p>
+
+<h3 id="trimwhitespace-string">trimWhitespace string</h3>
+
+<h3 id="replaceone-string-old-new">replaceOne string old new</h3>
+
+<p>Replaces the first occurrance of <code class="language-plaintext highlighter-rouge">old</code> with <code class="language-plaintext highlighter-rouge">new</code> and returns a new string.</p>
+
+<h3 id="replaceall-string-old-new">replaceAll string old new</h3>
+
+<p>Replaces all occurrances of <code class="language-plaintext highlighter-rouge">old</code> with <code class="language-plaintext highlighter-rouge">new</code> and returns a new string.</p>
+
+<h3 id="add-args">add …args</h3>
+
+<p>Takes a list of float-convertible arguments and returns a float64 (double) sum.</p>
+
+<h3 id="mult-args">mult …args</h3>
+
+<p>Takes a list of float-convertible arguments and returns a float64 (double) product.</p>
+
+<h3 id="sqrt-num">sqrt num</h3>
+
+<p>Takes a float-convertible number and returns the square root.</p>
+
+<h3 id="cbrt-num">cbrt num</h3>
+
+<p>Takes a float-convertible number and returns the cube root.</p>
+
+<h3 id="round-num">round num</h3>
+
+<p>Takes a float-convertible number and returns a number rounded up or down (depends on the input).</p>
+
+<h3 id="floor-num">floor num</h3>
+
+<p>Takes a float-convertible number and returns the floor (round down) of the number.</p>
+
+<h3 id="ceil-num">ceil num</h3>
+
+<p>Takes a float-convertible number and returns the ceil (round up) of the number.</p>
+
+<h3 id="randchoice-slice">randChoice slice</h3>
+
+<p>Takes a Slice input and returns a random element from it.</p>
+
+<h3 id="rand">rand</h3>
+
+<p>Returns a random int64.</p>
+
+<h3 id="randn-limit">randn limit</h3>
+
+<p>Takes an int64-convertible limit and returns a random number from [0, limit) non-inclusive.</p>
+
+<h3 id="contains-container-item">contains container item</h3>
+
+<p>Takes a container (slice, map, string) and an item and returns true if that item is present in the container.</p>
+
+<p><strong>Examples</strong></p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="n">contains</span> <span class="s">"hello, world!"</span> <span class="s">"hello"</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* true */</span><span class="p">}}</span>
+<span class="p">{{</span><span class="n">contains</span> <span class="s">"hello, world!"</span> <span class="s">"earth"</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* false */</span><span class="p">}}</span>
+<span class="p">{{</span><span class="n">contains</span> <span class="p">(</span><span class="n">Slice</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)</span> <span class="m">3</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* true */</span><span class="p">}}</span>
+<span class="p">{{</span><span class="n">contains</span> <span class="p">(</span><span class="n">SMap</span> <span class="s">"hello"</span> <span class="no">true</span> <span class="s">"world"</span> <span class="no">true</span><span class="p">)</span> <span class="s">"world"</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* true */</span><span class="p">}}</span></code></pre></figure>
+
+<h3 id="prefix-string-prefix">prefix string prefix</h3>
+
+<p>Returns true if string starts with prefix.</p>
+
+<h3 id="suffix-string-suffix">suffix string suffix</h3>
+
+<p>Returns true if string ends with suffix.</p>
+
+<h3 id="getchannel-id">getChannel id</h3>
+
+<p>Returns *Channel object for given <code class="language-plaintext highlighter-rouge">id</code>.</p>
+
+<h3 id="getthread-id">getThread id</h3>
+
+<p>Returns *Channel object (threads are represented as Channels in Discord) for given <code class="language-plaintext highlighter-rouge">id</code>.</p>
+
+<h3 id="getchannelorthread-id">getChannelOrThread id</h3>
+
+<p>Returns *Channel object for given <code class="language-plaintext highlighter-rouge">id</code> whether it is a thread or channel.</p>
+
+<h3 id="getmember-id">getMember id</h3>
+
+<p>Returns *Member object for given <code class="language-plaintext highlighter-rouge">id</code>.</p>
+
+<h3 id="senddm-id-message">sendDM id message</h3>
+
+<p>Sends a DM to user represented by <code class="language-plaintext highlighter-rouge">id</code> with message. Message can either be a String, Embed, or MessageComplex.</p>
+
+<h3 id="getmessage-channelid-messageid">getMessage channelID messageID</h3>
+
+<p>Returns a *Message object for the given channelID, messageID pair.</p>
+
+<h3 id="sendmessageretid-channelid-message">sendMessageRetID channelID message</h3>
+
+<p>Sends a message to the given channelID. Message can either be a String, Embed or MessageComplex. Returns the ID of the new message upon success.</p>
+
+<h3 id="sendmessage-channelid-message">sendMessage channelID message</h3>
+
+<p>Same as sendMessageRetID but does not return the ID of the new message.</p>
+
+<h3 id="editmessage-channelid-messageid-message">editMessage channelID messageID message</h3>
+
+<p>Edits the message represented by channelID, messageID pair to contain the new content within message. message can either be a String, Embed or MessageComplex.</p>
+
+<h3 id="editwebhookmessage-channelid-webhookid-messageid-message">editWebhookMessage channelID webhookID messageID message</h3>
+
+<p>Edits a webhook message that was previously sent by the bot (any that contain things like Button components). If you have a *Message object, you can pull out the channel, webhook and message IDs out of it. message can be either a String, Embed or MessageComplex.</p>
+
+<h3 id="deletemessage-channelid-messageid">deleteMessage channelID messageID</h3>
+
+<p>Deletes the message represented by the channelID, messageID pair.</p>
+
+<h3 id="getrole-roleid">getRole roleID</h3>
+
+<p>Returns a *Role object for a given roleID.</p>
+
+<h3 id="giverole-userid-roleid">giveRole userID roleID</h3>
+
+<p>Gives the role represented by roleID to userID.</p>
+
+<h3 id="takerole-userid-roleid">takeRole userID roleID</h3>
+
+<p>Takes the role represented by roleID from userID.</p>
+
+<h3 id="hasrole-userid-roleid">hasRole userID roleID</h3>
+
+<p>Returns true if userID has roleID and false if not.</p>
+
+<h3 id="sleep-seconds">sleep seconds</h3>
+
+<p>Instructs the current code to sleep for <code class="language-plaintext highlighter-rouge">seconds</code> amount of time. Minimum is 1 and maximum is 60.</p>
+
+<h3 id="dbget-id-key">dbGet id key</h3>
+
+<p>Retrieves a single database entry represented by id, key pair. ID should be an int64 type whereas key should be a String type.</p>
+
+<h3 id="dbget-id-key-data">dbGet id key data</h3>
+
+<p>Sets a single database entry represented by id, key pair to be data. ID should be an int64 type whereas key should be a String type.</p>
+
+<h3 id="dbdel-id-key">dbDel id key</h3>
+
+<p>Deletes a single database entry represented by id, key pair. ID should be an int64 type whereas key should be a String type.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	"respond":          exec.tmplInteractionRespond,
+	"respondEphemeral": exec.tmplInteractionRespondEphemeral,
+	"deleteResponse":   exec.tmplDeleteResponse,
+	"responseID":       exec.tmplResponseID,
+</code></pre></div></div>
+
+<h3 id="respond-message">respond message</h3>
+
+<p><strong>Note</strong> This only works in slash commands and message component interactions.</p>
+
+<p>Creates a webhook response to either a slash command or message component interaction. Message can be either String, Embed or MessageComplex.</p>
+
+<h3 id="respondephemeral-message">respondEphemeral message</h3>
+
+<p><strong>Note</strong> This only works in slash commands.</p>
+
+<p>This is conceptually the same as <code class="language-plaintext highlighter-rouge">respond</code> except it shows a message to the user that only they can see and only they can dismiss.</p>
+
+<h3 id="deleteresponse">deleteResponse</h3>
+
+<p>Deletes the response to a slash command trigger or message component interaction. This does not work for ephemeral messages since only the user can dismiss those.</p>
+
+<h3 id="responseid">responseID</h3>
+
+<p>For a non-ephemeral response, this will return the ID of the message that Discord created.</p>
+
+  </div>
+
+  <a class="u-url" href="/docs" hidden></a>
+</article>
+      </div>
+
+      <!--
+      <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: {
+              equationNumbers: {
+                autoNumber: "AMS"
+              }
+            },
+            tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            displayMath: [ ['\[', '\]'] ],
+            processEscapes: true,
+          }
+        });
+        MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+              alert("Math Processing Error: "+message[1]);
+            });
+        MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+              alert("Math Processing Error: "+message[1]);
+            });
+    </script>
+    
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript" ></script>
+    -->
+
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+  
+    <div class="wrapper">
+
+      <h2 class="footer-heading">Contact Me</h2>
+  
+      <div class="footer-col-wrapper">
+        <div class="footer-col">
+        </div>
+        <div class="footer-col"><ul class="social-media-list"></ul>
+</div>
+
+        <div class="footer-col">
+          <p>Documentation and tutorials related to the Discord bot Peaches</p>
+        </div>
+      </div>
+  
+    </div>
+  
+  </footer></body>
+
+</html>

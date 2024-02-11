@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Home | Peaches</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Home" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Documentation and tutorials related to the Discord bot Peaches" />
+<meta property="og:description" content="Documentation and tutorials related to the Discord bot Peaches" />
+<link rel="canonical" href="http://localhost:4000/" />
+<meta property="og:url" content="http://localhost:4000/" />
+<meta property="og:site_name" content="Peaches" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Home" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","description":"Documentation and tutorials related to the Discord bot Peaches","headline":"Home","name":"Peaches","url":"http://localhost:4000/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Peaches" />
+</head>
+<!--
+  
+  -->
+
+  <body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Peaches</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/">Home</a><a class="page-link" href="/docs">Documentation</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="home"><h1 class="page-heading">Home</h1><h1 id="overview">Overview</h1>
+
+<p>Peaches is a programmable slash command and trigger bot. If you have created custom commands using YAGPDB, this will be a very familiar experience as it follows a similar style.</p>
+
+<p>The bot is currently in the early stages of development so some bugs are expected. They will be fixed as quickly as possible. Please don’t hesitate to join the Discord Support Server with any questions you have or to report any issues you encounter.</p>
+
+<h1 id="inviting-peaches">Inviting Peaches</h1>
+
+<p>You can invite Peaches using <a href="https://discord.com/api/oauth2/authorize?client_id=1201100920189096018&amp;permissions=1102196361408&amp;scope=bot%20applications.commands">this invite link</a>.</p>
+
+<h1 id="language">Language</h1>
+
+<p>Peaches uses the text templating system offered by the Go programming language. It allows for a mix of static text and dynamic actions wrapped in <code class="language-plaintext highlighter-rouge">{{}}</code> tags (action tags).</p>
+
+<p>When a new slash command is created, it is represented internally as an empty text template. If called it will produce the default output.</p>
+
+<p>To program a slash command after it is created, you can upload your own text template code for the bot to use instead.</p>
+
+<h1 id="conventions">Conventions</h1>
+
+<p>Variables are prefixed by $. Creating a new variable is done with :=, whereas assigning to an existing variable is done with =.</p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">name</span> <span class="o">:=</span> <span class="s">"New variable created with :="</span><span class="p">}}</span>
+<span class="p">{{</span><span class="err">$</span><span class="n">name</span> <span class="o">=</span> <span class="s">"Existing value being overwritten with ="</span><span class="p">}}</span></code></pre></figure>
+
+<p>Types, type functions, fields and constants are represented by words that start with capital letters. Examples of types are <code class="language-plaintext highlighter-rouge">MessageEmbed</code> and <code class="language-plaintext highlighter-rouge">MessageComplex</code> whereas examples of constants are <code class="language-plaintext highlighter-rouge">E</code>, <code class="language-plaintext highlighter-rouge">Pi</code>, <code class="language-plaintext highlighter-rouge">Phi</code>.</p>
+
+<p>When creating an object of a certain type, you can set its fields using <code class="language-plaintext highlighter-rouge">FieldName: Value</code> syntax. The following example would create a new MessageEmbed object and store it in the embed variable.</p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">embed</span> <span class="o">:=</span> <span class="n">MessageEmbed</span>
+    <span class="n">Title</span><span class="o">:</span> <span class="s">"Title Goes Here"</span>
+    <span class="n">Description</span><span class="o">:</span> <span class="s">"Description text goes here."</span>
+<span class="p">}}</span></code></pre></figure>
+
+<p>Regular functions start with lowercase letters such as <code class="language-plaintext highlighter-rouge">len</code>, <code class="language-plaintext highlighter-rouge">add</code>, <code class="language-plaintext highlighter-rouge">index</code>.</p>
+
+
+
+  </div>
+      </div>
+
+      <!--
+      <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: {
+              equationNumbers: {
+                autoNumber: "AMS"
+              }
+            },
+            tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            displayMath: [ ['\[', '\]'] ],
+            processEscapes: true,
+          }
+        });
+        MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+              alert("Math Processing Error: "+message[1]);
+            });
+        MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+              alert("Math Processing Error: "+message[1]);
+            });
+    </script>
+    
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript" ></script>
+    -->
+
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+  
+    <div class="wrapper">
+
+      <h2 class="footer-heading">Contact Me</h2>
+  
+      <div class="footer-col-wrapper">
+        <div class="footer-col">
+        </div>
+        <div class="footer-col"><ul class="social-media-list"></ul>
+</div>
+
+        <div class="footer-col">
+          <p>Documentation and tutorials related to the Discord bot Peaches</p>
+        </div>
+      </div>
+  
+    </div>
+  
+  </footer></body>
+
+</html>
