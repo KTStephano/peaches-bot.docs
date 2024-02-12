@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>First Slash Command | Peaches</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="First Slash Command" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Documentation and tutorials related to the Discord bot Peaches" />
+<meta property="og:description" content="Documentation and tutorials related to the Discord bot Peaches" />
+<link rel="canonical" href="http://localhost:4000/tutorials/t01" />
+<meta property="og:url" content="http://localhost:4000/tutorials/t01" />
+<meta property="og:site_name" content="Peaches" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="First Slash Command" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Documentation and tutorials related to the Discord bot Peaches","headline":"First Slash Command","url":"http://localhost:4000/tutorials/t01"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Peaches" />
+</head>
+<!--
+  
+  -->
+
+  <body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Peaches</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/">Home</a><a class="page-link" href="/docs">Documentation</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">First Slash Command</h1>
+    <p class="post-meta"><time class="dt-published" datetime="" itemprop="datePublished">
+        
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>This tutorial will walk you through creating your first slash command and then editing its source code.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#step-1-use-create-cmd" id="markdown-toc-step-1-use-create-cmd">Step 1: Use /create-cmd</a></li>
+  <li><a href="#step-2-use-the-new-command" id="markdown-toc-step-2-use-the-new-command">Step 2: Use the new command</a></li>
+  <li><a href="#step-3-edit-the-command-using-set-source" id="markdown-toc-step-3-edit-the-command-using-set-source">Step 3: Edit the command using /set-source</a></li>
+  <li><a href="#step-4-switch-to-ephemeral-response" id="markdown-toc-step-4-switch-to-ephemeral-response">Step 4: Switch to ephemeral response</a></li>
+  <li><a href="#step-5-optional-delete-with-delete-cmd" id="markdown-toc-step-5-optional-delete-with-delete-cmd">Step 5: Optional delete with /delete-cmd</a></li>
+</ul>
+
+<h1 id="step-1-use-create-cmd">Step 1: Use /create-cmd</h1>
+
+<p>From inside of your Discord server, start by typing <code class="language-plaintext highlighter-rouge">/create-cmd</code>. You should see a Discord slash command hint pop up. Click on the one for Peaches.</p>
+
+<p><img src="/assets/t01/type.png" alt="type" /></p>
+
+<p>Once you click on it, Discord will prompt you for its 2 required arguments. We will specify “hello” for the name and “Displays a greeting” for the description.</p>
+
+<p><img src="/assets/t01/fill.png" alt="fill" /></p>
+
+<p>Now you can hit enter and it will open the source code editor. It will look something like this:</p>
+
+<p><img src="/assets/t01/editor.png" alt="editor" /></p>
+
+<p>We will cover the first text box in a later tutorial. In short: it enables you to customize the command’s arguments and default permissions. It is optional, so you can leave it blank.</p>
+
+<p>The second text box is auto-filled with default initial code. <code class="language-plaintext highlighter-rouge">respond</code> is a builtin function that tells the bot to reply to an interaction. If you leave out the response and then run the command, you’ll see an error in the Discord client saying that the bot did not respond even though it was expected to. The function and its argument are enclosed in <code class="language-plaintext highlighter-rouge">{{}}</code> tags which tells the bot to execute that line of code.</p>
+
+<p>You can leave the default as it is and click <strong>Submit</strong>.</p>
+
+<h1 id="step-2-use-the-new-command">Step 2: Use the new command</h1>
+
+<p>Once you hit submit on the last step, Peaches should create a new guild-local slash command called hello. When you start typing it, Discord will give you a suggestion like the following.</p>
+
+<p><img src="/assets/t01/hello.png" alt="hello" /></p>
+
+<p>If you select it and hit enter, you should see the bot respond with “Hello, world!” in the chat.</p>
+
+<p><img src="/assets/t01/printed.png" alt="printed" /></p>
+
+<h1 id="step-3-edit-the-command-using-set-source">Step 3: Edit the command using /set-source</h1>
+
+<p>Now that we have a new slash command registered with Discord, we can freely edit the underlying source code. From Discord’s perspective nothing will have changed, but from the bot’s perspective it will now execute a different piece of source code whenever the slash command is used.</p>
+
+<p>We are going to make use of the slash command’s Context and the <code class="language-plaintext highlighter-rouge">print</code> function for this piece of code. We will explore the Context more in future tutorials, but for right now all we need to know is that the bot auto-populates <code class="language-plaintext highlighter-rouge">context.Member</code> with an object representing the member who used the command. We can use that to personalize the greeting by pulling out their username and displaying it.</p>
+
+<p><img src="/assets/t01/set.png" alt="set" /></p>
+
+<p>Once you hit enter, the Editor will again pop up. It will automatically populate the text box with the last saved source code for the command.</p>
+
+<p><img src="/assets/t01/edited.png" alt="edited" /></p>
+
+<p>Notice that this time only one source code box appears. If we wanted the option to customize the slash command arguments, we would need to re-run <code class="language-plaintext highlighter-rouge">/cmd-create</code>.</p>
+
+<p>Once you hit submit the bot will give you a confirmation if everything went well and then you can try running the hello command again. Here’s the final result:</p>
+
+<p><img src="/assets/t01/final.png" alt="final" /></p>
+
+<h1 id="step-4-switch-to-ephemeral-response">Step 4: Switch to ephemeral response</h1>
+
+<p>With the personalized greeting in place, we can do another source edit and change <code class="language-plaintext highlighter-rouge">respond</code> to <code class="language-plaintext highlighter-rouge">respondEphemeral</code>. This tells the bot that it should reply with a private message in the channel to the user. These replies can’t be edited once sent, and only the receiver can dismiss them. This is the result:</p>
+
+<p><img src="/assets/t01/ephemeral.png" alt="ephemeral" /></p>
+
+<h1 id="step-5-optional-delete-with-delete-cmd">Step 5: Optional delete with /delete-cmd</h1>
+
+<p>Now that this first tutorial is done, we can optionally clean up the command using <code class="language-plaintext highlighter-rouge">/delete-cmd</code> and passing in “hello” for the name.</p>
+
+  </div>
+
+  <a class="u-url" href="/tutorials/t01" hidden></a>
+</article>
+      </div>
+
+      <!--
+      <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: {
+              equationNumbers: {
+                autoNumber: "AMS"
+              }
+            },
+            tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            displayMath: [ ['\[', '\]'] ],
+            processEscapes: true,
+          }
+        });
+        MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+              alert("Math Processing Error: "+message[1]);
+            });
+        MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+              alert("Math Processing Error: "+message[1]);
+            });
+    </script>
+    
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript" ></script>
+    -->
+
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+  
+    <div class="wrapper">
+
+      <h2 class="footer-heading">Contact Me</h2>
+  
+      <div class="footer-col-wrapper">
+        <div class="footer-col">
+        </div>
+        <div class="footer-col"><ul class="social-media-list"></ul>
+</div>
+
+        <div class="footer-col">
+          <p>Documentation and tutorials related to the Discord bot Peaches</p>
+        </div>
+      </div>
+  
+    </div>
+  
+  </footer></body>
+
+</html>

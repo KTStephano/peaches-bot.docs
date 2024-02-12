@@ -50,3 +50,5 @@ When creating an object of a certain type, you can set its fields using `FieldNa
 {% endhighlight %}
 
 Regular functions start with lowercase letters such as `len`, `add`, `index`.
+
+[t01](/tutorials/t01)

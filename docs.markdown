@@ -98,6 +98,40 @@ When the **trigger execution** stage is run, it is initialized with a context th
 .System | Whether the user is an Official Discord System user (part of the urgent message system)
 .Flags | The flags on a user's account
 
+### context.Channel
+
+**May be nil if a channel was not involved in triggering the code**
+
+.ID | The ID of the channel
+.GuildID | The ID of the guild
+.Name | The name of the channel
+.Topic | The topic of the channel
+.IsThread | True if channel represents an individual thread
+.IsForum | True if channel represents a Forum channel
+.Type | The type of the channel
+.LastMessageID | The ID of the last message sent in the channel (may be invalid)
+.LastPinTimestamp | he timestamp of the last pinned message in the channel (nil if no pinned messages)
+.MessageCount | An approximate count of messages in a thread, stops counting at 50
+.MemberCount | An approximate count of users in a thread, stops counting at 50
+.NSFW | Whether the channel is marked as NSFW
+.Icon | Icon of the group DM channel
+.Position | The position of the channel, used for sorting in client
+.Bitrate | The bitrate of the channel, if it is a voice channel
+.PermissionOverwrites | A list of permission overwrites present for the channel
+.UserLimit | The user limit of the voice channel
+.ParentID | The ID of the parent channel
+.RateLimitPerUser | Amount of seconds a user has to wait before sending another message or creating another thread (0-21600)
+.OwnerID | ID of the creator of the group DM or thread
+.ApplicationID | ApplicationID of the DM creator Zeroed if guild channel or not a bot user
+.ThreadMetadata | Thread-specific fields not needed by other channels
+.Flags | Channel flags
+.AvailableTags | The set of tags that can be used in a forum channel
+.AppliedTags | The IDs of the set of tags that have been applied to a thread in a forum channel
+.DefaultReactionEmoji | Emoji to use as the default reaction to a forum post
+.DefaultThreadRateLimitPerUser | The initial RateLimitPerUser to set on newly created threads in a channel
+.DefaultSortOrder | The default sort order type used to order posts in forum channels
+.DefaultForumLayout | The default forum layout view used to display posts in forum channels
+
 ### context.Message
 
 **May be nil if a message did not trigger the code**
@@ -129,7 +163,7 @@ When the **trigger execution** stage is run, it is initialized with a context th
 
 ### context.Inputs
 
-A slice of inputs to a Slash Command. Type is [*SlashCommandInputData](/docs#type-slashcommandinputdata).
+An array of inputs to a Slash Command. Type is [*SlashCommandInputData](/docs#type-slashcommandinputdata).
 
 ### context.AuditEntry
 
@@ -165,9 +199,9 @@ Can be one of PrimaryButton, SecondaryButton, SuccessButton, DangerButton, LinkB
 
 Can be one of ActionsRowComponent, ButtonComponent, SelectMenuComponent, TextInputComponent, UserSelectMenuComponent, RoleSelectMenuComponent, MentionableSelectMenuComponent, ChannelSelectMenuComponent.
 
-### type Slice[Any]
+### type Array[Any]
 
-A Slice is a dynamic array of objects with type Any. It will try to use existing space when appending items, but once space is used up it will perform a resize+copy and return a pointer to the new Slice.
+A Array is a dynamic array of objects with type Any. It will try to use existing space when appending items, but once space is used up it will perform a resize+copy and return a pointer to the new Array.
 
 **Fields**
 
@@ -175,13 +209,15 @@ None
 
 **Functions**
 
-.Append ...args | returns Slice | Takes a list of objects to append to the slice
+.Append ...args | returns Array | Takes a list of objects to append to the array
+.Contains arg | returns bool |
+.Get index | returns any |
 
 **Examples**
 
 {% highlight golang %}
 {% raw %}
-{{$array := Slice}}
+{{$array := Array}}
 {{$array = $array.Append 1 2 "hello" true false 4 5 6}}
 {{contains $array 1}} {{/* true */}}
 {{contains $array 100}} {{/* false */}}
@@ -242,7 +278,7 @@ None
 
 ### type SlashCommandInputData
 
-A Slice of these objects are passed into slash commands when they accept user input.
+A Array of these objects are passed into slash commands when they accept user input.
 
 **Fields**
 
@@ -281,7 +317,7 @@ AsChannel | Channel | Converts audit log target to a Channel object
 
 CustomID | String | Trigger-supplied custom ID for the component
 ComponentType | [ComponentType](/docs#enum-componenttype) | 
-Values | Slice[String] | Only filled when ComponentType is SelectMenuComponent (3). Otherwise is nil.
+Values | Array[String] | Only filled when ComponentType is SelectMenuComponent (3). Otherwise is nil.
 
 **Functions**
 
@@ -312,14 +348,13 @@ None
 .Type | [OptionType](/docs#enum-optiontype) | **required** | Type of data this option can contain. This determines what inputs the Discord UI will accept. 
 .Name | String | **required** | Top-level name of the option
 .Description | String | **required** | Short explanation of the option
-.ChannelTypes | Slice[[ChannelType](/docs#enum-channeltype)] | **optional** | A slice of channel types that this option accepts
+.ChannelTypes | Array[[ChannelType](/docs#enum-channeltype)] | **optional** | An array of channel types that this option accepts
 .Required | Bool | **optional** (default false) | Whether this option is required or not
-.Autocomplete | Bool | **optional** (default false) | ...
-.Choices | Slice[OptionType] | **optional** | ...
-.MinValue | Double | **optional** | ...
-.MaxValue | Double | **optional** | ...
-.MinLength | Int64 | **optional** | ...
-.MaxLength | Int64 | **optional** | ...
+.Choices | Array[OptionType] | **optional** | Selection menu that the user can choose from
+.MinValue | Double | **optional** | Minimal value of number/integer option
+.MaxValue | Double | **optional** | Maximum value of number/integer option
+.MinLength | Int64 | **optional** | Minimum length of string option
+.MaxLength | Int64 | **optional** | Maximum length of string option
 
 **Examples**
 
@@ -351,7 +386,7 @@ All fields for Embed technically optional, but at least one should have data.
 .Video | EmbedVideo | **optional** |
 .Provider | EmbedProvider | **optional** |
 .Author | EmbedAuthor | **optional** |
-.Fields | Slice[EmbedField] | **optional** |
+.Fields | Array[EmbedField] | **optional** |
 
 {% highlight golang %}
 {% raw %}
@@ -478,7 +513,7 @@ Takes a string and converts all characters to uppercase.
 
 ### split string separator
 
-Takes a string and separator and returns a Slice.
+Takes a string and separator and returns a Array.
 
 ### trimWhitespace string
 
@@ -518,9 +553,9 @@ Takes a float-convertible number and returns the floor (round down) of the numbe
 
 Takes a float-convertible number and returns the ceil (round up) of the number.
 
-### randChoice slice
+### randChoice array
 
-Takes a Slice input and returns a random element from it.
+Takes an Array input and returns a random element from it.
 
 ### rand
 
@@ -532,7 +567,7 @@ Takes an int64-convertible limit and returns a random number from [0, limit) non
 
 ### contains container item
 
-Takes a container (slice, map, string) and an item and returns true if that item is present in the container.
+Takes a container (array, map, string) and an item and returns true if that item is present in the container.
 
 **Examples** 
 
@@ -540,7 +575,7 @@ Takes a container (slice, map, string) and an item and returns true if that item
 {% raw %}
 {{contains "hello, world!" "hello"}} {{/* true */}}
 {{contains "hello, world!" "earth"}} {{/* false */}}
-{{contains (Slice 1 2 3 4) 3}} {{/* true */}}
+{{contains (Array 1 2 3 4) 3}} {{/* true */}}
 {{contains (SMap "hello" true "world" true) "world"}} {{/* true */}}
 {% endraw %}
 {% endhighlight %}

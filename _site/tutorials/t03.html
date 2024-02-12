@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Slash Command Inputs | Peaches</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Slash Command Inputs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Documentation and tutorials related to the Discord bot Peaches" />
+<meta property="og:description" content="Documentation and tutorials related to the Discord bot Peaches" />
+<link rel="canonical" href="http://localhost:4000/tutorials/t03" />
+<meta property="og:url" content="http://localhost:4000/tutorials/t03" />
+<meta property="og:site_name" content="Peaches" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Slash Command Inputs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Documentation and tutorials related to the Discord bot Peaches","headline":"Slash Command Inputs","url":"http://localhost:4000/tutorials/t03"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Peaches" />
+</head>
+<!--
+  
+  -->
+
+  <body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Peaches</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/">Home</a><a class="page-link" href="/docs">Documentation</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Slash Command Inputs</h1>
+    <p class="post-meta"><time class="dt-published" datetime="" itemprop="datePublished">
+        
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>This tutorial will walk you through the customization of slash commands to accept both required and optional inputs.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#custom-command-initialization" id="markdown-toc-custom-command-initialization">Custom command initialization</a></li>
+  <li><a href="#example-1-ping-user" id="markdown-toc-example-1-ping-user">Example 1: Ping User</a></li>
+  <li><a href="#example-2-ping-with-optional-message" id="markdown-toc-example-2-ping-with-optional-message">Example 2: Ping with optional message</a></li>
+  <li><a href="#example-3-let-user-select-a-role" id="markdown-toc-example-3-let-user-select-a-role">Example 3: Let user select a role</a></li>
+  <li><a href="#modifying-slash-command-permissions" id="markdown-toc-modifying-slash-command-permissions">Modifying slash command permissions</a></li>
+</ul>
+
+<h1 id="custom-command-initialization">Custom command initialization</h1>
+
+<p>In the first tutorial we glanced over the first source code text box that appears with <code class="language-plaintext highlighter-rouge">/create-cmd</code>. This allows you to specify some code that runs during the command creation stage and tells the bot more about the layout of the command. This layout includes not only the inputs but also the default permissions.</p>
+
+<p>Command initialization exposes a few functions and data types to use. The functions are <code class="language-plaintext highlighter-rouge">addOptions</code> and <code class="language-plaintext highlighter-rouge">setDefaultPermissions</code> whereas the data types are <code class="language-plaintext highlighter-rouge">OptionType</code>, <code class="language-plaintext highlighter-rouge">ChannelType</code>, <code class="language-plaintext highlighter-rouge">CmdOption</code> and <code class="language-plaintext highlighter-rouge">CmdChoice</code> which work together.</p>
+
+<p>Here is the layout for the data types:</p>
+
+<p><strong>enum OptionType</strong></p>
+
+<p>Can be one of OptionString, OptionInteger, OptionBoolean, OptionUser, OptionChannel, OptionRole, OptionMentionable, OptionNumber.</p>
+
+<p><strong>enum ChannelType</strong></p>
+
+<p>Can be one of ChannelGuildText, ChannelDM, ChannelGuildVoice, ChannelGuildGroupDM, ChannelGuildCategory, ChannelGuildNews, ChannelGuildStore, ChannelGuildNewsThread, ChannelGuildPublicThread, ChannelGuildPrivateThread, ChannelGuildStageVoice, ChannelGuildForum.</p>
+
+<p><strong>type CmdOption</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.Type</td>
+      <td><a href="/docs#enum-optiontype">OptionType</a></td>
+      <td><strong>required</strong></td>
+      <td>Type of data this option can contain. This determines what inputs the Discord UI will accept.</td>
+    </tr>
+    <tr>
+      <td>.Name</td>
+      <td>String</td>
+      <td><strong>required</strong></td>
+      <td>Top-level name of the option</td>
+    </tr>
+    <tr>
+      <td>.Description</td>
+      <td>String</td>
+      <td><strong>required</strong></td>
+      <td>Short explanation of the option</td>
+    </tr>
+    <tr>
+      <td>.ChannelTypes</td>
+      <td>Array[<a href="/docs#enum-channeltype">ChannelType</a>]</td>
+      <td><strong>optional</strong></td>
+      <td>An array of channel types that this option accepts</td>
+    </tr>
+    <tr>
+      <td>.Required</td>
+      <td>Bool</td>
+      <td><strong>optional</strong> (default false)</td>
+      <td>Whether this option is required or not</td>
+    </tr>
+    <tr>
+      <td>.Choices</td>
+      <td>Array[OptionType]</td>
+      <td><strong>optional</strong></td>
+      <td>Selection menu that the user can choose from</td>
+    </tr>
+    <tr>
+      <td>.MinValue</td>
+      <td>Double</td>
+      <td><strong>optional</strong></td>
+      <td>Minimal value of number/integer option</td>
+    </tr>
+    <tr>
+      <td>.MaxValue</td>
+      <td>Double</td>
+      <td><strong>optional</strong></td>
+      <td>Maximum value of number/integer option</td>
+    </tr>
+    <tr>
+      <td>.MinLength</td>
+      <td>Int64</td>
+      <td><strong>optional</strong></td>
+      <td>Minimum length of string option</td>
+    </tr>
+    <tr>
+      <td>.MaxLength</td>
+      <td>Int64</td>
+      <td><strong>optional</strong></td>
+      <td>Maximum length of string option</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>type CmdChoice</strong></p>
+
+<p><strong>Fields</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.Name</td>
+      <td>String</td>
+      <td><strong>required</strong></td>
+      <td>Name that appears in the slash command selection menu</td>
+    </tr>
+    <tr>
+      <td>.Value</td>
+      <td>Any</td>
+      <td><strong>required</strong></td>
+      <td>Value assigned to the choice for use by the code</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In the next section we will make use of these types to customize a slash command’s inputs.</p>
+
+<h1 id="example-1-ping-user">Example 1: Ping User</h1>
+
+<p>For the first example we will create a command called “hello” that takes a required user input argument. It responds by saying “Hello, @user!”. To do this you can use the <code class="language-plaintext highlighter-rouge">/create-cmd</code> command again to bring up the editor. Once there, in the first bo we will add an argument of type <code class="language-plaintext highlighter-rouge">OptionUser</code> with name “user”, description “User to ping”, and required set to true.</p>
+
+<p><img src="/assets/t03/ping.png" alt="ping" /></p>
+
+<p>Notice that inside of CmdOption there are the <code class="language-plaintext highlighter-rouge">Type:</code>, <code class="language-plaintext highlighter-rouge">Required:</code>, <code class="language-plaintext highlighter-rouge">Name:</code> and <code class="language-plaintext highlighter-rouge">Description:</code> labels followed by their values. This is how to create new objects of a given type with the bot’s scripting language.</p>
+
+<p>Walking through the source code in the first text box:</p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">option</span> <span class="o">:=</span> <span class="n">CmdOption</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">OptionUser</span> <span class="n">Required</span><span class="o">:</span> <span class="no">true</span>
+    <span class="n">Name</span><span class="o">:</span> <span class="s">"user"</span> <span class="n">Description</span><span class="o">:</span> <span class="s">"User to ping"</span><span class="p">}}</span></code></pre></figure>
+
+<p>This creates a new command object object which is of type <code class="language-plaintext highlighter-rouge">OptionUser</code>. This tells Discord to only allow valid users as inputs, and it will prevent any values outside of that from being entered. In the slash command menu it will contain the name “user” and description “User to ping”.</p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="n">addOption</span> <span class="err">$</span><span class="n">option</span><span class="p">}}</span></code></pre></figure>
+
+<p>This tells the bot to register the given option for the command. This piece of code is executed only once during the creation of the slash command. After that, the bot doesn’t use it again even if you call <code class="language-plaintext highlighter-rouge">/set-source</code> later.</p>
+
+<p>When trying to run the command in Discord, this is what it might look like with suggestions.</p>
+
+<p><img src="/assets/t03/ping_input.png" alt="ping_input" /></p>
+
+<p>Now walking through the command execution part of the code:</p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">user</span> <span class="o">:=</span> <span class="p">(</span><span class="n">index</span> <span class="n">context</span><span class="o">.</span><span class="n">Inputs</span> <span class="m">0</span><span class="p">)</span><span class="o">.</span><span class="n">User</span><span class="p">}}</span>
+<span class="p">{{</span><span class="n">respond</span> <span class="p">(</span><span class="n">printf</span> <span class="s">"Hello, %s!"</span> <span class="err">$</span><span class="n">user</span><span class="o">.</span><span class="n">Mention</span><span class="p">)}}</span></code></pre></figure>
+
+<p>The main thing to know here is that context.Inputs is populated by the bot with a list of command inputs from the user. The <code class="language-plaintext highlighter-rouge">index</code> function can be used to index any array (even ones passed in from the bot’s system) with the array as the first argument and index as the second.</p>
+
+<h1 id="example-2-ping-with-optional-message">Example 2: Ping with optional message</h1>
+
+<p>Now we’ll extend the original command by running <code class="language-plaintext highlighter-rouge">/create-cmd</code> again, but this time adding a second optional input to act as the custom message.</p>
+
+<p>Command customization code:</p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">option1</span> <span class="o">:=</span> <span class="n">CmdOption</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">OptionUser</span> 
+    <span class="n">Required</span><span class="o">:</span> <span class="no">true</span>
+    <span class="n">Name</span><span class="o">:</span> <span class="s">"user"</span> 
+    <span class="n">Description</span><span class="o">:</span> <span class="s">"User to ping"</span>
+<span class="p">}}</span>
+<span class="p">{{</span><span class="err">$</span><span class="n">option2</span> <span class="o">:=</span> <span class="n">CmdOption</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">OptionString</span> 
+    <span class="n">Required</span><span class="o">:</span> <span class="no">false</span>
+    <span class="n">Name</span><span class="o">:</span> <span class="s">"message"</span>
+    <span class="n">Description</span><span class="o">:</span> <span class="s">"Custom message to include"</span>
+<span class="p">}}</span>
+<span class="p">{{</span><span class="n">addOptions</span> <span class="err">$</span><span class="n">option1</span> <span class="err">$</span><span class="n">option2</span><span class="p">}}</span></code></pre></figure>
+
+<p>This will re-create the command with 2 inputs, the second with <code class="language-plaintext highlighter-rouge">Required</code> set to false.</p>
+
+<p>Inside of the command execution code, we know that the first argument will always be present since it is set to required, but the second we have to optionally check for. We can do something like this:</p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">user</span> <span class="o">:=</span> <span class="p">(</span><span class="n">index</span> <span class="n">context</span><span class="o">.</span><span class="n">Inputs</span> <span class="m">0</span><span class="p">)</span><span class="o">.</span><span class="n">User</span><span class="p">}}</span>
+<span class="c">// If length &gt; 1, we know we got a message input as arg #2</span>
+<span class="p">{{</span><span class="k">if</span> <span class="n">gt</span> <span class="p">(</span><span class="nb">len</span> <span class="n">context</span><span class="o">.</span><span class="n">Inputs</span><span class="p">)</span> <span class="m">1</span><span class="p">}}</span>
+    <span class="p">{{</span><span class="err">$</span><span class="n">message</span> <span class="o">:=</span> <span class="p">(</span><span class="n">index</span> <span class="n">context</span><span class="o">.</span><span class="n">Inputs</span> <span class="m">1</span><span class="p">)</span><span class="o">.</span><span class="n">String</span><span class="p">}}</span>
+    <span class="p">{{</span><span class="n">respond</span> <span class="p">(</span><span class="n">printf</span> <span class="s">"%s: %s"</span> <span class="err">$</span><span class="n">user</span><span class="o">.</span><span class="n">Mention</span> <span class="err">$</span><span class="n">message</span><span class="p">)}}</span>
+
+<span class="c">// Else we only have the user argument - print the default message</span>
+<span class="p">{{</span><span class="k">else</span><span class="p">}}</span>
+    <span class="p">{{</span><span class="n">respond</span> <span class="p">(</span><span class="n">printf</span> <span class="s">"Hello, %s!"</span> <span class="err">$</span><span class="n">user</span><span class="o">.</span><span class="n">Mention</span><span class="p">)}}</span>
+<span class="p">{{</span><span class="n">end</span><span class="p">}}</span></code></pre></figure>
+
+<h1 id="example-3-let-user-select-a-role">Example 3: Let user select a role</h1>
+
+<p>This example will demonstrate how to use <code class="language-plaintext highlighter-rouge">CmdChoice</code> in order to create a list of optional roles that the user can select from. We’ll do this by giving them a set of options that internally map to an array of role ids.</p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">role1</span> <span class="o">:=</span> <span class="n">CmdChoice</span>
+    <span class="n">Name</span><span class="o">:</span> <span class="s">"green"</span>
+    <span class="n">Value</span><span class="o">:</span> <span class="m">0</span> <span class="c">// index of role id</span>
+<span class="p">}}</span>
+<span class="p">{{</span><span class="err">$</span><span class="n">role2</span> <span class="o">:=</span> <span class="n">CmdChoice</span>
+    <span class="n">Name</span><span class="o">:</span> <span class="s">"blue"</span>
+    <span class="n">Value</span><span class="o">:</span> <span class="m">1</span> <span class="c">// index of role id</span>
+<span class="p">}}</span>
+<span class="p">{{</span><span class="err">$</span><span class="n">option</span> <span class="o">:=</span> <span class="n">CmdOption</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">OptionInteger</span> 
+    <span class="n">Name</span><span class="o">:</span> <span class="s">"role-options"</span>
+    <span class="n">Description</span><span class="o">:</span> <span class="s">"List of roles you can select from"</span>
+    <span class="n">Required</span><span class="o">:</span> <span class="no">true</span>
+    <span class="n">Choices</span><span class="o">:</span> <span class="p">(</span><span class="n">Array</span> <span class="err">$</span><span class="n">role1</span> <span class="err">$</span><span class="n">role2</span><span class="p">)</span>
+<span class="p">}}</span>
+<span class="p">{{</span><span class="n">addOptions</span> <span class="err">$</span><span class="n">option</span><span class="p">}}</span></code></pre></figure>
+
+<p>For the source code, we will have an array where each entry corresponds to an index contained in the selection.</p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">roleIdList</span> <span class="o">:=</span> <span class="n">Array</span>
+    <span class="m">1206492832936886332</span> <span class="c">// green</span>
+    <span class="m">1206492862775304222</span> <span class="c">// blue</span>
+<span class="p">}}</span>
+
+<span class="c">// Selection given to us by the user, as an integer</span>
+<span class="p">{{</span><span class="err">$</span><span class="n">selection</span> <span class="o">:=</span> <span class="p">(</span><span class="n">index</span> <span class="n">context</span><span class="o">.</span><span class="n">Inputs</span> <span class="m">0</span><span class="p">)</span><span class="o">.</span><span class="n">Integer</span><span class="p">}}</span>
+<span class="p">{{</span><span class="err">$</span><span class="n">roleId</span> <span class="o">:=</span> <span class="n">index</span> <span class="err">$</span><span class="n">roleIdList</span> <span class="err">$</span><span class="n">selection</span><span class="p">}}</span>
+<span class="p">{{</span><span class="err">$</span><span class="n">userId</span> <span class="o">:=</span> <span class="n">context</span><span class="o">.</span><span class="n">Member</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">ID</span><span class="p">}}</span>
+
+<span class="c">// If user has the role, let them know</span>
+<span class="p">{{</span><span class="k">if</span> <span class="p">(</span><span class="n">hasRole</span> <span class="err">$</span><span class="n">userId</span> <span class="err">$</span><span class="n">roleId</span><span class="p">)}}</span>
+    <span class="p">{{</span><span class="n">respond</span> <span class="s">"You already have that role!"</span><span class="p">}}</span>
+
+<span class="p">{{</span><span class="k">else</span><span class="p">}}</span>
+    <span class="p">{{</span><span class="n">giveRole</span> <span class="err">$</span><span class="n">userId</span> <span class="err">$</span><span class="n">roleId</span><span class="p">}}</span>
+    <span class="p">{{</span><span class="n">respond</span> <span class="s">"Gave you the role"</span><span class="p">}}</span>
+<span class="p">{{</span><span class="n">end</span><span class="p">}}</span></code></pre></figure>
+
+<p>This is what the user will see when they try running the command:</p>
+
+<p><img src="/assets/t03/select.png" alt="select" /></p>
+
+<h1 id="modifying-slash-command-permissions">Modifying slash command permissions</h1>
+
+<p>After a command has been created, it’s possible to manage its permissions from within Discord itself. To do this, in your server go to <code class="language-plaintext highlighter-rouge">Server Settings</code>, then <code class="language-plaintext highlighter-rouge">Integrations</code>, then find Peaches. From here you can click on the commands and edit the permissions. Here is an example of editing the hello command from the first tutorial:</p>
+
+<p><img src="/assets/t03/permissions.png" alt="permissions" /></p>
+
+<p>If saved, this would have the effect of disabling it for @everyone but enabling it specifically for people with the @Level 25 role. It also makes it so that it is completely disabled from the #role-selection channel.</p>
+
+  </div>
+
+  <a class="u-url" href="/tutorials/t03" hidden></a>
+</article>
+      </div>
+
+      <!--
+      <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: {
+              equationNumbers: {
+                autoNumber: "AMS"
+              }
+            },
+            tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            displayMath: [ ['\[', '\]'] ],
+            processEscapes: true,
+          }
+        });
+        MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+              alert("Math Processing Error: "+message[1]);
+            });
+        MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+              alert("Math Processing Error: "+message[1]);
+            });
+    </script>
+    
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript" ></script>
+    -->
+
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+  
+    <div class="wrapper">
+
+      <h2 class="footer-heading">Contact Me</h2>
+  
+      <div class="footer-col-wrapper">
+        <div class="footer-col">
+        </div>
+        <div class="footer-col"><ul class="social-media-list"></ul>
+</div>
+
+        <div class="footer-col">
+          <p>Documentation and tutorials related to the Discord bot Peaches</p>
+        </div>
+      </div>
+  
+    </div>
+  
+  </footer></body>
+
+</html>

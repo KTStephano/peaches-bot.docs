@@ -74,6 +74,7 @@
       <li><a href="#contextguild" id="markdown-toc-contextguild">context.Guild</a></li>
       <li><a href="#contextmember" id="markdown-toc-contextmember">context.Member</a></li>
       <li><a href="#contextmemberuser" id="markdown-toc-contextmemberuser">context.Member.User</a></li>
+      <li><a href="#contextchannel" id="markdown-toc-contextchannel">context.Channel</a></li>
       <li><a href="#contextmessage" id="markdown-toc-contextmessage">context.Message</a></li>
       <li><a href="#contextinputs" id="markdown-toc-contextinputs">context.Inputs</a></li>
       <li><a href="#contextauditentry" id="markdown-toc-contextauditentry">context.AuditEntry</a></li>
@@ -86,7 +87,7 @@
       <li><a href="#bitfield-discordpermission" id="markdown-toc-bitfield-discordpermission">bitfield DiscordPermission</a></li>
       <li><a href="#enum-buttonstyle" id="markdown-toc-enum-buttonstyle">enum ButtonStyle</a></li>
       <li><a href="#enum-componenttype" id="markdown-toc-enum-componenttype">enum ComponentType</a></li>
-      <li><a href="#type-sliceany" id="markdown-toc-type-sliceany">type Slice[Any]</a></li>
+      <li><a href="#type-arrayany" id="markdown-toc-type-arrayany">type Array[Any]</a></li>
       <li><a href="#type-smapstringany" id="markdown-toc-type-smapstringany">type SMap[String]Any</a></li>
       <li><a href="#type-mapcomparableany" id="markdown-toc-type-mapcomparableany">type Map[Comparable]Any</a></li>
       <li><a href="#type-slashcommandinputdata" id="markdown-toc-type-slashcommandinputdata">type SlashCommandInputData</a></li>
@@ -129,7 +130,7 @@
       <li><a href="#round-num" id="markdown-toc-round-num">round num</a></li>
       <li><a href="#floor-num" id="markdown-toc-floor-num">floor num</a></li>
       <li><a href="#ceil-num" id="markdown-toc-ceil-num">ceil num</a></li>
-      <li><a href="#randchoice-slice" id="markdown-toc-randchoice-slice">randChoice slice</a></li>
+      <li><a href="#randchoice-array" id="markdown-toc-randchoice-array">randChoice array</a></li>
       <li><a href="#rand" id="markdown-toc-rand">rand</a></li>
       <li><a href="#randn-limit" id="markdown-toc-randn-limit">randn limit</a></li>
       <li><a href="#contains-container-item" id="markdown-toc-contains-container-item">contains container item</a></li>
@@ -403,6 +404,131 @@
   </tbody>
 </table>
 
+<h3 id="contextchannel">context.Channel</h3>
+
+<p><strong>May be nil if a channel was not involved in triggering the code</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.ID</td>
+      <td>The ID of the channel</td>
+    </tr>
+    <tr>
+      <td>.GuildID</td>
+      <td>The ID of the guild</td>
+    </tr>
+    <tr>
+      <td>.Name</td>
+      <td>The name of the channel</td>
+    </tr>
+    <tr>
+      <td>.Topic</td>
+      <td>The topic of the channel</td>
+    </tr>
+    <tr>
+      <td>.IsThread</td>
+      <td>True if channel represents an individual thread</td>
+    </tr>
+    <tr>
+      <td>.IsForum</td>
+      <td>True if channel represents a Forum channel</td>
+    </tr>
+    <tr>
+      <td>.Type</td>
+      <td>The type of the channel</td>
+    </tr>
+    <tr>
+      <td>.LastMessageID</td>
+      <td>The ID of the last message sent in the channel (may be invalid)</td>
+    </tr>
+    <tr>
+      <td>.LastPinTimestamp</td>
+      <td>he timestamp of the last pinned message in the channel (nil if no pinned messages)</td>
+    </tr>
+    <tr>
+      <td>.MessageCount</td>
+      <td>An approximate count of messages in a thread, stops counting at 50</td>
+    </tr>
+    <tr>
+      <td>.MemberCount</td>
+      <td>An approximate count of users in a thread, stops counting at 50</td>
+    </tr>
+    <tr>
+      <td>.NSFW</td>
+      <td>Whether the channel is marked as NSFW</td>
+    </tr>
+    <tr>
+      <td>.Icon</td>
+      <td>Icon of the group DM channel</td>
+    </tr>
+    <tr>
+      <td>.Position</td>
+      <td>The position of the channel, used for sorting in client</td>
+    </tr>
+    <tr>
+      <td>.Bitrate</td>
+      <td>The bitrate of the channel, if it is a voice channel</td>
+    </tr>
+    <tr>
+      <td>.PermissionOverwrites</td>
+      <td>A list of permission overwrites present for the channel</td>
+    </tr>
+    <tr>
+      <td>.UserLimit</td>
+      <td>The user limit of the voice channel</td>
+    </tr>
+    <tr>
+      <td>.ParentID</td>
+      <td>The ID of the parent channel</td>
+    </tr>
+    <tr>
+      <td>.RateLimitPerUser</td>
+      <td>Amount of seconds a user has to wait before sending another message or creating another thread (0-21600)</td>
+    </tr>
+    <tr>
+      <td>.OwnerID</td>
+      <td>ID of the creator of the group DM or thread</td>
+    </tr>
+    <tr>
+      <td>.ApplicationID</td>
+      <td>ApplicationID of the DM creator Zeroed if guild channel or not a bot user</td>
+    </tr>
+    <tr>
+      <td>.ThreadMetadata</td>
+      <td>Thread-specific fields not needed by other channels</td>
+    </tr>
+    <tr>
+      <td>.Flags</td>
+      <td>Channel flags</td>
+    </tr>
+    <tr>
+      <td>.AvailableTags</td>
+      <td>The set of tags that can be used in a forum channel</td>
+    </tr>
+    <tr>
+      <td>.AppliedTags</td>
+      <td>The IDs of the set of tags that have been applied to a thread in a forum channel</td>
+    </tr>
+    <tr>
+      <td>.DefaultReactionEmoji</td>
+      <td>Emoji to use as the default reaction to a forum post</td>
+    </tr>
+    <tr>
+      <td>.DefaultThreadRateLimitPerUser</td>
+      <td>The initial RateLimitPerUser to set on newly created threads in a channel</td>
+    </tr>
+    <tr>
+      <td>.DefaultSortOrder</td>
+      <td>The default sort order type used to order posts in forum channels</td>
+    </tr>
+    <tr>
+      <td>.DefaultForumLayout</td>
+      <td>The default forum layout view used to display posts in forum channels</td>
+    </tr>
+  </tbody>
+</table>
+
 <h3 id="contextmessage">context.Message</h3>
 
 <p><strong>May be nil if a message did not trigger the code</strong></p>
@@ -510,7 +636,7 @@
 
 <h3 id="contextinputs">context.Inputs</h3>
 
-<p>A slice of inputs to a Slash Command. Type is <a href="/docs#type-slashcommandinputdata">*SlashCommandInputData</a>.</p>
+<p>An array of inputs to a Slash Command. Type is <a href="/docs#type-slashcommandinputdata">*SlashCommandInputData</a>.</p>
 
 <h3 id="contextauditentry">context.AuditEntry</h3>
 
@@ -546,9 +672,9 @@
 
 <p>Can be one of ActionsRowComponent, ButtonComponent, SelectMenuComponent, TextInputComponent, UserSelectMenuComponent, RoleSelectMenuComponent, MentionableSelectMenuComponent, ChannelSelectMenuComponent.</p>
 
-<h3 id="type-sliceany">type Slice[Any]</h3>
+<h3 id="type-arrayany">type Array[Any]</h3>
 
-<p>A Slice is a dynamic array of objects with type Any. It will try to use existing space when appending items, but once space is used up it will perform a resize+copy and return a pointer to the new Slice.</p>
+<p>A Array is a dynamic array of objects with type Any. It will try to use existing space when appending items, but once space is used up it will perform a resize+copy and return a pointer to the new Array.</p>
 
 <p><strong>Fields</strong></p>
 
@@ -560,15 +686,25 @@
   <tbody>
     <tr>
       <td>.Append …args</td>
-      <td>returns Slice</td>
-      <td>Takes a list of objects to append to the slice</td>
+      <td>returns Array</td>
+      <td>Takes a list of objects to append to the array</td>
+    </tr>
+    <tr>
+      <td>.Contains arg</td>
+      <td>returns bool</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Get index</td>
+      <td>returns any</td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
 
 <p><strong>Examples</strong></p>
 
-<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">array</span> <span class="o">:=</span> <span class="n">Slice</span><span class="p">}}</span>
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">array</span> <span class="o">:=</span> <span class="n">Array</span><span class="p">}}</span>
 <span class="p">{{</span><span class="err">$</span><span class="n">array</span> <span class="o">=</span> <span class="err">$</span><span class="n">array</span><span class="o">.</span><span class="n">Append</span> <span class="m">1</span> <span class="m">2</span> <span class="s">"hello"</span> <span class="no">true</span> <span class="no">false</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span><span class="p">}}</span>
 <span class="p">{{</span><span class="n">contains</span> <span class="err">$</span><span class="n">array</span> <span class="m">1</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* true */</span><span class="p">}}</span>
 <span class="p">{{</span><span class="n">contains</span> <span class="err">$</span><span class="n">array</span> <span class="m">100</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* false */</span><span class="p">}}</span></code></pre></figure>
@@ -651,7 +787,7 @@
 
 <h3 id="type-slashcommandinputdata">type SlashCommandInputData</h3>
 
-<p>A Slice of these objects are passed into slash commands when they accept user input.</p>
+<p>A Array of these objects are passed into slash commands when they accept user input.</p>
 
 <p><strong>Fields</strong></p>
 
@@ -779,7 +915,7 @@
     </tr>
     <tr>
       <td>Values</td>
-      <td>Slice[String]</td>
+      <td>Array[String]</td>
       <td>Only filled when ComponentType is SelectMenuComponent (3). Otherwise is nil.</td>
     </tr>
   </tbody>
@@ -843,9 +979,9 @@
     </tr>
     <tr>
       <td>.ChannelTypes</td>
-      <td>Slice[<a href="/docs#enum-channeltype">ChannelType</a>]</td>
+      <td>Array[<a href="/docs#enum-channeltype">ChannelType</a>]</td>
       <td><strong>optional</strong></td>
-      <td>A slice of channel types that this option accepts</td>
+      <td>An array of channel types that this option accepts</td>
     </tr>
     <tr>
       <td>.Required</td>
@@ -854,40 +990,34 @@
       <td>Whether this option is required or not</td>
     </tr>
     <tr>
-      <td>.Autocomplete</td>
-      <td>Bool</td>
-      <td><strong>optional</strong> (default false)</td>
-      <td>…</td>
-    </tr>
-    <tr>
       <td>.Choices</td>
-      <td>Slice[OptionType]</td>
+      <td>Array[OptionType]</td>
       <td><strong>optional</strong></td>
-      <td>…</td>
+      <td>Selection menu that the user can choose from</td>
     </tr>
     <tr>
       <td>.MinValue</td>
       <td>Double</td>
       <td><strong>optional</strong></td>
-      <td>…</td>
+      <td>Minimal value of number/integer option</td>
     </tr>
     <tr>
       <td>.MaxValue</td>
       <td>Double</td>
       <td><strong>optional</strong></td>
-      <td>…</td>
+      <td>Maximum value of number/integer option</td>
     </tr>
     <tr>
       <td>.MinLength</td>
       <td>Int64</td>
       <td><strong>optional</strong></td>
-      <td>…</td>
+      <td>Minimum length of string option</td>
     </tr>
     <tr>
       <td>.MaxLength</td>
       <td>Int64</td>
       <td><strong>optional</strong></td>
-      <td>…</td>
+      <td>Maximum length of string option</td>
     </tr>
   </tbody>
 </table>
@@ -977,7 +1107,7 @@
     </tr>
     <tr>
       <td>.Fields</td>
-      <td>Slice[EmbedField]</td>
+      <td>Array[EmbedField]</td>
       <td><strong>optional</strong></td>
       <td> </td>
     </tr>
@@ -1225,7 +1355,7 @@
 
 <h3 id="split-string-separator">split string separator</h3>
 
-<p>Takes a string and separator and returns a Slice.</p>
+<p>Takes a string and separator and returns a Array.</p>
 
 <h3 id="trimwhitespace-string">trimWhitespace string</h3>
 
@@ -1265,9 +1395,9 @@
 
 <p>Takes a float-convertible number and returns the ceil (round up) of the number.</p>
 
-<h3 id="randchoice-slice">randChoice slice</h3>
+<h3 id="randchoice-array">randChoice array</h3>
 
-<p>Takes a Slice input and returns a random element from it.</p>
+<p>Takes an Array input and returns a random element from it.</p>
 
 <h3 id="rand">rand</h3>
 
@@ -1279,13 +1409,13 @@
 
 <h3 id="contains-container-item">contains container item</h3>
 
-<p>Takes a container (slice, map, string) and an item and returns true if that item is present in the container.</p>
+<p>Takes a container (array, map, string) and an item and returns true if that item is present in the container.</p>
 
 <p><strong>Examples</strong></p>
 
 <figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="n">contains</span> <span class="s">"hello, world!"</span> <span class="s">"hello"</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* true */</span><span class="p">}}</span>
 <span class="p">{{</span><span class="n">contains</span> <span class="s">"hello, world!"</span> <span class="s">"earth"</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* false */</span><span class="p">}}</span>
-<span class="p">{{</span><span class="n">contains</span> <span class="p">(</span><span class="n">Slice</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)</span> <span class="m">3</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* true */</span><span class="p">}}</span>
+<span class="p">{{</span><span class="n">contains</span> <span class="p">(</span><span class="n">Array</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span><span class="p">)</span> <span class="m">3</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* true */</span><span class="p">}}</span>
 <span class="p">{{</span><span class="n">contains</span> <span class="p">(</span><span class="n">SMap</span> <span class="s">"hello"</span> <span class="no">true</span> <span class="s">"world"</span> <span class="no">true</span><span class="p">)</span> <span class="s">"world"</span><span class="p">}}</span> <span class="p">{{</span><span class="c">/* true */</span><span class="p">}}</span></code></pre></figure>
 
 <h3 id="prefix-string-prefix">prefix string prefix</h3>
