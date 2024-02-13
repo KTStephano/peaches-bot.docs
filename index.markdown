@@ -26,3 +26,5 @@ You can invite Peaches using [this invite link](https://discord.com/api/oauth2/a
 * Explicit content filter: All members
 * MFA level: Elevated
 * Member verification level: Medium
+
+Disclaimer: I do not own the logo image and it may change.
