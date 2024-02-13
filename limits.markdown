@@ -14,7 +14,7 @@ Each instance of your code gets its own set of counters to monitor its individua
 * Max single write, single read database operations per instance: 10
 * Max total database entries: 10 * Guild Members
 * Max database size per entry: 8 KiB
-* Max Discord API calls per second, per guild: 3
+* Max Discord API calls per second, per guild: 2
 * Max `sendDM` calls per instance: 1
 * Max channel/thread manipulations per instance: 2
 * Max state locks per instance: 100
