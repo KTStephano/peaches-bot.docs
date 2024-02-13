@@ -117,4 +117,4 @@ Arrays and Maps/SMaps can all be searched using the `contains` function. This fu
 {% endraw %}
 {% endhighlight %}
 
-[Next: Tutorial 3: Slash Command Inputs](/tutorials/t03)
+[Next: Tutorial 3: Slash Command Inputs](/peaches-bot.docs/tutorials/t03)

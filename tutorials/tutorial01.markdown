@@ -14,15 +14,15 @@ This tutorial will walk you through creating your first slash command and then e
 
 From inside of your Discord server, start by typing `/create-cmd`. You should see a Discord slash command hint pop up. Click on the one for Peaches.
 
-![type](/assets/t01/type.png)
+![type](/peaches-bot.docs/assets/t01/type.png)
 
 Once you click on it, Discord will prompt you for its 2 required arguments. We will specify "hello" for the name and "Displays a greeting" for the description.
 
-![fill](/assets/t01/fill.png)
+![fill](/peaches-bot.docs/assets/t01/fill.png)
 
 Now you can hit enter and it will open the source code editor. It will look something like this:
 
-![editor](/assets/t01/editor.png)
+![editor](/peaches-bot.docs/assets/t01/editor.png)
 
 We will cover the first text box in a later tutorial. In short: it enables you to customize the command's arguments and default permissions. It is optional, so you can leave it blank.
 
@@ -34,11 +34,11 @@ You can leave the default as it is and click **Submit**.
 
 Once you hit submit on the last step, Peaches should create a new guild-local slash command called hello. When you start typing it, Discord will give you a suggestion like the following.
 
-![hello](/assets/t01/hello.png)
+![hello](/peaches-bot.docs/assets/t01/hello.png)
 
 If you select it and hit enter, you should see the bot respond with "Hello, world!" in the chat.
 
-![printed](/assets/t01/printed.png)
+![printed](/peaches-bot.docs/assets/t01/printed.png)
 
 # Step 3: Edit the command using /set-source
 
@@ -46,26 +46,26 @@ Now that we have a new slash command registered with Discord, we can freely edit
 
 We are going to make use of the slash command's Context and the `print` function for this piece of code. We will explore the Context more in future tutorials, but for right now all we need to know is that the bot auto-populates `context.Member` with an object representing the member who used the command. We can use that to personalize the greeting by pulling out their username and displaying it.
 
-![set](/assets/t01/set.png)
+![set](/peaches-bot.docs/assets/t01/set.png)
 
 Once you hit enter, the Editor will again pop up. It will automatically populate the text box with the last saved source code for the command.
 
-![edited](/assets/t01/edited.png)
+![edited](/peaches-bot.docs/assets/t01/edited.png)
 
 Notice that this time only one source code box appears. If we wanted the option to customize the slash command arguments, we would need to re-run `/cmd-create`.
 
 Once you hit submit the bot will give you a confirmation if everything went well and then you can try running the hello command again. Here's the final result:
 
-![final](/assets/t01/final.png)
+![final](/peaches-bot.docs/assets/t01/final.png)
 
 # Step 4: Switch to ephemeral response
 
 With the personalized greeting in place, we can do another source edit and change `respond` to `respondEphemeral`. This tells the bot that it should reply with a private message in the channel to the user. These replies can't be edited once sent, and only the receiver can dismiss them. This is the result:
 
-![ephemeral](/assets/t01/ephemeral.png)
+![ephemeral](/peaches-bot.docs/assets/t01/ephemeral.png)
 
 # Step 5: Optional delete with /delete-cmd
 
 Now that this first tutorial is done, we can optionally clean up the command using `/delete-cmd` and passing in "hello" for the name.
 
-[Next: Tutorial 2: Data Containers](/tutorials/t02)
+[Next: Tutorial 2: Data Containers](/peaches-bot.docs/tutorials/t02)

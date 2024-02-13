@@ -163,19 +163,19 @@ When the **trigger execution** stage is run, it is initialized with a context th
 
 ### context.Inputs
 
-An array of inputs to a Slash Command. Type is [*SlashCommandInputData](/docs#type-slashcommandinputdata).
+An array of inputs to a Slash Command. Type is [*SlashCommandInputData](/peaches-bot.docs/docs#type-slashcommandinputdata).
 
 ### context.AuditEntry
 
 **Only valid for triggers involving audit log entries**
 
-An [*AuditLogTriggerData](/docs#type-auditlogtriggerdata) object.
+An [*AuditLogTriggerData](/peaches-bot.docs/docs#type-auditlogtriggerdata) object.
 
 ### context.Interaction
 
 **Only valid for triggers involving webhook interactions, such as buttons**
 
-A [*MessageComponentInteractionData](/docs#type-messagecomponentinteractiondata) object.
+A [*MessageComponentInteractionData](/peaches-bot.docs/docs#type-messagecomponentinteractiondata) object.
 
 # Types
 
@@ -283,7 +283,7 @@ A Array of these objects are passed into slash commands when they accept user in
 **Fields**
 
 .Name | String | Name of the input
-.Type | [OptionType](/docs/#enum-optiontype) | Type of the option
+.Type | [OptionType](/peaches-bot.docs/docs/#enum-optiontype) | Type of the option
 .Value | any | Data passed in as user input (see functions for conversion)
 
 **Functions**
@@ -316,7 +316,7 @@ AsChannel | Channel | Converts audit log target to a Channel object
 **Fields**
 
 CustomID | String | Trigger-supplied custom ID for the component
-ComponentType | [ComponentType](/docs#enum-componenttype) | 
+ComponentType | [ComponentType](/peaches-bot.docs/docs#enum-componenttype) | 
 Values | Array[String] | Only filled when ComponentType is SelectMenuComponent (3). Otherwise is nil.
 
 **Functions**
@@ -345,10 +345,10 @@ None
 
 **Fields**
 
-.Type | [OptionType](/docs#enum-optiontype) | **required** | Type of data this option can contain. This determines what inputs the Discord UI will accept. 
+.Type | [OptionType](/peaches-bot.docs/docs#enum-optiontype) | **required** | Type of data this option can contain. This determines what inputs the Discord UI will accept. 
 .Name | String | **required** | Top-level name of the option
 .Description | String | **required** | Short explanation of the option
-.ChannelTypes | Array[[ChannelType](/docs#enum-channeltype)] | **optional** | An array of channel types that this option accepts
+.ChannelTypes | Array[[ChannelType](/peaches-bot.docs/docs#enum-channeltype)] | **optional** | An array of channel types that this option accepts
 .Required | Bool | **optional** (default false) | Whether this option is required or not
 .Choices | Array[OptionType] | **optional** | Selection menu that the user can choose from
 .MinValue | Double | **optional** | Minimal value of number/integer option
@@ -380,13 +380,13 @@ All fields for Embed technically optional, but at least one should have data.
 .Description | String | **optional** |
 .Timestamp | String | **optional** |
 .Color | int | **optional** | Integer value of a hex color
-.Footer | [EmbedFooter](/docs#type-embedfooter) | **optional** |
-.Image | [EmbedImage](/docs#type-embedimage) | **optional** |
-.Thumbnail | [EmbedThumbnail](docs#type-embedthumbnail) | **optional** |
-.Video | [EmbedVideo](/docs#type-embedvideo) | **optional** |
-.Provider | [EmbedProvider](/docs#type-embedprovider) | **optional** |
-.Author | [EmbedAuthor](/docs#type-embedauthor) | **optional** |
-.Fields | Array[[EmbedField](/docs#type-embedfield)] | **optional** |
+.Footer | [EmbedFooter](/peaches-bot.docs/docs#type-embedfooter) | **optional** |
+.Image | [EmbedImage](/peaches-bot.docs/docs#type-embedimage) | **optional** |
+.Thumbnail | [EmbedThumbnail](/peaches-bot.docs/docs#type-embedthumbnail) | **optional** |
+.Video | [EmbedVideo](/peaches-bot.docs/docs#type-embedvideo) | **optional** |
+.Provider | [EmbedProvider](/peaches-bot.docs/docs#type-embedprovider) | **optional** |
+.Author | [EmbedAuthor](/peaches-bot.docs/docs#type-embedauthor) | **optional** |
+.Fields | Array[[EmbedField](/peaches-bot.docs/docs#type-embedfield)] | **optional** |
 
 {% highlight golang %}
 {% raw %}
@@ -459,13 +459,13 @@ All fields for EmbedAuthor technically optional, but at least one should have da
 
 Stage: **command creation**
 
-Takes a space-separated list of [CmdOption](/docs#type-cmdoption). This will append the options (in order) to the list of all options for the command currently being created.
+Takes a space-separated list of [CmdOption](/peaches-bot.docs/docs#type-cmdoption). This will append the options (in order) to the list of all options for the command currently being created.
 
 ### setDefaultPermissions ...args
 
 Stage: **command creation**
 
-Takes a space-separated list of [DiscordPermission](/docs/#bitfield-discordpermission). This will join the options together to represent a default set of permissions that a member should have in order to use this command.
+Takes a space-separated list of [DiscordPermission](/peaches-bot.docs/docs/#bitfield-discordpermission). This will join the options together to represent a default set of permissions that a member should have in order to use this command.
 
 ### toString arg
 

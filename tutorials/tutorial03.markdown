@@ -28,10 +28,10 @@ Can be one of ChannelGuildText, ChannelDM, ChannelGuildVoice, ChannelGuildGroupD
 
 **type CmdOption**
 
-.Type | [OptionType](/docs#enum-optiontype) | **required** | Type of data this option can contain. This determines what inputs the Discord UI will accept. 
+.Type | [OptionType](/peaches-bot.docs/docs#enum-optiontype) | **required** | Type of data this option can contain. This determines what inputs the Discord UI will accept. 
 .Name | String | **required** | Top-level name of the option
 .Description | String | **required** | Short explanation of the option
-.ChannelTypes | Array[[ChannelType](/docs#enum-channeltype)] | **optional** | An array of channel types that this option accepts
+.ChannelTypes | Array[[ChannelType](/peaches-bot.docs/docs#enum-channeltype)] | **optional** | An array of channel types that this option accepts
 .Required | Bool | **optional** (default false) | Whether this option is required or not
 .Choices | Array[OptionType] | **optional** | Selection menu that the user can choose from
 .MinValue | Double | **optional** | Minimal value of number/integer option
@@ -52,7 +52,7 @@ In the next section we will make use of these types to customize a slash command
 
 For the first example we will create a command called "hello" that takes a required user input argument. It responds by saying "Hello, @user!". To do this you can use the `/create-cmd` command again to bring up the editor. Once there, in the first bo we will add an argument of type `OptionUser` with name "user", description "User to ping", and required set to true.
 
-![ping](/assets/t03/ping.png)
+![ping](/peaches-bot.docs/assets/t03/ping.png)
 
 Notice that inside of CmdOption there are the `Type:`, `Required:`, `Name:` and `Description:` labels followed by their values. This is how to create new objects of a given type with the bot's scripting language.
 
@@ -78,7 +78,7 @@ This tells the bot to register the given option for the command. This piece of c
 
 When trying to run the command in Discord, this is what it might look like with suggestions.
 
-![ping_input](/assets/t03/ping_input.png)
+![ping_input](/peaches-bot.docs/assets/t03/ping_input.png)
 
 Now walking through the command execution part of the code:
 
@@ -186,14 +186,14 @@ For the source code, we will have an array where each entry corresponds to an in
 
 This is what the user will see when they try running the command:
 
-![select](/assets/t03/select.png)
+![select](/peaches-bot.docs/assets/t03/select.png)
 
 # Modifying slash command permissions
 
 After a command has been created, it's possible to manage its permissions from within Discord itself. To do this, in your server go to `Server Settings`, then `Integrations`, then find Peaches. From here you can click on the commands and edit the permissions. Here is an example of editing the hello command from the first tutorial:
 
-![permissions](/assets/t03/permissions.png)
+![permissions](/peaches-bot.docs/assets/t03/permissions.png)
 
 If saved, this would have the effect of disabling it for @everyone but enabling it specifically for people with the @Level 25 role. It also makes it so that it is completely disabled from the #role-selection channel.
 
-[Next: Tutorial 4: Triggers](/tutorials/t04)
+[Next: Tutorial 4: Triggers](/peaches-bot.docs/tutorials/t04)
