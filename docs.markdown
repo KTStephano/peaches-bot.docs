@@ -380,13 +380,13 @@ All fields for Embed technically optional, but at least one should have data.
 .Description | String | **optional** |
 .Timestamp | String | **optional** |
 .Color | int | **optional** | Integer value of a hex color
-.Footer | EmbedFooter | **optional** |
-.Image | EmbedImage | **optional** |
-.Thumbnail | EmbedThumbnail | **optional** |
-.Video | EmbedVideo | **optional** |
-.Provider | EmbedProvider | **optional** |
-.Author | EmbedAuthor | **optional** |
-.Fields | Array[EmbedField] | **optional** |
+.Footer | [EmbedFooter](/docs#type-embedfooter) | **optional** |
+.Image | [EmbedImage](/docs#type-embedimage) | **optional** |
+.Thumbnail | [EmbedThumbnail](docs#type-embedthumbnail) | **optional** |
+.Video | [EmbedVideo](/docs#type-embedvideo) | **optional** |
+.Provider | [EmbedProvider](/docs#type-embedprovider) | **optional** |
+.Author | [EmbedAuthor](/docs#type-embedauthor) | **optional** |
+.Fields | Array[[EmbedField](/docs#type-embedfield)] | **optional** |
 
 {% highlight golang %}
 {% raw %}
@@ -656,7 +656,7 @@ Instructs the current code to sleep for `seconds` amount of time. Minimum is 1 a
 
 Retrieves a single database entry represented by id, key pair. ID should be an int64 type whereas key should be a String type.
 
-### dbGet id key data
+### dbSet id key data
 
 Sets a single database entry represented by id, key pair to be data. ID should be an int64 type whereas key should be a String type.
 
@@ -664,10 +664,9 @@ Sets a single database entry represented by id, key pair to be data. ID should b
 
 Deletes a single database entry represented by id, key pair. ID should be an int64 type whereas key should be a String type.
 
-		"respond":          exec.tmplInteractionRespond,
-		"respondEphemeral": exec.tmplInteractionRespondEphemeral,
-		"deleteResponse":   exec.tmplDeleteResponse,
-		"responseID":       exec.tmplResponseID,
+### dbIncr id key amount
+
+Atomically increments a single database entry represented by id, key pair. amount can be any type that can be converted/cast to an int64.
 
 ### respond message
 

@@ -116,3 +116,5 @@ Arrays and Maps/SMaps can all be searched using the `contains` function. This fu
 {{respond (contains $a 7)}} // false
 {% endraw %}
 {% endhighlight %}
+
+[Next: Tutorial 3: Slash Command Inputs](/tutorials/t03)

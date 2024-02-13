@@ -37,7 +37,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/">Home</a><a class="page-link" href="/docs">Documentation</a></div>
+        <div class="trigger"><a class="page-link" href="/">Home</a><a class="page-link" href="/tutorials/t00">Tutorials</a><a class="page-link" href="/docs">Documentation</a><a class="page-link" href="/limits.html">Limits</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -153,8 +153,9 @@
       <li><a href="#hasrole-userid-roleid" id="markdown-toc-hasrole-userid-roleid">hasRole userID roleID</a></li>
       <li><a href="#sleep-seconds" id="markdown-toc-sleep-seconds">sleep seconds</a></li>
       <li><a href="#dbget-id-key" id="markdown-toc-dbget-id-key">dbGet id key</a></li>
-      <li><a href="#dbget-id-key-data" id="markdown-toc-dbget-id-key-data">dbGet id key data</a></li>
+      <li><a href="#dbset-id-key-data" id="markdown-toc-dbset-id-key-data">dbSet id key data</a></li>
       <li><a href="#dbdel-id-key" id="markdown-toc-dbdel-id-key">dbDel id key</a></li>
+      <li><a href="#dbincr-id-key-amount" id="markdown-toc-dbincr-id-key-amount">dbIncr id key amount</a></li>
       <li><a href="#respond-message" id="markdown-toc-respond-message">respond message</a></li>
       <li><a href="#respondephemeral-message" id="markdown-toc-respondephemeral-message">respondEphemeral message</a></li>
       <li><a href="#deleteresponse" id="markdown-toc-deleteresponse">deleteResponse</a></li>
@@ -1071,43 +1072,43 @@
     </tr>
     <tr>
       <td>.Footer</td>
-      <td>EmbedFooter</td>
+      <td><a href="/docs#type-embedfooter">EmbedFooter</a></td>
       <td><strong>optional</strong></td>
       <td> </td>
     </tr>
     <tr>
       <td>.Image</td>
-      <td>EmbedImage</td>
+      <td><a href="/docs#type-embedimage">EmbedImage</a></td>
       <td><strong>optional</strong></td>
       <td> </td>
     </tr>
     <tr>
       <td>.Thumbnail</td>
-      <td>EmbedThumbnail</td>
+      <td><a href="docs#type-embedthumbnail">EmbedThumbnail</a></td>
       <td><strong>optional</strong></td>
       <td> </td>
     </tr>
     <tr>
       <td>.Video</td>
-      <td>EmbedVideo</td>
+      <td><a href="/docs#type-embedvideo">EmbedVideo</a></td>
       <td><strong>optional</strong></td>
       <td> </td>
     </tr>
     <tr>
       <td>.Provider</td>
-      <td>EmbedProvider</td>
+      <td><a href="/docs#type-embedprovider">EmbedProvider</a></td>
       <td><strong>optional</strong></td>
       <td> </td>
     </tr>
     <tr>
       <td>.Author</td>
-      <td>EmbedAuthor</td>
+      <td><a href="/docs#type-embedauthor">EmbedAuthor</a></td>
       <td><strong>optional</strong></td>
       <td> </td>
     </tr>
     <tr>
       <td>.Fields</td>
-      <td>Array[EmbedField]</td>
+      <td>Array[<a href="/docs#type-embedfield">EmbedField</a>]</td>
       <td><strong>optional</strong></td>
       <td> </td>
     </tr>
@@ -1494,7 +1495,7 @@
 
 <p>Retrieves a single database entry represented by id, key pair. ID should be an int64 type whereas key should be a String type.</p>
 
-<h3 id="dbget-id-key-data">dbGet id key data</h3>
+<h3 id="dbset-id-key-data">dbSet id key data</h3>
 
 <p>Sets a single database entry represented by id, key pair to be data. ID should be an int64 type whereas key should be a String type.</p>
 
@@ -1502,11 +1503,9 @@
 
 <p>Deletes a single database entry represented by id, key pair. ID should be an int64 type whereas key should be a String type.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	"respond":          exec.tmplInteractionRespond,
-	"respondEphemeral": exec.tmplInteractionRespondEphemeral,
-	"deleteResponse":   exec.tmplDeleteResponse,
-	"responseID":       exec.tmplResponseID,
-</code></pre></div></div>
+<h3 id="dbincr-id-key-amount">dbIncr id key amount</h3>
+
+<p>Atomically increments a single database entry represented by id, key pair. amount can be any type that can be converted/cast to an int64.</p>
 
 <h3 id="respond-message">respond message</h3>
 

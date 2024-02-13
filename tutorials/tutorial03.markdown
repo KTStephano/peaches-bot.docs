@@ -195,3 +195,5 @@ After a command has been created, it's possible to manage its permissions from w
 ![permissions](/assets/t03/permissions.png)
 
 If saved, this would have the effect of disabling it for @everyone but enabling it specifically for people with the @Level 25 role. It also makes it so that it is completely disabled from the #role-selection channel.
+
+[Next: Tutorial 4: Triggers](/tutorials/t04)

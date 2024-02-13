@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Database | Peaches</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Database" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Documentation and tutorials related to the Discord bot Peaches" />
+<meta property="og:description" content="Documentation and tutorials related to the Discord bot Peaches" />
+<link rel="canonical" href="http://localhost:4000/tutorials/t06" />
+<meta property="og:url" content="http://localhost:4000/tutorials/t06" />
+<meta property="og:site_name" content="Peaches" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Database" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Documentation and tutorials related to the Discord bot Peaches","headline":"Database","url":"http://localhost:4000/tutorials/t06"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Peaches" />
+</head>
+<!--
+  
+  -->
+
+  <body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Peaches</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/">Home</a><a class="page-link" href="/tutorials/t00">Tutorials</a><a class="page-link" href="/docs">Documentation</a><a class="page-link" href="/limits.html">Limits</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Database</h1>
+    <p class="post-meta"><time class="dt-published" datetime="" itemprop="datePublished">
+        
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>This tutorial will walk you through the Peaches database.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#database-entry" id="markdown-toc-database-entry">Database Entry</a></li>
+  <li><a href="#functions" id="markdown-toc-functions">Functions</a>    <ul>
+      <li><a href="#dbget-id-key" id="markdown-toc-dbget-id-key">dbGet id key</a></li>
+      <li><a href="#dbset-id-key-data" id="markdown-toc-dbset-id-key-data">dbSet id key data</a></li>
+      <li><a href="#dbdel-id-key" id="markdown-toc-dbdel-id-key">dbDel id key</a></li>
+      <li><a href="#dbincr-id-key-amount" id="markdown-toc-dbincr-id-key-amount">dbIncr id key amount</a></li>
+    </ul>
+  </li>
+  <li><a href="#example-earn-and-spend" id="markdown-toc-example-earn-and-spend">Example: earn and spend</a></li>
+</ul>
+
+<h1 id="database-entry">Database Entry</h1>
+
+<p>When you use functions such as <code class="language-plaintext highlighter-rouge">dbGet</code>, you will either receive nil (no entry present) or a valid database entry with some data for you to use. Here are the fields for each entry:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.CreatedAt</td>
+      <td>Time</td>
+      <td>Time the entry was created or last updated</td>
+    </tr>
+    <tr>
+      <td>.Key</td>
+      <td>String</td>
+      <td>String key of the entry</td>
+    </tr>
+    <tr>
+      <td>.Value</td>
+      <td>Any</td>
+      <td>Actual data of the entry</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="functions">Functions</h1>
+
+<p>Currently 4 functions are supported (more in the future): <code class="language-plaintext highlighter-rouge">dbGet</code>, <code class="language-plaintext highlighter-rouge">dbSet</code>, <code class="language-plaintext highlighter-rouge">dbDel</code>, and <code class="language-plaintext highlighter-rouge">dbIncr</code>. Each one is considered a single read or write operation, and per command you can issue 10 of these database calls.</p>
+
+<p>The database itself can store 10 * guild member count entries, and once you exceed that number calls to <code class="language-plaintext highlighter-rouge">dbSet</code> will fail.</p>
+
+<h3 id="dbget-id-key">dbGet id key</h3>
+
+<p>Retrieves a single database entry represented by id, key pair. ID should be an int64 type whereas key should be a String type. id does not need to point to any valid Discord ID. So while you might use something like a member ID or a channel ID here, you could also give it any valid number that you want to use.</p>
+
+<p>If no entry was present, this will be nil.</p>
+
+<h3 id="dbset-id-key-data">dbSet id key data</h3>
+
+<p>Sets a single database entry represented by id, key pair to be data. ID should be an int64 type whereas key should be a String type. The data itself can be anything that can be converted to JSON format. This includes ints and floats (ints are converted to float by default when storing them), but also strings, maps and arrays.</p>
+
+<p>Currently the maximum size for each entry is 8 KiB.</p>
+
+<h3 id="dbdel-id-key">dbDel id key</h3>
+
+<p>Deletes a single database entry represented by id, key pair. ID should be an int64 type whereas key should be a String type.</p>
+
+<h3 id="dbincr-id-key-amount">dbIncr id key amount</h3>
+
+<p>Atomically increments a single database entry represented by id, key pair. amount can be any type that can be converted/cast to an int64. This can be used as a persistent counter to keep track of some amount of elements even if multiple commands are trying to increment/decrement the value at the same time.</p>
+
+<p>This function returns the new value after performing the increment. If the data didn’t already exist in the database, a new entry will be created and set to the value provided by amount.</p>
+
+<h1 id="example-earn-and-spend">Example: earn and spend</h1>
+
+<p>This will create 2 functions: earn which randomly adds some amount to a user’s balance, and spend which decrements some amount.</p>
+
+<p>Here is the code for earn:</p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">amount</span> <span class="o">:=</span> <span class="n">randn</span> <span class="m">100</span><span class="p">}}</span>
+<span class="p">{{</span><span class="err">$</span><span class="n">newBalance</span> <span class="o">:=</span> <span class="n">dbIncr</span> <span class="n">context</span><span class="o">.</span><span class="n">Member</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">ID</span> <span class="s">"AccountBalance"</span> <span class="err">$</span><span class="n">amount</span><span class="p">}}</span>
+<span class="p">{{</span><span class="n">respond</span> <span class="p">(</span><span class="n">printf</span> <span class="s">"Added %d to your balance. You now have %d points."</span> <span class="err">$</span><span class="n">amount</span> <span class="err">$</span><span class="n">newBalance</span><span class="p">)}}</span></code></pre></figure>
+
+<p>Here is the initialization code for spend:</p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">option</span> <span class="o">:=</span> <span class="n">CmdOption</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">OptionInteger</span> 
+    <span class="n">Required</span><span class="o">:</span> <span class="no">true</span>
+    <span class="n">Name</span><span class="o">:</span> <span class="s">"amount"</span>
+    <span class="n">Description</span><span class="o">:</span> <span class="s">"Amount to spend"</span>
+    <span class="n">MinValue</span><span class="o">:</span> <span class="m">1</span>
+    <span class="n">MaxValue</span><span class="o">:</span> <span class="m">10000</span>
+<span class="p">}}</span>
+<span class="p">{{</span><span class="n">addOptions</span> <span class="err">$</span><span class="n">option</span><span class="p">}}</span></code></pre></figure>
+
+<p>And finally here is the code for spend:</p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">amount</span> <span class="o">:=</span> <span class="p">(</span><span class="n">index</span> <span class="n">context</span><span class="o">.</span><span class="n">Inputs</span> <span class="m">0</span><span class="p">)</span><span class="o">.</span><span class="n">Integer</span><span class="p">}}</span>
+<span class="p">{{</span><span class="err">$</span><span class="n">balance</span> <span class="o">:=</span> <span class="n">dbGet</span> <span class="n">context</span><span class="o">.</span><span class="n">Member</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">ID</span> <span class="s">"AccountBalance"</span><span class="p">}}</span>
+
+<span class="c">// balance is nil - user hasn't used /earn yet</span>
+<span class="p">{{</span><span class="k">if</span> <span class="n">not</span> <span class="err">$</span><span class="n">balance</span><span class="p">}}</span>
+    <span class="p">{{</span><span class="n">respond</span> <span class="s">"You haven't earned any points yet."</span><span class="p">}}</span>
+    <span class="p">{{</span><span class="k">return</span><span class="p">}}</span>
+<span class="p">{{</span><span class="n">end</span><span class="p">}}</span>
+
+<span class="c">// Convert to integer</span>
+<span class="p">{{</span><span class="err">$</span><span class="n">balance</span> <span class="o">=</span> <span class="n">toInt64</span> <span class="err">$</span><span class="n">balance</span><span class="o">.</span><span class="n">Value</span><span class="p">}}</span>
+
+<span class="p">{{</span><span class="k">if</span> <span class="n">lt</span> <span class="err">$</span><span class="n">balance</span> <span class="err">$</span><span class="n">amount</span><span class="p">}}</span>
+    <span class="p">{{</span><span class="n">respond</span> <span class="p">(</span><span class="n">printf</span> <span class="s">"You don't have enough points! You have %d points."</span> <span class="err">$</span><span class="n">balance</span><span class="p">)}}</span>
+    <span class="p">{{</span><span class="k">return</span><span class="p">}}</span>
+<span class="p">{{</span><span class="n">end</span><span class="p">}}</span>
+
+<span class="c">// mult by -1 so that we can invert $amount</span>
+<span class="p">{{</span><span class="err">$</span><span class="n">newBalance</span> <span class="o">:=</span> <span class="n">dbIncr</span> <span class="n">context</span><span class="o">.</span><span class="n">Member</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">ID</span> <span class="s">"AccountBalance"</span> <span class="p">(</span><span class="n">mult</span> <span class="err">$</span><span class="n">amount</span> <span class="o">-</span><span class="m">1</span><span class="p">)}}</span>
+<span class="p">{{</span><span class="n">respond</span> <span class="p">(</span><span class="n">printf</span> <span class="s">"Your new balance is %d points."</span> <span class="err">$</span><span class="n">newBalance</span><span class="p">)}}</span></code></pre></figure>
+
+  </div>
+
+  <a class="u-url" href="/tutorials/t06" hidden></a>
+</article>
+      </div>
+
+      <!--
+      <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: {
+              equationNumbers: {
+                autoNumber: "AMS"
+              }
+            },
+            tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            displayMath: [ ['\[', '\]'] ],
+            processEscapes: true,
+          }
+        });
+        MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+              alert("Math Processing Error: "+message[1]);
+            });
+        MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+              alert("Math Processing Error: "+message[1]);
+            });
+    </script>
+    
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript" ></script>
+    -->
+
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+  
+    <div class="wrapper">
+
+      <h2 class="footer-heading">Contact Me</h2>
+  
+      <div class="footer-col-wrapper">
+        <div class="footer-col">
+        </div>
+        <div class="footer-col"><ul class="social-media-list"></ul>
+</div>
+
+        <div class="footer-col">
+          <p>Documentation and tutorials related to the Discord bot Peaches</p>
+        </div>
+      </div>
+  
+    </div>
+  
+  </footer></body>
+
+</html>

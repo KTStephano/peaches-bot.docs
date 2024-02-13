@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Home | Peaches</title>
+<title>Tutorials | Peaches</title>
 <meta name="generator" content="Jekyll v3.9.2" />
-<meta property="og:title" content="Home" />
+<meta property="og:title" content="Tutorials" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Documentation and tutorials related to the Discord bot Peaches" />
 <meta property="og:description" content="Documentation and tutorials related to the Discord bot Peaches" />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
+<link rel="canonical" href="http://localhost:4000/tutorials/t00" />
+<meta property="og:url" content="http://localhost:4000/tutorials/t00" />
 <meta property="og:site_name" content="Peaches" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Home" />
+<meta property="twitter:title" content="Tutorials" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"Documentation and tutorials related to the Discord bot Peaches","headline":"Home","name":"Peaches","url":"http://localhost:4000/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Documentation and tutorials related to the Discord bot Peaches","headline":"Tutorials","url":"http://localhost:4000/tutorials/t00"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Peaches" />
 </head>
@@ -42,31 +42,48 @@
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home"><h1 class="page-heading">Home</h1><p><img src="/assets/logo.png" width="256" /></p>
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-<h1 id="overview">Overview</h1>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Tutorials</h1>
+    <p class="post-meta"><time class="dt-published" datetime="" itemprop="datePublished">
+        
+      </time></p>
+  </header>
 
-<p>Peaches is a programmable slash command and trigger bot written in Go. If you have created custom commands using YAGPDB, this will be a very familiar experience as it follows a similar style.</p>
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>This set of tutorials is meant to walk you through some of the core features available with Peaches. It’s still a work in progress so you can expect new entries to be added over time.</p>
 
-<p>The bot is currently in the early stages of development so some bugs are expected. They will be fixed as quickly as possible. Please don’t hesitate to join the Discord Support Server with any questions you have or to report any issues you encounter.</p>
+<h1 id="language">Language</h1>
 
-<h1 id="inviting-peaches">Inviting Peaches</h1>
+<p>The bot uses the <a href="https://pkg.go.dev/text/template">data-driven templating system</a> available through the Go language. Each piece of code is attached to a type of trigger which determines when the code gets run. A trigger for a slash command “hello” would execute anytime a user of your guild tries to run it from one of the channels it’s enabled in, for example.</p>
 
-<p>You can invite Peaches using <a href="https://discord.com/api/oauth2/authorize?client_id=1201100920189096018&amp;permissions=1102196361408&amp;scope=bot%20applications.commands">this invite link</a>.</p>
+<p>The language requires each action to be wrapped in a set of curly braces <code class="language-plaintext highlighter-rouge">{{}}</code> to indicate that it is meant to be executed.</p>
 
-<h1 id="guild-requirements">Guild Requirements</h1>
+<p>The bot adds a few minor extensions on top of the templating system syntax such as support for <code class="language-plaintext highlighter-rouge">// forward slash comments</code> and <code class="language-plaintext highlighter-rouge">Label: Value</code> syntax when creating objects of a given type.</p>
+
+<h1 id="features">Features</h1>
+
+<p>The bot currently features a range of features including programmable slash commands, various utility triggers for events that happen in your guild (such as user join events), a database for storing information that your code can use and modify later, and support for buttons.</p>
+
+<p>Development on the bot’s features will primarily be concentrated on adding new builtin functions, new trigger types (such as user nitro boosted), and other Discord message interaction types such as selection menus.</p>
+
+<h1 id="tutorials">Tutorials</h1>
 
 <ul>
-  <li>Follows Discord ToS</li>
-  <li>NSFW level: safe or default</li>
-  <li>Explicit content filter: All members</li>
-  <li>MFA level: Elevated</li>
-  <li>Member verification level: Medium</li>
+  <li><a href="/tutorials/t01">Tutorial 1: First Slash Command</a></li>
+  <li><a href="/tutorials/t02">Tutorial 2: Data Containers</a></li>
+  <li><a href="/tutorials/t03">Tutorial 3: Slash Command Inputs</a></li>
+  <li><a href="/tutorials/t04">Tutorial 4: Triggers</a></li>
+  <li><a href="/tutorials/t05">Tutorial 5: Embeds</a></li>
+  <li><a href="/tutorials/t06">Tutorial 6: Database</a></li>
+  <li>(Under Construction) Tutorial 7: Buttons</li>
 </ul>
 
-
-
   </div>
+
+  <a class="u-url" href="/tutorials/t00" hidden></a>
+</article>
       </div>
 
       <!--

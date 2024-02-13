@@ -58,7 +58,9 @@ plugins:
 
 header_pages:
   - index.markdown
+  - tutorials/tutorial00.markdown
   - docs.markdown
+  - limits.markdown
 
 # TOC Settings - see https://heymichellemac.com/table-of-contents-jekyll
 toc:

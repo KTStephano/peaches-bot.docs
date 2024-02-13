@@ -67,3 +67,5 @@ With the personalized greeting in place, we can do another source edit and chang
 # Step 5: Optional delete with /delete-cmd
 
 Now that this first tutorial is done, we can optionally clean up the command using `/delete-cmd` and passing in "hello" for the name.
+
+[Next: Tutorial 2: Data Containers](/tutorials/t02)

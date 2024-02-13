@@ -37,7 +37,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/">Home</a><a class="page-link" href="/docs">Documentation</a></div>
+        <div class="trigger"><a class="page-link" href="/">Home</a><a class="page-link" href="/tutorials/t00">Tutorials</a><a class="page-link" href="/docs">Documentation</a><a class="page-link" href="/limits.html">Limits</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -54,6 +54,153 @@
   <div class="post-content e-content" itemprop="articleBody">
     <p>This tutorial will walk you through the process of creating and posting message embeds.</p>
 
+<ul id="markdown-toc">
+  <li><a href="#creating-embeds" id="markdown-toc-creating-embeds">Creating Embeds</a></li>
+  <li><a href="#including-author" id="markdown-toc-including-author">Including Author</a></li>
+  <li><a href="#including-thumbnail" id="markdown-toc-including-thumbnail">Including Thumbnail</a></li>
+  <li><a href="#other-fields" id="markdown-toc-other-fields">Other Fields</a></li>
+</ul>
+
+<h1 id="creating-embeds">Creating Embeds</h1>
+
+<p>An embed is a way to post messages to Discord with advanced formatting options. We can include things like titles, description, author, border color, etc. The bot allows you to reply with an embed using functions like <code class="language-plaintext highlighter-rouge">response</code> or <code class="language-plaintext highlighter-rouge">sendMessage</code>. Here is an example of creating an embed with a few pieces of information:</p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">e</span> <span class="o">:=</span> <span class="n">Embed</span>
+    <span class="n">Title</span><span class="o">:</span> <span class="s">"Message Embed Title"</span>
+    <span class="n">Description</span><span class="o">:</span> <span class="s">"Content goes here with a max of 2k characters"</span>
+    <span class="n">Color</span><span class="o">:</span> <span class="p">(</span><span class="n">hexToInt</span> <span class="s">"#800080"</span><span class="p">)</span>
+<span class="p">}}</span>
+<span class="p">{{</span><span class="n">respond</span> <span class="err">$</span><span class="n">e</span><span class="p">}}</span></code></pre></figure>
+
+<p>The builtin function <code class="language-plaintext highlighter-rouge">hexToInt</code> accepts hex strings of the format “0x….”, “#…”, or just a string of hex with no leading marker and converts them to int64. Here is what it could look like:</p>
+
+<p><img src="/assets/t05/first_embed.png" alt="first_embed" /></p>
+
+<h1 id="including-author">Including Author</h1>
+
+<p>We can incorporate other pieces of information by using a field like Author which accepts objects of type <code class="language-plaintext highlighter-rouge">EmbedAuthor</code>. This type accepts a Name and an IconURL, and we can make use of the builtin <code class="language-plaintext highlighter-rouge">.AvatarURL</code> member function to convert the user’s avatar to a valid Discord URL that we can use and scale it up/down accordingly.</p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">e</span> <span class="o">:=</span> <span class="n">Embed</span>
+    <span class="n">Title</span><span class="o">:</span> <span class="s">"Message Embed Title"</span>
+    <span class="n">Description</span><span class="o">:</span> <span class="s">"Content goes here with a max of 2k characters"</span>
+    <span class="n">Color</span><span class="o">:</span> <span class="p">(</span><span class="n">hexToInt</span> <span class="s">"#800080"</span><span class="p">)</span>
+    <span class="n">Author</span><span class="o">:</span> <span class="p">(</span><span class="n">EmbedAuthor</span> 
+        <span class="n">Name</span><span class="o">:</span> <span class="p">(</span><span class="nb">print</span> <span class="s">"Hello, "</span> <span class="n">context</span><span class="o">.</span><span class="n">Member</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">Username</span><span class="p">)</span> 
+        <span class="n">IconURL</span><span class="o">:</span> <span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">Member</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">AvatarURL</span> <span class="s">"32"</span><span class="p">)</span> <span class="c">// "32" is a power of two size, can also be empty ""</span>
+    <span class="p">)</span>
+<span class="p">}}</span>
+<span class="p">{{</span><span class="n">respond</span> <span class="err">$</span><span class="n">e</span><span class="p">}}</span></code></pre></figure>
+
+<p>Here is what it looks like now:</p>
+
+<p><img src="/assets/t05/author.png" alt="author" /></p>
+
+<h1 id="including-thumbnail">Including Thumbnail</h1>
+
+<p>Now we can extend the code again to add in the Thumbnail field. This field accepts objects of type <code class="language-plaintext highlighter-rouge">EmbedThumbnail</code> which allows for a URL, width and height. We can use the same approach we used for Author to get a URL for the thumbnail, only this time a bit larger.</p>
+
+<figure class="highlight"><pre><code class="language-golang" data-lang="golang"><span class="p">{{</span><span class="err">$</span><span class="n">e</span> <span class="o">:=</span> <span class="n">Embed</span>
+    <span class="n">Title</span><span class="o">:</span> <span class="s">"Message Embed Title"</span>
+    <span class="n">Description</span><span class="o">:</span> <span class="s">"Content goes here with a max of 2k characters"</span>
+    <span class="n">Color</span><span class="o">:</span> <span class="p">(</span><span class="n">hexToInt</span> <span class="s">"#800080"</span><span class="p">)</span>
+    <span class="n">Author</span><span class="o">:</span> <span class="p">(</span><span class="n">EmbedAuthor</span> 
+        <span class="n">Name</span><span class="o">:</span> <span class="p">(</span><span class="nb">print</span> <span class="s">"Hello, "</span> <span class="n">context</span><span class="o">.</span><span class="n">Member</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">Username</span><span class="p">)</span> 
+        <span class="n">IconURL</span><span class="o">:</span> <span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">Member</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">AvatarURL</span> <span class="s">"32"</span><span class="p">)</span> <span class="c">// "32" is a power of two size, can also be empty ""</span>
+    <span class="p">)</span>
+    <span class="n">Thumbnail</span><span class="o">:</span> <span class="p">(</span><span class="n">EmbedThumbnail</span>
+        <span class="n">URL</span><span class="o">:</span> <span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">Member</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">AvatarURL</span> <span class="s">"128"</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">}}</span>
+<span class="p">{{</span><span class="n">respond</span> <span class="err">$</span><span class="n">e</span><span class="p">}}</span></code></pre></figure>
+
+<p>Here’s what it looks like with thumbnail included:</p>
+
+<p><img src="/assets/t05/thumbnail.png" alt="thumbnail" /></p>
+
+<h1 id="other-fields">Other Fields</h1>
+
+<p>There are other fields allowed. Here is a table with a full listing:</p>
+
+<p><strong>type Embed</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>.URL</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Title</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Description</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Timestamp</td>
+      <td>String</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Color</td>
+      <td>int</td>
+      <td><strong>optional</strong></td>
+      <td>Integer value of a hex color</td>
+    </tr>
+    <tr>
+      <td>.Footer</td>
+      <td><a href="/docs#type-embedfooter">EmbedFooter</a></td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Image</td>
+      <td><a href="/docs#type-embedimage">EmbedImage</a></td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Thumbnail</td>
+      <td><a href="docs#type-embedthumbnail">EmbedThumbnail</a></td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Video</td>
+      <td><a href="/docs#type-embedvideo">EmbedVideo</a></td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Provider</td>
+      <td><a href="/docs#type-embedprovider">EmbedProvider</a></td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Author</td>
+      <td><a href="/docs#type-embedauthor">EmbedAuthor</a></td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.Fields</td>
+      <td>Array[<a href="/docs#type-embedfield">EmbedField</a>]</td>
+      <td><strong>optional</strong></td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a href="/tutorials/t06">Next: Tutorial 6: Database</a></p>
 
   </div>
 
