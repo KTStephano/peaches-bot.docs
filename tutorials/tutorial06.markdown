@@ -46,9 +46,9 @@ Atomically increments a single database entry represented by id, key pair. amoun
 
 This function returns the new value after performing the increment. If the data didn't already exist in the database, a new entry will be created and set to the value provided by amount.
 
-# Example: earn and spend
+# Example 1: earn and spend
 
-This will create 2 functions: earn which randomly adds some amount to a user's balance, and spend which decrements some amount.
+This will create 2 commands: `/earn` which randomly adds some amount to a user's balance, and `/spend` which decrements some amount.
 
 Here is the code for earn:
 
@@ -100,5 +100,70 @@ And finally here is the code for spend:
 // mult by -1 so that we can invert $amount
 {{$newBalance := dbIncr context.Member.User.ID "AccountBalance" (mult $amount -1)}}
 {{respond (printf "Your new balance is %d points." $newBalance)}}
+{% endraw %}
+{% endhighlight %}
+
+# Example 2: number guessing game
+
+This example will create 2 commands: `/new-guess` which will create a new guess if there is no existing guess, and `/guess` which will allow people to input a guess.
+
+Here is the execution code for new-guess:
+
+{% highlight golang %}
+{% raw %}
+{{$existing := dbGet 0 "RandomNumber"}}
+// Guess already exists
+{{if $existing}}
+    {{respond "You still have to guess the last number I thought of!"}}
+    {{return}}
+{{end}}
+
+// adding 1 will convert the range from [0, 99] to [1, 100] inclusive
+{{$number := (add 1 (randn 100))}}
+{{dbSet 0 "RandomNumber" $number}}
+
+{{respond "I'm thinking of a number between 1 and 100..."}}
+{% endraw %}
+{% endhighlight %}
+
+Here is the initialization code for guess which accepts 1 argument:
+
+{% highlight golang %}
+{% raw %}
+{{$option := CmdOption
+    Type: OptionInteger 
+    Required: true
+    Name: "guess"
+    Description: "Your guess (1-100)"
+    MinValue: 1
+    MaxValue: 100
+}}
+{{addOptions $option}}
+{% endraw %}
+{% endhighlight %}
+
+And finally here is the execution code for guess:
+
+{% highlight golang %}
+{% raw %}
+{{$existing := dbGet 0 "RandomNumber"}}
+// No number yet - ask the user to ask for a new guess
+{{if not $existing}}
+    {{respond "I haven't thought of a new guess yet. You can use `/new-guess` to start a new game."}}
+    {{return}}
+{{end}}
+
+// Pull int64 out of entry's value field
+{{$number := toInt64 $existing.Value}}
+{{$guess := (index context.Inputs 0).Integer}}
+
+{{if eq $guess $number}}
+    {{respond (print context.Member.User.Mention " guessed the right answer! The number was " $number ".")}}
+    {{dbDel 0 "RandomNumber"}}
+{{else if lt $number $guess}}
+    {{respond "The number I'm thinking of is less than that guess."}}
+{{else}}
+    {{respond "The number I'm thinking of is greater than that guess."}}
+{{end}}
 {% endraw %}
 {% endhighlight %}
