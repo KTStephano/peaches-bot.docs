@@ -687,3 +687,19 @@ Deletes the response to a slash command trigger or message component interaction
 ### responseID
 
 For a non-ephemeral response, this will return the ID of the message that Discord created.
+
+### mute userID reason duration
+
+Mutes userID for reason for given duration.
+
+### unmute userID
+
+### ban userID reason daysToDelete
+
+When banning a user, having daysToDelete set to a value > 0 indicates that 1 or more days worth of messages should be purged from chat from the user being banned.
+
+### unban userID
+
+### toDuration string
+
+Attempts to convert string to a duration. It accepts formatting such as "1h45m" or "30s" or "10ms".

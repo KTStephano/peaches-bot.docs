@@ -11,7 +11,7 @@ This set of tutorials is meant to walk you through some of the core features ava
 
 The bot uses the [data-driven templating system](https://pkg.go.dev/text/template) available through the Go language. Each piece of code is attached to a type of trigger which determines when the code gets run. A trigger for a slash command "hello" would execute anytime a user of your guild tries to run it from one of the channels it's enabled in, for example. 
 
-The language requires each action to be wrapped in a set of curly braces {% raw %}`{{}}`{% endraw %} to indicate that it is meant to be executed.
+The language requires each action to be wrapped in a set of curly braces {% raw %}`{{}}`{% endraw %} to indicate that it is meant to be executed. Variables start with {% raw %}`$`{% endraw %} and are untyped so that they can be assigned any value. When creating a new variable, := is used to create and set the variable simultaneously: {% raw %}`{{$variable := 1234}}`{% endraw %}. Once the variable has been created, you can use = to reassign it a new value: {% raw %}`{{$variable = "new value, new data type"}}`{% endraw %}.
 
 The bot adds a few minor extensions on top of the templating system syntax such as support for `// forward slash comments` and `Label: Value` syntax when creating objects of a given type.
 
