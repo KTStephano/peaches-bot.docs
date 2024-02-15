@@ -13,7 +13,7 @@ Each instance of your code gets its own set of counters to monitor its individua
 * Max characters in a string: 2000
 * Max single write, single read database operations per instance: 10
 * Max total database entries: 10 * Guild Members
-* Max database size per entry: 8 KiB
+* Max database size per entry: 1 KiB
 * Max `sendDM` calls per instance: 1
 * Max channel/thread manipulations per instance: 2
 * Max state locks per instance: 100
