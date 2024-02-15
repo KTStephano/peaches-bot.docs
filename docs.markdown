@@ -453,6 +453,21 @@ All fields for EmbedAuthor technically optional, but at least one should have da
 .IconURL | String | **optional** |
 .ProxyIconURL | String | **optional** |
 
+### type EmojiComponent
+
+.Name | String | Name of the emoji as it appears on Discord/as it is named in a Guild
+.ID | ID | ID of the emoji which can be found through the Discord client
+.Animated | Bool | True if it is an animated emoji
+
+### type Button
+
+.Label | String | Button name that appears to the user
+.Style | [ButtonStyle](/peaches-bot.docs/docs#enum-buttonstyle) | Style/flavor of button
+.Disabled | Bool | If true, button appears greyed out and unselectable
+.URL | String | (Valid for ButtonStyle.LinkButton only) Link redirect when the user clicks the button
+.CustomID | String | (Cannot be used if URL is specified) Identifier that can be used by the programmer to know which button is pressed
+.Emoji | [EmojiComponent](/peaches-bot.docs/docs#type-emojicomponent) | Emoji attached to the button label
+
 # Functions
 
 ### addOptions ...args
@@ -659,6 +674,8 @@ Retrieves a single database entry represented by id, key pair. ID should be an i
 ### dbSet id key data
 
 Sets a single database entry represented by id, key pair to be data. ID should be an int64 type whereas key should be a String type.
+
+Keep in mind that by default, all integer types are converted to floating point by the DB manager. For this reason, if you are trying to store something like an ID which is an int64, convert it to a string first.
 
 ### dbDel id key
 

@@ -32,7 +32,7 @@ If no entry was present, this will be nil.
 
 ### dbSet id key data
 
-Sets a single database entry represented by id, key pair to be data. ID should be an int64 type whereas key should be a String type. The data itself can be anything that can be converted to JSON format. This includes ints and floats (ints are converted to float by default when storing them), but also strings, maps and arrays.
+Sets a single database entry represented by id, key pair to be data. ID should be an int64 type whereas key should be a String type. The data itself can be anything that can be converted to JSON format. This includes ints and floats (ints are converted to float by default when storing them), but also strings, maps and arrays. Since ints are converted to float by the DB manager, if you are trying to store something like an ID which is an int64 type, you should convert it to a string first. You can always convert it back when reading from the DB by using `toInt64`.
 
 Currently the maximum size for each entry is 8 KiB.
 
@@ -167,3 +167,5 @@ And finally here is the execution code for guess:
 {{end}}
 {% endraw %}
 {% endhighlight %}
+
+[Next: Tutorial 7: Buttons](/peaches-bot.docs/tutorials/t07)

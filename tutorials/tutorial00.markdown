@@ -29,4 +29,4 @@ Development on the bot's features will primarily be concentrated on adding new b
 * [Tutorial 4: Triggers](/peaches-bot.docs/tutorials/t04)
 * [Tutorial 5: Embeds](/peaches-bot.docs/tutorials/t05)
 * [Tutorial 6: Database](/peaches-bot.docs/tutorials/t06)
-* (Under Construction) Tutorial 7: Buttons
+* [Tutorial 7: Buttons](/peaches-bot.docs/tutorials/t07)

@@ -17,7 +17,7 @@ Each instance of your code gets its own set of counters to monitor its individua
 * Max `sendDM` calls per instance: 1
 * Max channel/thread manipulations per instance: 2
 * Max state locks per instance: 100
-* Max slash commands per guild: 25
+* Max slash commands per guild: 20
 * Max triggers per event type: 3
 
 # Notes
