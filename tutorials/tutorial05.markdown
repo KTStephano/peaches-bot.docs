@@ -12,7 +12,7 @@ This tutorial will walk you through the process of creating and posting message 
 
 # Creating Embeds
 
-An embed is a way to post messages to Discord with advanced formatting options. We can include things like titles, description, author, border color, etc. The bot allows you to reply with an embed using functions like `response` or `sendMessage`. Here is an example of creating an embed with a few pieces of information:
+An embed is a way to post messages to Discord with advanced formatting options. We can include things like titles, description, author, border color, etc. The bot allows you to reply with an embed using functions like `responsd` or `sendMessage`. Here is an example of creating an embed with a few pieces of information:
 
 {% highlight golang %}
 {% raw %}

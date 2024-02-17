@@ -288,11 +288,14 @@ A Array of these objects are passed into slash commands when they accept user in
 
 **Functions**
 
+Each of these functions will attempt to convert the input to the desired type. Certain ones, such as **.User**, return nil when it fails. This means the underlying type is something different than requested.
+
 .Bool | returns boolean value of option
 .Integer | returns int64 value of option
 .Float | returns float64 (double) value of the option
 .String | returns string value of the option
 .User | returns *User object
+.Member | returns *Member object
 .Role | returns *Role object
 .Channel | returns *Channel object
 
