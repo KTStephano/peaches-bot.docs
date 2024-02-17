@@ -257,17 +257,17 @@ Now here's the trigger code that handles the message component interaction event
     {{end}}
 
     {{if eq $existingRole $newRole}}
-        {{takeRole $user.ID $existingRole}}
         {{dbDel $user.ID "ExistingColorRole"}}
         {{respondEphemeral "Removed the role"}}
-    {{else}}
-        // remove existing, give new
         {{takeRole $user.ID $existingRole}}
-        {{giveRole $user.ID $newRole}}
-
+    {{else}}
         // store as string since DB converts ID to float
         {{dbSet $user.ID "ExistingColorRole" (toString $newRole)}}
         {{respondEphemeral "Gave you the role"}}
+
+        // remove existing, give new
+        {{takeRole $user.ID $existingRole}}
+        {{giveRole $user.ID $newRole}}
     {{end}}
 {{end}}
 {% endraw %}
