@@ -456,6 +456,14 @@ All fields for EmbedAuthor technically optional, but at least one should have da
 .IconURL | String | **optional** |
 .ProxyIconURL | String | **optional** |
 
+### type MessageComplex
+
+Allows you to bundle multiple types together into a single message. All fields for EmbedAuthor technically optional, but at least one should have data.
+
+.Content | String | **optional** | Regular text to accompany message
+.Embeds | Array[[Embed](/peaches-bot.docs/docs#type-embed)] | **optional** | Array of embeds to include with the message (up to 10)
+.Components | Array[[Button](/peaches-bot.docs/docs#type-button)] or Array[Array[[Button](/peaches-bot.docs/docs#type-button)]] | **optional** | Allows for the adding of buttons to the message
+
 ### type EmojiComponent
 
 .Name | String | Name of the emoji as it appears on Discord/as it is named in a Guild
@@ -464,12 +472,28 @@ All fields for EmbedAuthor technically optional, but at least one should have da
 
 ### type Button
 
-.Label | String | Button name that appears to the user
-.Style | [ButtonStyle](/peaches-bot.docs/docs#enum-buttonstyle) | Style/flavor of button
-.Disabled | Bool | If true, button appears greyed out and unselectable
-.URL | String | (Valid for ButtonStyle.LinkButton only) Link redirect when the user clicks the button
-.CustomID | String | (Cannot be used if URL is specified) Identifier that can be used by the programmer to know which button is pressed
-.Emoji | [EmojiComponent](/peaches-bot.docs/docs#type-emojicomponent) | Emoji attached to the button label
+.Label | String | **required** | Button name that appears to the user
+.Style | [ButtonStyle](/peaches-bot.docs/docs#enum-buttonstyle) | **required** | Style/flavor of button
+.Disabled | Bool | **optional** | If true, button appears greyed out and unselectable
+.URL | String | **optional** | (Valid for ButtonStyle.LinkButton only) Link redirect when the user clicks the button
+.CustomID | String | **required** | (Cannot be used if URL is specified) Identifier that can be used by the programmer to know which button is pressed
+.Emoji | [EmojiComponent](/peaches-bot.docs/docs#type-emojicomponent) | **optional** | Emoji attached to the button label
+
+### type Thread
+
+.Title | String | **required** | Title of the thread
+.AutoArchiveDuration | Int | **optional** | Duration in minutes before Discord auto archives the thread
+.Private | Bool | **optional** | (Only valid for basic thread) True if thread permission set to private
+.Slowmode | Int | **optional** | Duration in seconds where someone must wait before sending a new message
+.MessageID | ID | **optional** | (Only valid for message thread) message ID to attach the thread to
+
+### type ForumThread
+
+.Title | String | **required** | Title of the thread
+.AutoArchiveDuration | Int | **optional** | Duration in minutes before Discord auto archives the thread
+.Slowmode | Int | **optional** | Duration in seconds where someone must wait before sending a new message
+.Content | String, [Embed](/peaches-bot.docs/docs#type-embed), or [MessageComplex](/peaches-bot.docs/docs#type-messagecomplex) | **required** | Content of the thread
+.Tags | Array[String] | **optional** | List of tag names to apply to the thread (max 5 per thread)
 
 # Functions
 
@@ -723,3 +747,15 @@ When banning a user, having daysToDelete set to a value > 0 indicates that 1 or 
 ### toDuration string
 
 Attempts to convert string to a duration. It accepts formatting such as "1h45m" or "30s" or "10ms".
+
+### createThread channelID thread
+
+`thread` should be either a [Thread](/peaches-bot.docs/docs/#type-thread) or a [ForumThread](/peaches-bot.docs/docs/#type-forumthread)
+
+### lockThread threadID
+
+Marks a thread as locked. `threadID` should not refer to an archived thread.
+
+### unlockThread threadID
+
+Marks a thread as unlocked. `threadID` should not refer to an archived thread.

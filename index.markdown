@@ -28,4 +28,4 @@ You can invite Peaches using [this invite link](https://discord.com/api/oauth2/a
 * Follows Discord ToS
 * NSFW level: safe or default
 * Explicit content filter: All members
-* Member verification level: Medium
+* Member verification level: Low
