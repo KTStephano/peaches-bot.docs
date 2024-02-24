@@ -755,3 +755,9 @@ Marks a thread as locked. `threadID` should not refer to an archived thread.
 ### unlockThread threadID
 
 Marks a thread as unlocked. `threadID` should not refer to an archived thread.
+
+### exec function data delay
+
+Executes a trigger from the Function category. `function` should be its name as a string. `data` can either be nil, or it can include some data to pass to the function. `delay` should be between 0 and 60 and represents delay in seconds. 0 means execute immediately.
+
+When using `data`, context.ExecData will be populated with the argument.
