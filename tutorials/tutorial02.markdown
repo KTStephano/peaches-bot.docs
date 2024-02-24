@@ -31,7 +31,6 @@ It's also possible to iterate over them using `range`.
 {{$a := Array "a" "b" "c" "d" "e" "f"}}
 {{range $elem := $a}} // stores each element of $a in $elem
     {{respond $elem}}
-    {{sleep 1}}
 {{end}}
 {% endraw %}
 {% endhighlight %}
@@ -54,10 +53,10 @@ With an existing array, it's possible to create a **slice** of the array. When c
 {{$a := Array 1 2 3 4 5 6 7 8 9 10}}
 // Prints entire array
 {{respond (slice $a)}}
-{{sleep 1}}
+
 // Prints the array starting at element 4
 {{respond (slice $a 4)}}
-{{sleep 1}}
+
 // Prints the array starting at element 4 and ending at element 6 (7 not included)
 {{respond (slice $a 4 7)}}
 {% endraw %}
@@ -82,7 +81,6 @@ Iterating over the map/smap can be done with range, only this time it returns bo
 {{$sm := SMap "hello" 1 "world" 2 "!" 3}}
 {{range $k, $v := $sm}}
     {{respond (printf "%s: %d" $k $v)}}
-    {{sleep 1}}
 {{end}}
 {% endraw %}
 {% endhighlight %}
@@ -94,7 +92,6 @@ Adding and removing elements can be done with `.Insert` and `.Remove`.
 {{$sm := SMap "hello" 1 "world" 2 "!" 3}}
 {{$sm.Insert "earth" true}}
 {{respond $sm}}
-{{sleep 1}}
 
 {{$sm.Remove "hello"}}
 {{respond $sm}}

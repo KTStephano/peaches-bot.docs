@@ -690,10 +690,6 @@ Takes the role represented by roleID from userID.
 
 Returns true if userID has roleID and false if not.
 
-### sleep seconds
-
-Instructs the current code to sleep for `seconds` amount of time. Minimum is 1 and maximum is 60.
-
 ### dbGet id key
 
 Retrieves a single database entry represented by id, key pair. ID should be an int64 type whereas key should be a String type.
