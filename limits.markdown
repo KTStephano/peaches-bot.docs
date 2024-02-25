@@ -16,9 +16,12 @@ Each instance of your code gets its own set of counters to monitor its individua
 * Max database size per entry: 1 KiB
 * Max `sendDM` calls per instance: 1
 * Max channel/thread manipulations per instance: 2
+* Max channel/thread create/delete per instance: 1
 * Max state locks per instance: 100
 * Max slash commands per guild: 20
 * Max triggers per event type: 3
+* Max `exec` calls per instance: 1
+* Max role create/delete per instance: 1
 
 # Notes
 
