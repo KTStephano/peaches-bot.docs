@@ -495,6 +495,16 @@ Allows you to bundle multiple types together into a single message. All fields f
 .Content | String, [Embed](/peaches-bot.docs/docs#type-embed), or [MessageComplex](/peaches-bot.docs/docs#type-messagecomplex) | **required** | Content of the thread
 .Tags | Array[String] | **optional** | List of tag names to apply to the thread (max 5 per thread)
 
+### type RoleInfo
+
+This is used when creating a new role.
+
+.Name | String | **required** | The role's name
+.Color | Integer | **optional** | The color the role should have (as a decimal, not hex)
+.Separate | Bool | **optional** | If true, members with this role show up separately on the side bar
+.Permissions | Array[[DiscordPermission](/peaches-bot.docs/docs/#bitfield-discordpermission)] | **optional** | The overall permissions of the role
+.Mentionable | Bool | **optional** | Whether this role is mentionable
+
 # Functions
 
 ### addOptions ...args
@@ -761,3 +771,27 @@ Marks a thread as unlocked. `threadID` should not refer to an archived thread.
 Executes a trigger from the Function category. `function` should be its name as a string. `data` can either be nil, or it can include some data to pass to the function. `delay` should be between 0 and 60 and represents delay in seconds. 0 means execute immediately.
 
 When using `data`, context.ExecData will be populated with the argument.
+
+### createRole role
+
+Creates a new role. `role` should be a [RoleInfo](/peaches-bot.docs/docs/#type-roleinfo) object.
+
+### editRoleName roleID newName
+
+Edits the role specified by `roleID` to be named `newName`.
+
+### editRoleColor roleID color
+
+Edits the role specified by `roleID` to be `color`, which should be a decimal (not hex). Use `hexToInt` for quick conversion to decimal.
+
+### moveRoleAfter roleID afterID
+
+Moves the role specified by `roleID` to come after the role specified by `afterID` in the Discord role hierarchy.
+
+### moveRoleBefore roleID beforeID
+
+Moves the role specified by `roleID` to come before the role specified by `beforeID` in the Discord role hierarchy.
+
+### deleteRole roleID
+
+Deletes role specified by `roleID`.
