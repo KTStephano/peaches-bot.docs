@@ -98,4 +98,4 @@ If you ever wonder how many triggers you have setup for an event type or what th
 
 It's strongly recommended that you set a debug output channel when creating and editing triggers. This will allow the bot to post any error messages related to issues it runs into while trying to execute your code to make it easier for you to figure out the problem. To do this, run the `/set-debuglog` command.
 
-[Next: Tutorial 5: Embeds](/peaches-bot.docs/tutorials/t05)
+[Next <- Tutorial 5: Embeds](/peaches-bot.docs/tutorials/t05)

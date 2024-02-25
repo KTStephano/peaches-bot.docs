@@ -191,3 +191,5 @@ For both of these, thread ID should be an ID type which you can get from the Dis
 # Note About Archiving
 
 The bot tracks the state for all active threads that it has permission to view. However, Discord has the concept of archiving a thread to prevent the total number of active threads from going over the maximum per guild (1000). When a thread is marked as archived, the bot will forget about it. This is important to know because it can cause calls to functions like `getThread` to fail if you pass in an archived thread ID.
+
+[Next <- Tutorial 9: Functions](/peaches-bot.docs/tutorials/t09)

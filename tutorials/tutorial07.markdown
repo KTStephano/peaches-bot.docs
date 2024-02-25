@@ -273,4 +273,4 @@ Now here's the trigger code that handles the message component interaction event
 {% endraw %}
 {% endhighlight %}
 
-[Next: Tutorial 8: Threads](/peaches-bot.docs/tutorials/t08)
+[Next <- Tutorial 8: Threads](/peaches-bot.docs/tutorials/t08)

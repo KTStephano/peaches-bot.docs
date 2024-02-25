@@ -134,7 +134,86 @@ Inside of the command execution code, we know that the first argument will alway
 {% endraw %}
 {% endhighlight %}
 
-# Example 3: Let user select a role
+# Handling Optional Inputs
+
+Some commands you create could end up having multiple optional inputs. This leads to a situation where you need to have a good way of checking for an input being present and ignoring it if not. For this you can use the `getInput` function. Here is its type signature:
+
+**getInput arg**
+
+`arg` can either be the an index into context.Inputs or it can be a string representing a command option's name.
+
+If the input doesn't exist it will return empty (nil).
+
+# Example 3: Ping with optional message and channel
+
+This example will show the benefit of using `getInput` for allowing you to effectively handle multiple optional inputs.
+
+Command customization code:
+
+{% highlight golang %}
+{% raw %}
+{{$option1 := CmdOption
+    Type: OptionUser 
+    Required: true
+    Name: "user" // this is the name passed to getInput
+    Description: "User to ping"
+}}
+
+{{$option2 := CmdOption
+    Type: OptionString 
+    Required: false
+    Name: "message" // this is the name passed to getInput
+    Description: "Custom message to include"
+}}
+
+{{$option3 := CmdOption
+    Type: OptionChannel 
+    Required: false
+    Name: "channel" // this is the name passed to getInput
+    Description: "Channel to send the message to"
+}}
+
+{{addOptions $option1 $option2 $option3}}
+{% endraw %}
+{% endhighlight %}
+
+Here is the new command execution code:
+
+{% highlight golang %}
+{% raw %}
+// Since "user" is a required argument, we don't need to error check
+{{$user := (getInput "user").User}}
+
+// These will need to be checked for empty (nil)
+{{$message := getInput "message"}}
+{{$channel := getInput "channel"}}
+
+{{if $channel}}
+    // Use input channel
+    {{$channel = $channel.Channel.ID}}
+{{else}}
+    // Use context channel
+    // (tells us which channel this command is executing in)
+    {{$channel = context.Channel.ID}}
+{{end}}
+
+{{if $message}}
+    // Use custom message
+    {{$message = printf "%s: %s" $user.Mention $message.String}}
+{{else}}
+    // Use default message
+    {{$message = printf "Hello, %s!" $user.Mention}}
+{{end}}
+
+// Use sendMessage so we can specify the channel
+{{sendMessage $channel $message}}
+
+// Still need to respond so Discord doesn't think we ignored the user
+{{respondEphemeral "Message sent!"}}
+{% endraw %}
+{% endhighlight %}
+
+# Example 4: Let user select a role
 
 This example will demonstrate how to use `CmdChoice` in order to create a list of optional roles that the user can select from. We'll do this by giving them a set of options that internally map to an array of role ids.
 
@@ -169,7 +248,7 @@ For the source code, we will have an array where each entry corresponds to an in
 }}
 
 // Selection given to us by the user, as an integer
-{{$selection := (index context.Inputs 0).Integer}}
+{{$selection := (getInput "role-options").Integer}}
 {{$roleId := index $roleIdList $selection}}
 {{$userId := context.Member.User.ID}}
 
@@ -188,6 +267,20 @@ This is what the user will see when they try running the command:
 
 ![select](/peaches-bot.docs/assets/t03/select.png)
 
+# Getting the Type
+
+In each of these examples we've used things like `.String`, `.User`, `.Channel` when dealing with command inputs. Each of these functions tries to convert the given input to the requested type, and if it fails it returns empty (nil). There are more of these types of functions that you can use. Here is the full list:
+
+.Bool | Interprets input as bool if possible
+.Integer | Interprets the input as int64 if possible
+.Float | Interprets the input as float64 if possible
+.String | Interprets the input 
+.User | Interprets as User if possible
+.Member | Interprets as Member if possible (Member is a guild-specific entry for a User, and within it is contained a nested .User field)
+.Message | Interprets as Message if possible
+.Role | Interprets as Role if possible
+.Channel | Interprets as Channel if possible
+
 # Modifying slash command permissions
 
 After a command has been created, it's possible to manage its permissions from within Discord itself. To do this, in your server go to `Server Settings`, then `Integrations`, then find Peaches. From here you can click on the commands and edit the permissions. Here is an example of editing the hello command from the first tutorial:
@@ -196,4 +289,4 @@ After a command has been created, it's possible to manage its permissions from w
 
 If saved, this would have the effect of disabling it for @everyone but enabling it specifically for people with the @Level 25 role. It also makes it so that it is completely disabled from the #role-selection channel.
 
-[Next: Tutorial 4: Triggers](/peaches-bot.docs/tutorials/t04)
+[Next <- Tutorial 4: Triggers](/peaches-bot.docs/tutorials/t04)

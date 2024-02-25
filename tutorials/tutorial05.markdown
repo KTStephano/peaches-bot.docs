@@ -97,4 +97,4 @@ There are other fields allowed. Here is a table with a full listing:
 .Author | [EmbedAuthor](/peaches-bot.docs/docs#type-embedauthor) | **optional** |
 .Fields | Array[[EmbedField](/peaches-bot.docs/docs#type-embedfield)] | **optional** |
 
-[Next: Tutorial 6: Database](/peaches-bot.docs/tutorials/t06)
+[Next <- Tutorial 6: Database](/peaches-bot.docs/tutorials/t06)
