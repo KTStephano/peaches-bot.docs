@@ -6,6 +6,8 @@ permalink: /tos
 
 ---
 
+**Last Updated: Feb 26, 2024**
+
 This document outlines a set of guidelines that must be followed in order to use the Peaches Discord bot. All mentions of "bot" refer to Peaches and the service it provides.
 
 ## - Conditions
