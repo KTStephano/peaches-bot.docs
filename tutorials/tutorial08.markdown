@@ -53,8 +53,8 @@ Here is a function that creates a new thread in the channel that the command is 
 {% highlight golang %}
 {% raw %}
 {{$thread := Thread
-    Title: (index context.Inputs 0).String // title of the thread
-    Private: (index context.Inputs 1).Bool // true if the thread is private
+    Title: (getInput "title").String // title of the thread
+    Private: (getInput "private").Bool // true if the thread is private
 }}
 
 {{$created := createThread context.Channel.ID $thread}}
@@ -144,12 +144,12 @@ Creating forum threads is done with `createThread` just as before, but the threa
 {{$forumChannel := 1152957828013764688}}
 
 {{$post := ForumThread
-    Title: (index context.Inputs 0).String
+    Title: (getInput "title").String
     // Content can be a string, embed, or message complex
     //
     // For this example we opt for wrapping input in an embed
     Content: (Embed
-        Description: (index context.Inputs 1).String
+        Description: (getInput "content").String
     )
     // Replace with relevant tags for your own forum channel
     Tags: (Array "discussion" "bot")
