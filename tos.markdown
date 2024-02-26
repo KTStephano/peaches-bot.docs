@@ -13,8 +13,8 @@ This document outlines a set of guidelines that must be followed in order to use
 ## - Conditions
 
 1. By inviting the bot to your server, you agree to abide by these terms and any future terms.
-2. These terms apply to anyone who interacts with the bot on any server.
-3. If at any point you decide to reject these terms, you must immediately remove the bot from any server that you operate.
+2. You are responsible for ensuring that your Discord server's members use the bot in accordance with these terms.
+3. If at any point you decide to reject these terms, you must immediately remove the bot from any Discord server that you operate.
 
 ## - Changes
 
@@ -29,5 +29,4 @@ In the future there may be changes made to this document to alter the terms. Bef
 5. The bot must not be used in any way that exploits or endangers minors.
 6. The bot must not be used in any way that violates any law or regulation.
 7. The bot must not be used in any way that promotes hate or violence towards people or other animals.
-8. Each server is responsible for ensuring that their members use the bot in accordance with these terms.
-9. The Peaches Team reserves the right to remove any server's ability to access the bot, with or without notice.
+8. The Peaches Team reserves the right to remove any server's ability to access the bot, with or without notice.
