@@ -58,9 +58,9 @@ Once you hit submit the bot will give you a confirmation if everything went well
 
 ![final](/peaches-bot.docs/assets/t01/final.png)
 
-# Step 4: Switch to ephemeral response
+# Step 4: Switch to private response
 
-With the personalized greeting in place, we can do another source edit and change `respond` to `respondEphemeral`. This tells the bot that it should reply with a private message in the channel to the user. These replies can't be edited once sent, and only the receiver can dismiss them. This is the result:
+With the personalized greeting in place, we can do another source edit and change `respond` to `respondPrivate`. This tells the bot that it should reply with a private message in the channel to the user. These replies can't be edited once sent, and only the receiver can dismiss them. This is the result:
 
 ![ephemeral](/peaches-bot.docs/assets/t01/ephemeral.png)
 

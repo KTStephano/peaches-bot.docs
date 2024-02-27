@@ -14,9 +14,9 @@ This tutorial will walk you through the customization of slash commands to accep
 
 In the first tutorial we glanced over the first source code text box that appears with `/create-cmd`. This allows you to specify some code that runs during the command creation stage and tells the bot more about the layout of the command. This layout includes not only the inputs but also the default permissions.
 
-Command initialization exposes a few functions and data types to use. The functions are `addOptions` and `setDefaultPermissions` whereas the data types are `OptionType`, `ChannelType`, `CmdOption` and `CmdChoice` which work together.
+Command initialization exposes a few functions and data types to use. The functions are `addOptions` and `setDefaultPermissions`. Together these functions let you customize the command inputs (options) that a user can give to it, as well as the default required permissions that a member needs to have in order to use the command. Command permissions can be modified later through the Discord client.
 
-Here is the layout for the data types:
+Here is the layout for the input types that options can accept:
 
 **enum OptionType**
 
@@ -25,28 +25,6 @@ Can be one of OptionString, OptionInteger, OptionBoolean, OptionUser, OptionChan
 **enum ChannelType**
 
 Can be one of ChannelGuildText, ChannelDM, ChannelGuildVoice, ChannelGuildGroupDM, ChannelGuildCategory, ChannelGuildNews, ChannelGuildStore, ChannelGuildNewsThread, ChannelGuildPublicThread, ChannelGuildPrivateThread, ChannelGuildStageVoice, ChannelGuildForum.
-
-**type CmdOption**
-
-.Type | [OptionType](/peaches-bot.docs/docs#enum-optiontype) | **required** | Type of data this option can contain. This determines what inputs the Discord UI will accept. 
-.Name | String | **required** | Top-level name of the option
-.Description | String | **required** | Short explanation of the option
-.ChannelTypes | Array[[ChannelType](/peaches-bot.docs/docs#enum-channeltype)] | **optional** | An array of channel types that this option accepts
-.Required | Bool | **optional** (default false) | Whether this option is required or not
-.Choices | Array[OptionType] | **optional** | Selection menu that the user can choose from
-.MinValue | Double | **optional** | Minimal value of number/integer option
-.MaxValue | Double | **optional** | Maximum value of number/integer option
-.MinLength | Int64 | **optional** | Minimum length of string option
-.MaxLength | Int64 | **optional** | Maximum length of string option
-
-**type CmdChoice**
-
-**Fields**
-
-.Name | String | **required** | Name that appears in the slash command selection menu
-.Value | Any | **required** | Value assigned to the choice for use by the code
-
-In the next section we will make use of these types to customize a slash command's inputs.
 
 # Example 1: Ping User
 
@@ -84,12 +62,12 @@ Now walking through the command execution part of the code:
 
 {% highlight golang %}
 {% raw %}
-{{$user := (index context.Inputs 0).User}}
-{{respond (printf "Hello, %s!" $user.Mention)}}
+{{$user := (getInput 0).User}}
+{{respond (printf "Hello, %s!" $user)}}
 {% endraw %}
 {% endhighlight %}
 
-The main thing to know here is that context.Inputs is populated by the bot with a list of command inputs from the user. The `index` function can be used to index any array (even ones passed in from the bot's system) with the array as the first argument and index as the second.
+Here we use the `getInput` function and pass it in 0. getInput is a builtin convenience function that provides the ability to either get an input by its index (0 in this case, which is the first index), or by its option name (such as "user"). You'll notice the `.User` at the end of the getInput line. This tells the bot to not only get the first input, but convert it to a User data type. In Discord the way that it works is: every person in your guild is represented by a `Member` type which contains things like their nickname, when they joined your server, etc. The `Member` type also contains a `User` object which contains global information about the account such as username, ID, etc.
 
 # Example 2: Ping with optional message
 
@@ -121,22 +99,24 @@ Inside of the command execution code, we know that the first argument will alway
 
 {% highlight golang %}
 {% raw %}
-{{$user := (index context.Inputs 0).User}}
-// If length > 1, we know we got a message input as arg #2
+{{$user := (getInput 0).User}}
+// If length of Inputs > 1, we know we got a message input as arg #2
 {{if gt (len context.Inputs) 1}}
-    {{$message := (index context.Inputs 1).String}}
-    {{respond (printf "%s: %s" $user.Mention $message)}}
+    {{$message := (getInput 1).String}}
+    {{respond (printf "%s: %s" $user $message)}}
 
 // Else we only have the user argument - print the default message
 {{else}}
-    {{respond (printf "Hello, %s!" $user.Mention)}}
+    {{respond (printf "Hello, %s!" $user)}}
 {{end}}
 {% endraw %}
 {% endhighlight %}
 
-# Handling Optional Inputs
+`context.Inputs` in the above code is where the bot puts all of the inputs for the command. The `context` is all the information that your code has about who used the command, what inputs they gave it, what channel they ran it in, etc.
 
-Some commands you create could end up having multiple optional inputs. This leads to a situation where you need to have a good way of checking for an input being present and ignoring it if not. For this you can use the `getInput` function. Here is its type signature:
+# Handling multiple optional inputs
+
+Some commands you create could end up having multiple optional inputs. This leads to a situation where you need to have a good way of checking for an input being present and ignoring it if not. For this you can use the `getInput` function but instead of giving it an input index, you can give it an input name.
 
 **getInput arg**
 
@@ -199,10 +179,10 @@ Here is the new command execution code:
 
 {{if $message}}
     // Use custom message
-    {{$message = printf "%s: %s" $user.Mention $message.String}}
+    {{$message = printf "%s: %s" $user $message.String}}
 {{else}}
     // Use default message
-    {{$message = printf "Hello, %s!" $user.Mention}}
+    {{$message = printf "Hello, %s!" $user}}
 {{end}}
 
 // Use sendMessage so we can specify the channel
