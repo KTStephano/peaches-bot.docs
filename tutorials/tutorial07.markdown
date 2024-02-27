@@ -91,7 +91,7 @@ With this trigger, you can write code that acts on `context.Interaction` which i
 
 // Check to see if the custom id matches "Button01" from above
 {{if eq $data.CustomID "Button01"}}
-    {{respondEphemeral (print 
+    {{respondPrivate (print 
         "You clicked on " $data.CustomID 
         " on message " $clickedMessage.ID 
         " of type " $data.ComponentType
@@ -258,12 +258,12 @@ Now here's the trigger code that handles the message component interaction event
 
     {{if eq $existingRole $newRole}}
         {{dbDel $user.ID "ExistingColorRole"}}
-        {{respondEphemeral "Removed the role"}}
+        {{respondPrivate "Removed the role"}}
         {{takeRole $user.ID $existingRole}}
     {{else}}
         // store as string since DB converts ID to float
         {{dbSet $user.ID "ExistingColorRole" (toString $newRole)}}
-        {{respondEphemeral "Gave you the role"}}
+        {{respondPrivate "Gave you the role"}}
 
         // remove existing, give new
         {{takeRole $user.ID $existingRole}}

@@ -63,9 +63,9 @@ Here is a function that creates a new thread in the channel that the command is 
 {{if $created}}
     // send message will mention the user in the newly-created thread
     {{sendMessage $created.ID context.Member}}
-    {{respondEphemeral "Done!"}}
+    {{respondPrivate "Done!"}}
 {{else}}
-    {{respondEphemeral "Failed"}}
+    {{respondPrivate "Failed"}}
 {{end}}
 {% endraw %}
 {% endhighlight %}
@@ -156,7 +156,7 @@ Creating forum threads is done with `createThread` just as before, but the threa
 }}
 
 {{createThread $forumChannel $post}}
-{{respondEphemeral "Done!"}}
+{{respondPrivate "Done!"}}
 {% endraw %}
 {% endhighlight %}
 

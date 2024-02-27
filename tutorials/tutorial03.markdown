@@ -189,7 +189,7 @@ Here is the new command execution code:
 {{sendMessage $channel $message}}
 
 // Still need to respond so Discord doesn't think we ignored the user
-{{respondEphemeral "Message sent!"}}
+{{respondPrivate "Message sent!"}}
 {% endraw %}
 {% endhighlight %}
 

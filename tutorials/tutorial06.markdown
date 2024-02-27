@@ -5,7 +5,7 @@ layout: page
 toc: true
 ---
 
-This tutorial will walk you through the Peaches database.
+This tutorial will walk you through the Peaches database. The database allows you to store pieces of information that your code can reference later in order to help it make decisions about what to do. The data you store is persistent, meaning that even if the bot has to shut down and restart the data will not be deleted.
 
 * TOC
 {:toc}
@@ -158,7 +158,7 @@ And finally here is the execution code for guess:
 {{$guess := (index context.Inputs 0).Integer}}
 
 {{if eq $guess $number}}
-    {{respond (print context.Member.User.Mention " guessed the right answer! The number was " $number ".")}}
+    {{respond (print context.Member " guessed the right answer! The number was " $number ".")}}
     {{dbDel 0 "RandomNumber"}}
 {{else if lt $number $guess}}
     {{respond "The number I'm thinking of is less than that guess."}}

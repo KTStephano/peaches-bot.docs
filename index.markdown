@@ -17,7 +17,7 @@ The bot is currently in the early stages of development so some bugs are expecte
 
 # Support Server
 
-You can join the Discord support server using [this invite link](https://discord.com/invite/Bktvgd3Ncn).
+You can join the Discord support server using [this invite link](https://discord.com/invite/Bktvgd3Ncn). Here you can post any questions you have, view code shared by any community members, and make suggestions for the bot or for this website.
 
 # Inviting Peaches
 
