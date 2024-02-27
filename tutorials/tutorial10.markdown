@@ -259,7 +259,7 @@ The next functions will be all about creating a custom role, editing its name, a
 {% endraw %}
 {% endhighlight %}
 
-# edit-role
+### edit-role
 
 `/create-cmd name: edit-role description: Edit your custom role`
 
