@@ -44,7 +44,7 @@ Creating and deleting a trigger is done with `/create-trigger` and `/delete-trig
 
 Each one in the list is an event type, and as mentioned in the beginning of this tutorial you can have 3 active triggers per event type. The one you select determines when your trigger's code will be run.
 
-# Example 1: User welcome trigger
+# Example 1: User join trigger (welcome message)
 
 For this example we will create a new trigger that welcomes new users and prints out the number of guild members. This is the code that can be placed into the editor when using `/create-trigger` (replace the channel ID with your own welcome channel ID):
 
@@ -54,7 +54,7 @@ For this example we will create a new trigger that welcomes new users and prints
 {{$user := context.Member.User}}
 {{$guild := context.Guild}}
 
-{{$greeting := (printf "Welcome, %s! There are now %d members." $user.Mention $guild.MemberCount)}}
+{{$greeting := (printf "Welcome, %s! There are now %d members." $user $guild.MemberCount)}}
 {{sendMessage $welcomeChannel $greeting}}
 {% endraw %}
 {% endhighlight %}
