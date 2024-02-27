@@ -7,7 +7,7 @@ toc: true
 
 **Note** Make sure the bot has permission to manage your server's roles.
 
-This tutorial will walk you through some of the more advanced role management functions. In previous tutorials we made use of `hasRole`, `giveRole`, `takeRole`, but this tutorial will focus on creating, editing and deleting roles. It will showcase an example that allows server admins to allow certain users to create their own role and then freely change its name and color.
+This tutorial will walk you through some of the more advanced role management functions. In previous tutorials we made use of `hasRole`, `giveRole`, `takeRole`, but this tutorial will focus on creating, editing and deleting roles. It will showcase an example that gives your server admins the ability to allow certain users to create their own role and then freely change its name and color.
 
 * TOC
 {:toc}
