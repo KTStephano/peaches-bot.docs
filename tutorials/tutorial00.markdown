@@ -32,3 +32,4 @@ Development of the bot's features will primarily be concentrated on adding new b
 * [Tutorial 7: Buttons](/peaches-bot.docs/tutorials/t07)
 * [Tutorial 8: Threads](/peaches-bot.docs/tutorials/t08)
 * [Tutorial 9: Functions](/peaches-bot.docs/tutorials/t09)
+* [Tutorial 10: Roles](/peaches-bot.docs/tutorials/t10)
