@@ -160,9 +160,9 @@ This example will create a few functions. The first two are functions that only 
 {% highlight golang %}
 {% raw %}
 {{$user := (getInput "user").User}}
-{{$entry := dbGet $user.ID "CustomRoleAllowed"}}
+{{$allowed := dbGet $user.ID "CustomRoleAllowed"}}
 
-{{if not $entry}}
+{{if not $allowed}}
     {{respond "That user was not allowed to have a custom role"}}
     {{return}}
 {{end}}
