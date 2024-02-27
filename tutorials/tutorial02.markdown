@@ -222,6 +222,7 @@ For the source code, we will have an array where each entry corresponds to an in
 
 {% highlight golang %}
 {% raw %}
+// Array is covered in the next tutorial - it holds a list of items
 {{$roleIdList := Array
     1206492832936886332 // green - replace with your own role id
     1206492862775304222 // blue - replace with your own role id
