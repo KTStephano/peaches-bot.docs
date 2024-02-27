@@ -44,7 +44,7 @@ If you select it and hit enter, you should see the bot respond with "Hello, worl
 
 Now that we have a new slash command registered with Discord, we can freely edit the underlying source code. From Discord's perspective nothing will have changed, but from the bot's perspective it will now execute a different piece of source code whenever the slash command is used.
 
-We are going to make use of the slash command's Context and the `print` function for this piece of code. We will explore the Context more in future tutorials, but for right now all we need to know is that the bot auto-populates `context.Member` with an object representing the member who used the command. We can use that to personalize the greeting by pulling out their username and displaying it.
+We are going to make use of the slash command's Context and the `print` function for this piece of code. What `print` does is to take a series of inputs and convert them into a single string that can be displayed to the user. We will explore the Context more in future tutorials, but for right now all we need to know is that the bot auto-populates `context.Member` with an object representing the member who used the command. We can use that to personalize the greeting by pulling out their username and displaying it.
 
 ![set](/peaches-bot.docs/assets/t01/set.png)
 

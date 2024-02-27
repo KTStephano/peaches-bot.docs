@@ -28,11 +28,11 @@ Can be one of ChannelGuildText, ChannelDM, ChannelGuildVoice, ChannelGuildGroupD
 
 # Example 1: Ping User
 
-For the first example we will create a command called "hello" that takes a required user input argument. It responds by saying "Hello, @user!". To do this you can use the `/create-cmd` command again to bring up the editor. Once there, in the first bo we will add an argument of type `OptionUser` with name "user", description "User to ping", and required set to true.
+For the first example we will create a command called "hello" that takes a required user input argument. It responds by saying "Hello, @user!". To do this you can use the `/create-cmd` command again to bring up the editor. Once there, in the first box we will add an argument of type `OptionUser` with name "user", description "User to ping", and required set to true.
 
 ![ping](/peaches-bot.docs/assets/t03/ping.png)
 
-Notice that inside of CmdOption there are the `Type:`, `Required:`, `Name:` and `Description:` labels followed by their values. This is how to create new objects of a given type with the bot's scripting language.
+Notice that inside of CmdOption there are the `Type:`, `Required:`, `Name:` and `Description:` labels followed by their values. This is how to create new objects of a given type with the bot's scripting language. We are also using `printf` which stands for `print formatted`. It takes a format string as its first argument that can have various text placeholders such as {% raw %}`%d`{% endraw %} (decimal number) or {% raw %}`%s`{% endraw %} (string).
 
 Walking through the source code in the first text box:
 
@@ -67,7 +67,7 @@ Now walking through the command execution part of the code:
 {% endraw %}
 {% endhighlight %}
 
-Here we use the `getInput` function and pass it in 0. getInput is a builtin convenience function that provides the ability to either get an input by its index (0 in this case, which is the first index), or by its option name (such as "user"). You'll notice the `.User` at the end of the getInput line. This tells the bot to not only get the first input, but convert it to a User data type. In Discord the way that it works is: every person in your guild is represented by a `Member` type which contains things like their nickname, when they joined your server, etc. The `Member` type also contains a `User` object which contains global information about the account such as username, ID, etc.
+Here we use the `getInput` function and pass it in 0. `getInput` is a builtin convenience function that provides the ability to either get an input by its index (0 in this case, which is the first index), or by its option name (such as "user"). You'll notice the `.User` at the end of the getInput line. This tells the bot to not only get the first input, but convert it to a User data type. In Discord the way that it works is: every person in your guild is represented by a `Member` type which contains things like their nickname, when they joined your server, etc. The `Member` type also contains a `User` object which contains global information about the account such as username, ID, etc.
 
 # Example 2: Ping with optional message
 
@@ -263,7 +263,7 @@ In each of these examples we've used things like `.String`, `.User`, `.Channel` 
 
 # Modifying slash command permissions
 
-After a command has been created, it's possible to manage its permissions from within Discord itself. To do this, in your server go to `Server Settings`, then `Integrations`, then find Peaches. From here you can click on the commands and edit the permissions. Here is an example of editing the hello command from the first tutorial:
+After a command has been created, it's possible to manage its permissions from within Discord itself. To do this, in your server go to `Server Settings`, then `Integrations`, then find `Peaches`. From here you can click on the commands and edit the permissions. Here is an example of editing the hello command from the first tutorial:
 
 ![permissions](/peaches-bot.docs/assets/t03/permissions.png)
 
