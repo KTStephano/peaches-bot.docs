@@ -58,3 +58,5 @@ Then we create a slash command that will call it:
 Here is what it could look like:
 
 ![peaches](/peaches-bot.docs/assets/t09/print.png)
+
+[Next <- Tutorial 10: Roles](/peaches-bot.docs/tutorials/t10)
