@@ -68,4 +68,4 @@ With the personalized greeting in place, we can do another source edit and chang
 
 Now that this first tutorial is done, we can optionally clean up the command using `/delete-cmd` and passing in "hello" for the name.
 
-[Next <- Tutorial 2: Data Containers](/peaches-bot.docs/tutorials/t02)
+[Next <- Tutorial 2: Slash Command Inputs](/peaches-bot.docs/tutorials/t02)
