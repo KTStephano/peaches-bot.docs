@@ -228,8 +228,8 @@ For the source code, we will have an array where each entry corresponds to an in
     1206492862775304222 // blue - replace with your own role id
 }}
 
-// Selection given to us by the user
-{{$selection := (getInput "role-options").Value}}
+// Selection given to us by the user, as an integer
+{{$selection := (getInput "role-options").Integer}}
 {{$roleId := index $roleIdList $selection}}
 {{$userId := context.Member.User.ID}}
 
