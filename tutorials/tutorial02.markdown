@@ -48,7 +48,7 @@ This creates a new command object object which is of type `OptionUser`. This tel
 
 {% highlight golang %}
 {% raw %}
-{{addOption $option}}
+{{addOptions $option}}
 {% endraw %}
 {% endhighlight %}
 
@@ -62,12 +62,12 @@ Now walking through the command execution part of the code:
 
 {% highlight golang %}
 {% raw %}
-{{$user := (getInput 0).User}}
+{{$user := (getInput 0).Value}}
 {{respond (printf "Hello, %s!" $user)}}
 {% endraw %}
 {% endhighlight %}
 
-Here we use the `getInput` function and pass it in 0. `getInput` is a builtin convenience function that provides the ability to either get an input by its index (0 in this case, which is the first index), or by its option name (such as "user"). You'll notice the `.User` at the end of the getInput line. This tells the bot to not only get the first input, but convert it to a User data type. In Discord the way that it works is: every person in your guild is represented by a `Member` type which contains things like their nickname, when they joined your server, etc. The `Member` type also contains a `User` object which contains global information about the account such as username, ID, etc.
+Here we use the `getInput` function and pass it in 0. `getInput` is a builtin convenience function that provides the ability to either get an input by its index (0 in this case, which is the first index), or by its option name (such as "user"). `.Value` at the end gets the value of the input, whether it be an integer, boolean, member, etc.
 
 # Example 2: Ping with optional message
 
@@ -99,10 +99,10 @@ Inside of the command execution code, we know that the first argument will alway
 
 {% highlight golang %}
 {% raw %}
-{{$user := (getInput 0).User}}
+{{$user := (getInput 0).Value}}
 // If length of Inputs > 1, we know we got a message input as arg #2
 {{if gt (len context.Inputs) 1}}
-    {{$message := (getInput 1).String}}
+    {{$message := (getInput 1).Value}}
     {{respond (printf "%s: %s" $user $message)}}
 
 // Else we only have the user argument - print the default message
@@ -162,7 +162,7 @@ Here is the new command execution code:
 {% highlight golang %}
 {% raw %}
 // Since "user" is a required argument, we don't need to error check
-{{$user := (getInput "user").User}}
+{{$user := (getInput "user").Value}}
 
 // These will need to be checked for empty (nil)
 {{$message := getInput "message"}}
@@ -170,7 +170,7 @@ Here is the new command execution code:
 
 {{if $channel}}
     // Use input channel
-    {{$channel = $channel.Channel.ID}}
+    {{$channel = $channel.Value.ID}}
 {{else}}
     // Use context channel
     // (tells us which channel this command is executing in)
@@ -179,7 +179,7 @@ Here is the new command execution code:
 
 {{if $message}}
     // Use custom message
-    {{$message = printf "%s: %s" $user $message.String}}
+    {{$message = printf "%s: %s" $user $message.Value}}
 {{else}}
     // Use default message
     {{$message = printf "Hello, %s!" $user}}
@@ -228,8 +228,8 @@ For the source code, we will have an array where each entry corresponds to an in
     1206492862775304222 // blue - replace with your own role id
 }}
 
-// Selection given to us by the user, as an integer
-{{$selection := (getInput "role-options").Integer}}
+// Selection given to us by the user
+{{$selection := (getInput "role-options").Value}}
 {{$roleId := index $roleIdList $selection}}
 {{$userId := context.Member.User.ID}}
 
@@ -247,20 +247,6 @@ For the source code, we will have an array where each entry corresponds to an in
 This is what the user will see when they try running the command:
 
 ![select](/peaches-bot.docs/assets/t03/select.png)
-
-# Getting the Type
-
-In each of these examples we've used things like `.String`, `.User`, `.Channel` when dealing with command inputs. Each of these functions tries to convert the given input to the requested type, and if it fails it returns empty (nil). There are more of these types of functions that you can use. Here is the full list:
-
-.Bool | Interprets input as bool if possible
-.Integer | Interprets the input as int64 if possible
-.Float | Interprets the input as float64 if possible
-.String | Interprets the input 
-.User | Interprets as User if possible
-.Member | Interprets as Member if possible (Member is a guild-specific entry for a User, and within it is contained a nested .User field)
-.Message | Interprets as Message if possible
-.Role | Interprets as Role if possible
-.Channel | Interprets as Channel if possible
 
 # Modifying slash command permissions
 
