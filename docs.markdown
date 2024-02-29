@@ -766,11 +766,11 @@ Marks a thread as locked. `threadID` should not refer to an archived thread.
 
 Marks a thread as unlocked. `threadID` should not refer to an archived thread.
 
-### exec function data delay
+### exec function data (delay)
 
-Executes a trigger from the Function category. `function` should be its name as a string. `data` can either be nil, or it can include some data to pass to the function. `delay` should be between 0 and 60 and represents delay in seconds. 0 means execute immediately.
+Executes a trigger from the Function category. `function` should be the name of the function as a string (case sensitive). `data` can contain information you want to pass to the function which will get placed into its `context.ExecData` entry. `delay` is optional and can be left out. It is measured in seconds, with a max of 60.
 
-When using `data`, context.ExecData will be populated with the argument.
+If delay is either left out or not specified, exec calls the function immediately and returns whatever the function returns (if anything). Otherwise it schedules it to run and returns empty (nil).
 
 ### createRole role
 

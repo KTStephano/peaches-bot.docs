@@ -22,13 +22,60 @@ Function (exec) is a special type of trigger. Not only can you have more of them
 
 Here is the type signature for the exec function:
 
-**exec function data delay**
+**exec function data (delay)**
 
-`function` needs to be the name as a string. Whatever is passed into `data` gets put into `context.ExecData` for the function to use. `delay` allows you to specify a number (in seconds) from 0 to 60. 0 means "execute immediately."
+Executes a trigger from the Function category. `function` should be the name of the function as a string (case sensitive). `data` can contain information you want to pass to the function which will get placed into its `context.ExecData` entry. `delay` is optional and can be left out. It is measured in seconds, with a max of 60.
+
+If delay is either left out or set to 0, exec calls the function immediately and returns whatever the function returns (if anything). Otherwise it schedules it to run later and returns empty (nil).
+
+# Example: Exec
+
+First create a Function trigger:
+
+`/create-trigger name:time type:Function (exec)`
+
+Then for the code you can use:
+
+{% highlight golang %}
+{% raw %}
+// currentTime is a builtin function
+{{$calledAt := currentTime}}
+{{respond "Called time"}}
+{{return (printf "Called at time %s" $calledAt)}}
+{% endraw %}
+{% endhighlight %}
+
+You'll notice that we are using `printf` to create a string that we can return which includes the timestamp. This will allow the calling code to receive data from the function and make use of it.
+
+You'll also notice that it calls `respond`. This is a special case where, if the function is called from within a slash command with a delay of 0, it can freely make use of respond as if it were called directly by the slash command. Successive calls to respond will overwrite the initial response data.
+
+Now we can create a new slash command:
+
+`/create-cmd name: test-exec description: Tests the exec function`
+
+Command execution code:
+
+{% highlight golang %}
+{% raw %}
+// Calls "time" function with empty (nil) data
+{{$val := exec "time" nil}}
+
+// Send a new message - we could also use respond
+{{sendMessage context.Channel.ID $val}}
+{% endraw %}
+{% endhighlight %}
+
+Here is what it could look like:
+
+![print](/peaches-bot.docs/assets/t09/exec.png)
+
+You could experiment with adding a delay to the `exec` call. What you would notice is that it would immediately return and you would get an empty (nil) output.
 
 # Example: Exec with delay
 
-Here is the function (named "PrintData") code:
+`/create-trigger name:PrintData type:Function (exec)`
+
+Then for the code you can use:
 
 {% highlight golang %}
 {% raw %}
@@ -41,6 +88,10 @@ Here is the function (named "PrintData") code:
 {% endhighlight %}
 
 Then we create a slash command that will call it:
+
+`/create-cmd name: print description: Tests the exec function with delay`
+
+Command execution code:
 
 {% highlight golang %}
 {% raw %}
@@ -57,6 +108,6 @@ Then we create a slash command that will call it:
 
 Here is what it could look like:
 
-![peaches](/peaches-bot.docs/assets/t09/print.png)
+![print](/peaches-bot.docs/assets/t09/print.png)
 
 [Next <- Tutorial 10: Roles](/peaches-bot.docs/tutorials/t10)
