@@ -6,18 +6,20 @@ permalink: /privacy
 
 ---
 
-**Last Updated: Feb 27, 2024**
+**Last Updated: Mar 1, 2024**
 
 The Peaches website does not collect any personal information or data. 
 
-The Peaches bot collects information such as:
+The Peaches bot stores information such as:
 
-- Guild data: guild name/ID, boost count, etc.
-- Channel data: channel name/ID, topic, etc.
-- Role data: role name/ID, color, etc.
+- Guild data: ID, boost count
+- Channel data: channel ID
+- Role data: role ID
 - Message data: message ID
-- Member data: nickname, username, user ID, join date, boost status, etc.
+- Member data: user ID, per-guild boost status
 - Any user supplied content given during interactions with the bot's custom commands feature
+
+All data is stored within the context of a guild. If a guild's data is deleted, everything goes with it including channel IDs, role IDs, user IDs, user supplied content, etc.
 
 # Why is this data collected?
 
