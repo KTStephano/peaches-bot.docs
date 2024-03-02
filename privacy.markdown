@@ -22,7 +22,7 @@ The Peaches bot stores information such as:
 
 All data is stored within the context of a guild. If a guild's data is deleted, everything goes with it including channel IDs, role IDs, user IDs, user supplied content, etc.
 
-Data is only retained for as long as necessary to provide you with your requested service from the bot.
+Data is only retained for as long as necessary to provide you with your requested service from the bot. Once data has been unused for 7 days, it is automatically deleted.
 
 # Why is this data collected?
 
