@@ -36,6 +36,14 @@ None of the data collected by the bot is shared or sold to any 3rd party. The on
 
 Steps have been taken to prevent unauthorized access to data in the database.
 
+# Can I request data be deleted?
+
+Yes.
+
+If you are a guild owner or administrator (acting on behalf of the guild owner), you can join the official Peaches Discord support server and make a request to have all data associated with your guild deleted.
+
+If you are a regular user, you can join the official Peaches Discord support server and request that data associated with your User ID be deleted.
+
 # How is payment data handled?
 
 All payments submitted for the purchase of Premium bot features is handled by 3rd party payment processors. Data submitted to those 3rd parties (real name, address, phone number, credit card info, etc.) is governed by the privacy policies of those 3rd parties. Peaches does not, at any point, have access to that data or have responsibility for its safe keeping.
