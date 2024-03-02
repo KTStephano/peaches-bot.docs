@@ -17,6 +17,7 @@ The Peaches bot stores information such as:
 - Role data: role ID
 - Message data: message ID
 - Member data: user ID, per-guild boost status
+- Trivia win/loss data
 - Any user supplied content given during interactions with the bot's custom commands feature
 
 All data is stored within the context of a guild. If a guild's data is deleted, everything goes with it including channel IDs, role IDs, user IDs, user supplied content, etc.
