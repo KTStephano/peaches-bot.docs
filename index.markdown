@@ -13,7 +13,7 @@ title: Peaches
 
 # Overview
 
-Peaches is a programmable slash command and trigger bot written in Go. If you have created custom commands using YAGPDB, this will be a very familiar experience as it follows a similar style.
+Peaches is a programmable slash command and trigger Discord bot written in Go. If you have created custom commands using YAGPDB, this will be a very familiar experience as it follows a similar style.
 
 The bot is currently in the early stages of development so some bugs are expected. They will be fixed as quickly as possible. Please don't hesitate to join the Discord Support Server with any questions you have or to report any issues you encounter.
 
