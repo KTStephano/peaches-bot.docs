@@ -505,6 +505,21 @@ This is used when creating a new role.
 .Permissions | Array[[DiscordPermission](/peaches-bot.docs/docs/#bitfield-discordpermission)] | **optional** | The overall permissions of the role
 .Mentionable | Bool | **optional** | Whether this role is mentionable
 
+### type PermissionOverwrite
+
+.ID | ID | **optional** | ID of the user or role - defaults @everyone
+.Deny | Array[[DiscordPermission](/peaches-bot.docs/docs/#bitfield-discordpermission)] | **optional** | Array of permissions denied to specified role or user
+.Allow | Array[[DiscordPermission](/peaches-bot.docs/docs/#bitfield-discordpermission)] | **optional** | Array of permissions allowed to specified role or user
+
+### type TextChannel
+
+.Name | String | **required** | Name of the new channel
+.Topic | String | **optional** | Topic of the new channel
+.Slowmode | Integer | **optional** | Slowmode (in seconds) for the new channel
+.PermissionOverwrites | Array[PermissionOverwrite](/peaches-bot.docs/docs/#type-permissionoverwrite) | **optional** | List of permission overwrites - if left empty, it will sync with parent category
+.ParentID | ID | **optional** | ID of the parent category - if empty puts it in the default channel list at the top of the server  
+.NSFW | Bool | **optional** | true if NSFW channel, false if not
+
 # Functions
 
 ### addOptions ...args
@@ -795,3 +810,33 @@ Moves the role specified by `roleID` to come before the role specified by `befor
 ### deleteRole roleID
 
 Deletes role specified by `roleID`.
+
+### createChannel channel
+
+`channel` should be of type [TextChannel](/peaches-bot.docs/docs/#type-textchannel). Creates a new channel and returns a Discord Channel object upon success (empty if not).
+
+### deleteChannel channelID
+
+Deletes channel represented by `channelID`.
+
+### setChannelName channelID name
+
+Overwrites the specified channel's name with `name`.
+
+### setChannelTopic channelID topic
+
+Overwrites the specified channel's topic with `topic`.
+
+### editChannelPermissions channelID permissions
+
+Performs an edit of the specified channel's permissions. `permissions` should be an Array of [PermissionOverwrite](/peaches-bot.docs/docs/#type-permissionoverwrite).
+
+If a permission in the array is already present in the channel's permissions, it is overwritten with the new values.
+
+If a permission in the array is not already present in the channel's permissions, it is added.
+
+### setChannelPermissions channelID permissions
+
+Overwrites all existing channel permissions by setting them to `permissions`. `permissions` should be an Array of [PermissionOverwrite](/peaches-bot.docs/docs/#type-permissionoverwrite).
+
+This has the effect of deleting existing channel permissions not present in the array, overwriting the ones that are, and adding the ones that aren't.
