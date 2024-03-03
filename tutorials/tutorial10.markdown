@@ -21,7 +21,7 @@ Here are the available pieces of data that `RoleInfo` can accept:
 .Name | String | **required** | The role's name
 .Color | Integer | **optional** | The color the role should have (as a decimal, not hex)
 .Separate | Bool | **optional** | If true, members with this role show up separately on the side bar
-.Permissions | Array[[DiscordPermission](/peaches-bot.docs/docs/#bitfield-discordpermission)] | **optional** | The overall permissions of the role
+.Permissions | Array[[DiscordPermission](/docs/#bitfield-discordpermission)] | **optional** | The overall permissions of the role
 .Mentionable | Bool | **optional** | Whether this role is mentionable
 
 It's possible to create a new role by only supplying the name. This will result in a new role with all the settings set to default.

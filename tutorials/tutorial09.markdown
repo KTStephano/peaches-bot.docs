@@ -67,7 +67,7 @@ Command execution code:
 
 Here is what it could look like:
 
-![print](/peaches-bot.docs/assets/t09/exec.png)
+![print](/assets/t09/exec.png)
 
 You could experiment with adding a delay to the `exec` call. What you would notice is that it would immediately return and you would get an empty (nil) output.
 
@@ -108,6 +108,6 @@ Command execution code:
 
 Here is what it could look like:
 
-![print](/peaches-bot.docs/assets/t09/print.png)
+![print](/assets/t09/print.png)
 
-[Next <- Tutorial 10: Roles](/peaches-bot.docs/tutorials/t10)
+[Next <- Tutorial 10: Roles](/tutorials/t10)

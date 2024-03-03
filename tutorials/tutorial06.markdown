@@ -168,4 +168,4 @@ And finally here is the execution code for guess:
 {% endraw %}
 {% endhighlight %}
 
-[Next <- Tutorial 7: Buttons](/peaches-bot.docs/tutorials/t07)
+[Next <- Tutorial 7: Buttons](/tutorials/t07)

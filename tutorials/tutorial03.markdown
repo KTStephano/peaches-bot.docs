@@ -114,4 +114,4 @@ Arrays and Maps/SMaps can all be searched using the `contains` function. This fu
 {% endraw %}
 {% endhighlight %}
 
-[Next <- Tutorial 4: Triggers](/peaches-bot.docs/tutorials/t04)
+[Next <- Tutorial 4: Triggers](/tutorials/t04)

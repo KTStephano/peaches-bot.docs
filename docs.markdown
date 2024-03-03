@@ -163,19 +163,19 @@ When the **trigger execution** stage is run, it is initialized with a context th
 
 ### context.Inputs
 
-An array of inputs to a Slash Command. Type is [*SlashCommandInputData](/peaches-bot.docs/docs#type-slashcommandinputdata).
+An array of inputs to a Slash Command. Type is [*SlashCommandInputData](/docs#type-slashcommandinputdata).
 
 ### context.AuditEntry
 
 **Only valid for triggers involving audit log entries**
 
-An [*AuditLogTriggerData](/peaches-bot.docs/docs#type-auditlogtriggerdata) object.
+An [*AuditLogTriggerData](/docs#type-auditlogtriggerdata) object.
 
 ### context.Interaction
 
 **Only valid for triggers involving webhook interactions, such as buttons**
 
-A [*MessageComponentInteractionData](/peaches-bot.docs/docs#type-messagecomponentinteractiondata) object.
+A [*MessageComponentInteractionData](/docs#type-messagecomponentinteractiondata) object.
 
 # Types
 
@@ -283,7 +283,7 @@ A Array of these objects are passed into slash commands when they accept user in
 **Fields**
 
 .Name | String | Name of the input
-.Type | [OptionType](/peaches-bot.docs/docs/#enum-optiontype) | Type of the option
+.Type | [OptionType](/docs/#enum-optiontype) | Type of the option
 .Value | any | Data passed in as user input (see functions for conversion)
 
 **Functions**
@@ -319,7 +319,7 @@ AsChannel | Channel | Converts audit log target to a Channel object
 **Fields**
 
 CustomID | String | Trigger-supplied custom ID for the component
-ComponentType | [ComponentType](/peaches-bot.docs/docs#enum-componenttype) | 
+ComponentType | [ComponentType](/docs#enum-componenttype) | 
 Values | Array[String] | Only filled when ComponentType is SelectMenuComponent (3). Otherwise is nil.
 
 **Functions**
@@ -348,10 +348,10 @@ None
 
 **Fields**
 
-.Type | [OptionType](/peaches-bot.docs/docs#enum-optiontype) | **required** | Type of data this option can contain. This determines what inputs the Discord UI will accept. 
+.Type | [OptionType](/docs#enum-optiontype) | **required** | Type of data this option can contain. This determines what inputs the Discord UI will accept. 
 .Name | String | **required** | Top-level name of the option
 .Description | String | **required** | Short explanation of the option
-.ChannelTypes | Array[[ChannelType](/peaches-bot.docs/docs#enum-channeltype)] | **optional** | An array of channel types that this option accepts
+.ChannelTypes | Array[[ChannelType](/docs#enum-channeltype)] | **optional** | An array of channel types that this option accepts
 .Required | Bool | **optional** (default false) | Whether this option is required or not
 .Choices | Array[OptionType] | **optional** | Selection menu that the user can choose from
 .MinValue | Double | **optional** | Minimal value of number/integer option
@@ -383,13 +383,13 @@ All fields for Embed technically optional, but at least one should have data.
 .Description | String | **optional** |
 .Timestamp | String | **optional** |
 .Color | int | **optional** | Integer value of a hex color
-.Footer | [EmbedFooter](/peaches-bot.docs/docs#type-embedfooter) | **optional** |
-.Image | [EmbedImage](/peaches-bot.docs/docs#type-embedimage) | **optional** |
-.Thumbnail | [EmbedThumbnail](/peaches-bot.docs/docs#type-embedthumbnail) | **optional** |
-.Video | [EmbedVideo](/peaches-bot.docs/docs#type-embedvideo) | **optional** |
-.Provider | [EmbedProvider](/peaches-bot.docs/docs#type-embedprovider) | **optional** |
-.Author | [EmbedAuthor](/peaches-bot.docs/docs#type-embedauthor) | **optional** |
-.Fields | Array[[EmbedField](/peaches-bot.docs/docs#type-embedfield)] | **optional** |
+.Footer | [EmbedFooter](/docs#type-embedfooter) | **optional** |
+.Image | [EmbedImage](/docs#type-embedimage) | **optional** |
+.Thumbnail | [EmbedThumbnail](/docs#type-embedthumbnail) | **optional** |
+.Video | [EmbedVideo](/docs#type-embedvideo) | **optional** |
+.Provider | [EmbedProvider](/docs#type-embedprovider) | **optional** |
+.Author | [EmbedAuthor](/docs#type-embedauthor) | **optional** |
+.Fields | Array[[EmbedField](/docs#type-embedfield)] | **optional** |
 
 {% highlight golang %}
 {% raw %}
@@ -461,8 +461,8 @@ All fields for EmbedAuthor technically optional, but at least one should have da
 Allows you to bundle multiple types together into a single message. All fields for EmbedAuthor technically optional, but at least one should have data.
 
 .Content | String | **optional** | Regular text to accompany message
-.Embeds | Array[[Embed](/peaches-bot.docs/docs#type-embed)] | **optional** | Array of embeds to include with the message (up to 10)
-.Components | Array[[Button](/peaches-bot.docs/docs#type-button)] or Array[Array[[Button](/peaches-bot.docs/docs#type-button)]] | **optional** | Allows for the adding of buttons to the message
+.Embeds | Array[[Embed](/docs#type-embed)] | **optional** | Array of embeds to include with the message (up to 10)
+.Components | Array[[Button](/docs#type-button)] or Array[Array[[Button](/docs#type-button)]] | **optional** | Allows for the adding of buttons to the message
 
 ### type EmojiComponent
 
@@ -473,11 +473,11 @@ Allows you to bundle multiple types together into a single message. All fields f
 ### type Button
 
 .Label | String | **required** | Button name that appears to the user
-.Style | [ButtonStyle](/peaches-bot.docs/docs#enum-buttonstyle) | **required** | Style/flavor of button
+.Style | [ButtonStyle](/docs#enum-buttonstyle) | **required** | Style/flavor of button
 .Disabled | Bool | **optional** | If true, button appears greyed out and unselectable
 .URL | String | **optional** | (Valid for ButtonStyle.LinkButton only) Link redirect when the user clicks the button
 .CustomID | String | **required** | (Cannot be used if URL is specified) Identifier that can be used by the programmer to know which button is pressed
-.Emoji | [EmojiComponent](/peaches-bot.docs/docs#type-emojicomponent) | **optional** | Emoji attached to the button label
+.Emoji | [EmojiComponent](/docs#type-emojicomponent) | **optional** | Emoji attached to the button label
 
 ### type Thread
 
@@ -492,7 +492,7 @@ Allows you to bundle multiple types together into a single message. All fields f
 .Title | String | **required** | Title of the thread
 .AutoArchiveDuration | Int | **optional** | Duration in minutes before Discord auto archives the thread
 .Slowmode | Int | **optional** | Duration in seconds where someone must wait before sending a new message
-.Content | String, [Embed](/peaches-bot.docs/docs#type-embed), or [MessageComplex](/peaches-bot.docs/docs#type-messagecomplex) | **required** | Content of the thread
+.Content | String, [Embed](/docs#type-embed), or [MessageComplex](/docs#type-messagecomplex) | **required** | Content of the thread
 .Tags | Array[String] | **optional** | List of tag names to apply to the thread (max 5 per thread)
 
 ### type RoleInfo
@@ -502,21 +502,21 @@ This is used when creating a new role.
 .Name | String | **required** | The role's name
 .Color | Integer | **optional** | The color the role should have (as a decimal, not hex)
 .Separate | Bool | **optional** | If true, members with this role show up separately on the side bar
-.Permissions | Array[[DiscordPermission](/peaches-bot.docs/docs/#bitfield-discordpermission)] | **optional** | The overall permissions of the role
+.Permissions | Array[[DiscordPermission](/docs/#bitfield-discordpermission)] | **optional** | The overall permissions of the role
 .Mentionable | Bool | **optional** | Whether this role is mentionable
 
 ### type PermissionOverwrite
 
 .ID | ID | **optional** | ID of the user or role - defaults @everyone
-.Deny | Array[[DiscordPermission](/peaches-bot.docs/docs/#bitfield-discordpermission)] | **optional** | Array of permissions denied to specified role or user
-.Allow | Array[[DiscordPermission](/peaches-bot.docs/docs/#bitfield-discordpermission)] | **optional** | Array of permissions allowed to specified role or user
+.Deny | Array[[DiscordPermission](/docs/#bitfield-discordpermission)] | **optional** | Array of permissions denied to specified role or user
+.Allow | Array[[DiscordPermission](/docs/#bitfield-discordpermission)] | **optional** | Array of permissions allowed to specified role or user
 
 ### type TextChannel
 
 .Name | String | **required** | Name of the new channel
 .Topic | String | **optional** | Topic of the new channel
 .Slowmode | Integer | **optional** | Slowmode (in seconds) for the new channel
-.PermissionOverwrites | Array[PermissionOverwrite](/peaches-bot.docs/docs/#type-permissionoverwrite) | **optional** | List of permission overwrites - if left empty, it will sync with parent category
+.PermissionOverwrites | Array[PermissionOverwrite](/docs/#type-permissionoverwrite) | **optional** | List of permission overwrites - if left empty, it will sync with parent category
 .ParentID | ID | **optional** | ID of the parent category - if empty puts it in the default channel list at the top of the server  
 .NSFW | Bool | **optional** | true if NSFW channel, false if not
 
@@ -526,13 +526,13 @@ This is used when creating a new role.
 
 Stage: **command creation**
 
-Takes a space-separated list of [CmdOption](/peaches-bot.docs/docs#type-cmdoption). This will append the options (in order) to the list of all options for the command currently being created.
+Takes a space-separated list of [CmdOption](/docs#type-cmdoption). This will append the options (in order) to the list of all options for the command currently being created.
 
 ### setDefaultPermissions ...args
 
 Stage: **command creation**
 
-Takes a space-separated list of [DiscordPermission](/peaches-bot.docs/docs/#bitfield-discordpermission). This will join the options together to represent a default set of permissions that a member should have in order to use this command.
+Takes a space-separated list of [DiscordPermission](/docs/#bitfield-discordpermission). This will join the options together to represent a default set of permissions that a member should have in order to use this command.
 
 ### toString arg
 
@@ -771,7 +771,7 @@ Attempts to convert string to a duration. It accepts formatting such as "1h45m" 
 
 ### createThread channelID thread
 
-`thread` should be either a [Thread](/peaches-bot.docs/docs/#type-thread) or a [ForumThread](/peaches-bot.docs/docs/#type-forumthread)
+`thread` should be either a [Thread](/docs/#type-thread) or a [ForumThread](/docs/#type-forumthread)
 
 ### lockThread threadID
 
@@ -789,7 +789,7 @@ If delay is either left out or not specified, exec calls the function immediatel
 
 ### createRole role
 
-Creates a new role. `role` should be a [RoleInfo](/peaches-bot.docs/docs/#type-roleinfo) object.
+Creates a new role. `role` should be a [RoleInfo](/docs/#type-roleinfo) object.
 
 ### editRoleName roleID newName
 
@@ -813,7 +813,7 @@ Deletes role specified by `roleID`.
 
 ### createChannel channel
 
-`channel` should be of type [TextChannel](/peaches-bot.docs/docs/#type-textchannel). Creates a new channel and returns a Discord Channel object upon success (empty if not).
+`channel` should be of type [TextChannel](/docs/#type-textchannel). Creates a new channel and returns a Discord Channel object upon success (empty if not).
 
 ### deleteChannel channelID
 
@@ -829,7 +829,7 @@ Overwrites the specified channel's topic with `topic`.
 
 ### editChannelPermissions channelID permissions
 
-Performs an edit of the specified channel's permissions. `permissions` should be an Array of [PermissionOverwrite](/peaches-bot.docs/docs/#type-permissionoverwrite).
+Performs an edit of the specified channel's permissions. `permissions` should be an Array of [PermissionOverwrite](/docs/#type-permissionoverwrite).
 
 If a permission in the array is already present in the channel's permissions, it is overwritten with the new values.
 
@@ -837,6 +837,6 @@ If a permission in the array is not already present in the channel's permissions
 
 ### setChannelPermissions channelID permissions
 
-Overwrites all existing channel permissions by setting them to `permissions`. `permissions` should be an Array of [PermissionOverwrite](/peaches-bot.docs/docs/#type-permissionoverwrite).
+Overwrites all existing channel permissions by setting them to `permissions`. `permissions` should be an Array of [PermissionOverwrite](/docs/#type-permissionoverwrite).
 
 This has the effect of deleting existing channel permissions not present in the array, overwriting the ones that are, and adding the ones that aren't.

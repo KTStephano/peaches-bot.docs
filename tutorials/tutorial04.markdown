@@ -40,7 +40,7 @@ In this situation, you could expect `context.Guild` to contain info about your s
 
 Creating and deleting a trigger is done with `/create-trigger` and `/delete-trigger`. Here is an example of what you might see when running create:
 
-![new_member](/peaches-bot.docs/assets/t04/new_member.png)
+![new_member](/assets/t04/new_member.png)
 
 Each one in the list is an event type, and as mentioned in the beginning of this tutorial you can have 3 active triggers per event type. The one you select determines when your trigger's code will be run.
 
@@ -92,10 +92,10 @@ Triggers share the same name space as slash commands, so it is not allowed to ha
 
 If you ever wonder how many triggers you have setup for an event type or what their names are, you can use the `/view-triggers` command. The output will look something like this:
 
-![enabled](/peaches-bot.docs/assets/t04/enabled.png)
+![enabled](/assets/t04/enabled.png)
 
 # Setting debug output
 
 It's strongly recommended that you set a debug output channel when creating and editing triggers. This will allow the bot to post any error messages related to issues it runs into while trying to execute your code to make it easier for you to figure out the problem. To do this, run the `/set-debuglog` command.
 
-[Next <- Tutorial 5: Embeds](/peaches-bot.docs/tutorials/t05)
+[Next <- Tutorial 5: Embeds](/tutorials/t05)

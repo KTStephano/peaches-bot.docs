@@ -27,7 +27,7 @@ An embed is a way to post messages to Discord with advanced formatting options. 
 
 The builtin function `hexToInt` accepts hex strings of the format "0x....", "#...", or just a string of hex with no leading marker and converts them to int64. Here is what it could look like:
 
-![first_embed](/peaches-bot.docs/assets/t05/first_embed.png)
+![first_embed](/assets/t05/first_embed.png)
 
 # Including Author
 
@@ -50,7 +50,7 @@ We can incorporate other pieces of information by using a field like Author whic
 
 Here is what it looks like now:
 
-![author](/peaches-bot.docs/assets/t05/author.png)
+![author](/assets/t05/author.png)
 
 # Including Thumbnail
 
@@ -76,7 +76,7 @@ Now we can extend the code again to add in the Thumbnail field. This field accep
 
 Here's what it looks like with thumbnail included:
 
-![thumbnail](/peaches-bot.docs/assets/t05/thumbnail.png)
+![thumbnail](/assets/t05/thumbnail.png)
 
 # Other Fields
 
@@ -89,12 +89,12 @@ There are other fields allowed. Here is a table with a full listing:
 .Description | String | **optional** |
 .Timestamp | String | **optional** |
 .Color | int | **optional** | Integer value of a hex color
-.Footer | [EmbedFooter](/peaches-bot.docs/docs#type-embedfooter) | **optional** |
-.Image | [EmbedImage](/peaches-bot.docs/docs#type-embedimage) | **optional** |
-.Thumbnail | [EmbedThumbnail](/peaches-bot.docs/docs#type-embedthumbnail) | **optional** |
-.Video | [EmbedVideo](/peaches-bot.docs/docs#type-embedvideo) | **optional** |
-.Provider | [EmbedProvider](/peaches-bot.docs/docs#type-embedprovider) | **optional** |
-.Author | [EmbedAuthor](/peaches-bot.docs/docs#type-embedauthor) | **optional** |
-.Fields | Array[[EmbedField](/peaches-bot.docs/docs#type-embedfield)] | **optional** |
+.Footer | [EmbedFooter](/docs#type-embedfooter) | **optional** |
+.Image | [EmbedImage](/docs#type-embedimage) | **optional** |
+.Thumbnail | [EmbedThumbnail](/docs#type-embedthumbnail) | **optional** |
+.Video | [EmbedVideo](/docs#type-embedvideo) | **optional** |
+.Provider | [EmbedProvider](/docs#type-embedprovider) | **optional** |
+.Author | [EmbedAuthor](/docs#type-embedauthor) | **optional** |
+.Fields | Array[[EmbedField](/docs#type-embedfield)] | **optional** |
 
-[Next <- Tutorial 6: Database](/peaches-bot.docs/tutorials/t06)
+[Next <- Tutorial 6: Database](/tutorials/t06)

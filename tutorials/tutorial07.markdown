@@ -28,7 +28,7 @@ This sets both the graphical look of the button as well as its function. By defa
 
 Here is an example of each of the 5 available styles:
 
-![button_styles](/peaches-bot.docs/assets/t07/button_styles.png)
+![button_styles](/assets/t07/button_styles.png)
 
 **.Disabled**
 
@@ -71,13 +71,13 @@ In order to attach buttons to a message, you need to use a MessageComplex type. 
 
 Here what it looks like when running the code:
 
-![message_complex](/peaches-bot.docs/assets/t07/message_complex.png)
+![message_complex](/assets/t07/message_complex.png)
 
 # Handling Interactions (Button Pressed)
 
 If you run the code from above and then click on the button, you'll notice the following message appear in the Discord client:
 
-![failed](/peaches-bot.docs/assets/t07/failed.png)
+![failed](/assets/t07/failed.png)
 
 The reason for this is that we need some sort of code that will handle the button press. Right now what's happening is that Discord sends the button press event to the bot, it checks and sees the guild has no trigger for that event type, and then it throws the event away. This results in Discord not receiving any response back, so it reports back to the user that the interaction failed. This is where the `Message component interaction` trigger comes into play.
 
@@ -102,7 +102,7 @@ With this trigger, you can write code that acts on `context.Interaction` which i
 
 Now when you click on the button you'll see something like this:
 
-![button_pressed](/peaches-bot.docs/assets/t07/button_pressed.png)
+![button_pressed](/assets/t07/button_pressed.png)
 
 This code also demonstrates the importance of the `CustomID` field. It allows you to write triggers that conditionally perform certain actions based on which button ID is returned, and ignore IDs that it doesn't recognize or that don't follow the right pattern it's looking for.
 
@@ -149,7 +149,7 @@ Here's an example of creating an Agree/Disagree button menu using the thumbsup/t
 
 Here is what that ends up looking like:
 
-![agree_disagree](/peaches-bot.docs/assets/t07/agree_disagree.png)
+![agree_disagree](/assets/t07/agree_disagree.png)
 
 We can extend the code above with a 3rd button that uses a custom server emoji. This will make use of the `ID` field of emoji component. To get the ID of an emoji in your server, you can enter the emoji into the Discord chat box and then add a backslash \ before it. This will print the name:id combination into the chat.
 
@@ -175,7 +175,7 @@ We can extend the code above with a 3rd button that uses a custom server emoji. 
 
 Here's what it looks like now with the 3rd button added:
 
-![peaches](/peaches-bot.docs/assets/t07/peaches.png)
+![peaches](/assets/t07/peaches.png)
 
 # Example: color role selection
 
@@ -273,4 +273,4 @@ Now here's the trigger code that handles the message component interaction event
 {% endraw %}
 {% endhighlight %}
 
-[Next <- Tutorial 8: Threads](/peaches-bot.docs/tutorials/t08)
+[Next <- Tutorial 8: Threads](/tutorials/t08)

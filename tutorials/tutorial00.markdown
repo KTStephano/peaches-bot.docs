@@ -23,13 +23,13 @@ Development of the bot's features will primarily be concentrated on adding new b
 
 # Tutorials
 
-* [Tutorial 1: First Slash Command](/peaches-bot.docs/tutorials/t01)
-* [Tutorial 2: Slash Command Inputs](/peaches-bot.docs/tutorials/t02)
-* [Tutorial 3: Data Containers](/peaches-bot.docs/tutorials/t03)
-* [Tutorial 4: Triggers](/peaches-bot.docs/tutorials/t04)
-* [Tutorial 5: Embeds](/peaches-bot.docs/tutorials/t05)
-* [Tutorial 6: Database](/peaches-bot.docs/tutorials/t06)
-* [Tutorial 7: Buttons](/peaches-bot.docs/tutorials/t07)
-* [Tutorial 8: Threads](/peaches-bot.docs/tutorials/t08)
-* [Tutorial 9: Functions](/peaches-bot.docs/tutorials/t09)
-* [Tutorial 10: Roles](/peaches-bot.docs/tutorials/t10)
+* [Tutorial 1: First Slash Command](/tutorials/t01)
+* [Tutorial 2: Slash Command Inputs](/tutorials/t02)
+* [Tutorial 3: Data Containers](/tutorials/t03)
+* [Tutorial 4: Triggers](/tutorials/t04)
+* [Tutorial 5: Embeds](/tutorials/t05)
+* [Tutorial 6: Database](/tutorials/t06)
+* [Tutorial 7: Buttons](/tutorials/t07)
+* [Tutorial 8: Threads](/tutorials/t08)
+* [Tutorial 9: Functions](/tutorials/t09)
+* [Tutorial 10: Roles](/tutorials/t10)

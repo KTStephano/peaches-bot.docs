@@ -30,7 +30,7 @@ Can be one of ChannelGuildText, ChannelDM, ChannelGuildVoice, ChannelGuildGroupD
 
 For the first example we will create a command called "hello" that takes a required user input argument. It responds by saying "Hello, @user!". To do this you can use the `/create-cmd` command again to bring up the editor. Once there, in the first box we will add an argument of type `OptionUser` with name "user", description "User to ping", and required set to true.
 
-![ping](/peaches-bot.docs/assets/t03/ping.png)
+![ping](/assets/t03/ping.png)
 
 Notice that inside of CmdOption there are the `Type:`, `Required:`, `Name:` and `Description:` labels followed by their values. This is how to create new objects of a given type with the bot's scripting language. We are also using `printf` which stands for `print formatted`. It takes a format string as its first argument that can have various text placeholders such as {% raw %}`%d`{% endraw %} (decimal number) or {% raw %}`%s`{% endraw %} (string).
 
@@ -56,7 +56,7 @@ This tells the bot to register the given option for the command. This piece of c
 
 When trying to run the command in Discord, this is what it might look like with suggestions.
 
-![ping_input](/peaches-bot.docs/assets/t03/ping_input.png)
+![ping_input](/assets/t03/ping_input.png)
 
 Now walking through the command execution part of the code:
 
@@ -246,14 +246,14 @@ For the source code, we will have an array where each entry corresponds to an in
 
 This is what the user will see when they try running the command:
 
-![select](/peaches-bot.docs/assets/t03/select.png)
+![select](/assets/t03/select.png)
 
 # Modifying slash command permissions
 
 After a command has been created, it's possible to manage its permissions from within Discord itself. To do this, in your server go to `Server Settings`, then `Integrations`, then find `Peaches`. From here you can click on the commands and edit the permissions. Here is an example of editing the hello command from the first tutorial:
 
-![permissions](/peaches-bot.docs/assets/t03/permissions.png)
+![permissions](/assets/t03/permissions.png)
 
 If saved, this would have the effect of disabling it for @everyone but enabling it specifically for people with the @Level 25 role. It also makes it so that it is completely disabled from the #role-selection channel.
 
-[Next <- Tutorial 3: Data Containers](/peaches-bot.docs/tutorials/t03)
+[Next <- Tutorial 3: Data Containers](/tutorials/t03)

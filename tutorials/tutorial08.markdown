@@ -18,7 +18,7 @@ All threads are created using the `createThread` function. Here is its signature
 
 `channelID` determines which channel the thread is going to be created in. `thread` is either a `Thread` or `ForumThread` object (both discussed below) and contains information that the function needs to know about the thread's initial settings.
 
-When this function succeeds it returns a [*Channel](/peaches-bot.docs/docs#contextchannel) object (Discord represents threads as channels), and if it fails it returns empty (nil).
+When this function succeeds it returns a [*Channel](/docs#contextchannel) object (Discord represents threads as channels), and if it fails it returns empty (nil).
 
 # Basic Threads
 
@@ -72,7 +72,7 @@ Here is a function that creates a new thread in the channel that the command is 
 
 This code uses the `Thread` type. This type allows you to specify a few thread settings that Discord can set when creating it. Here's an example of what it could look like when using this command:
 
-![basic_thread](/peaches-bot.docs/assets/t08/basic_thread.png)
+![basic_thread](/assets/t08/basic_thread.png)
 
 # Message Thread
 
@@ -96,7 +96,7 @@ Trigger type: **message created**
 
 Here is an example of what it could look like when a user sends a message into the right channel:
 
-![message_thread](/peaches-bot.docs/assets/t08/message_thread.png)
+![message_thread](/assets/t08/message_thread.png)
 
 Here are the all the available Thread fields:
 
@@ -166,14 +166,14 @@ Also notice that `Tags` accepts a list of forum tag names. These are specific to
 
 Here is what it could look like after using the command:
 
-![forum_thread](/peaches-bot.docs/assets/t08/forum_thread.png)
+![forum_thread](/assets/t08/forum_thread.png)
 
 Here are all the available ForumThread fields:
 
 .Title | String | **required** | Title of the thread
 .AutoArchiveDuration | Int | **optional** | Duration in minutes before Discord auto archives the thread
 .Slowmode | Int | **optional** | Duration in seconds where someone must wait before sending a new message
-.Content | String, [Embed](/peaches-bot.docs/docs#type-embed), or [MessageComplex](/peaches-bot.docs/docs#type-messagecomplex) | **required** | Content of the thread
+.Content | String, [Embed](/docs#type-embed), or [MessageComplex](/docs#type-messagecomplex) | **required** | Content of the thread
 .Tags | Array[String] | **optional** | List of tag names to apply to the thread (max 5 per thread)
 
 # Locking/Unclocking
@@ -186,10 +186,10 @@ Here are the function signatures:
 
 **unlockThread threadID**
 
-For both of these, thread ID should be an ID type which you can get from the Discord client itself, or you can pull it out of a [*Channel](/peaches-bot.docs/docs#contextchannel) object returned by the bot.
+For both of these, thread ID should be an ID type which you can get from the Discord client itself, or you can pull it out of a [*Channel](/docs#contextchannel) object returned by the bot.
 
 # Note About Archiving
 
 The bot tracks the state for all active threads that it has permission to view. However, Discord has the concept of archiving a thread to prevent the total number of active threads from going over the maximum per guild (1000). When a thread is marked as archived, the bot will forget about it. This is important to know because it can cause calls to functions like `getThread` to fail if you pass in an archived thread ID.
 
-[Next <- Tutorial 9: Functions](/peaches-bot.docs/tutorials/t09)
+[Next <- Tutorial 9: Functions](/tutorials/t09)
