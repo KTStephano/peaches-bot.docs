@@ -9,7 +9,7 @@ title: Peaches
 
 <img src='/assets/logo.png' width='256'>
 
-[Invite Peaches!](https://discord.com/api/oauth2/authorize?client_id=1201100920189096018&permissions=1102196361408&scope=bot%20applications.commands) • [Support Server](https://discord.com/invite/Bktvgd3Ncn)
+[Invite Peaches!](https://discord.com/api/oauth2/authorize?client_id=1201100920189096018&permissions=1102196361408&scope=bot%20applications.commands) • [Support Server](https://discord.com/invite/Bktvgd3Ncn) • [YouTube](https://www.youtube.com/@PeachesBot)
 
 # Overview
 
