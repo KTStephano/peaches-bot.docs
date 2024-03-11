@@ -9,13 +9,11 @@ title: Peaches
 
 <img src='/assets/logo.png' width='256'>
 
-[Invite Peaches!](https://discord.com/api/oauth2/authorize?client_id=1201100920189096018&permissions=1102196361408&scope=bot%20applications.commands) • [Support Server](https://discord.com/invite/Bktvgd3Ncn)
+[Invite Peaches!](https://discord.com/api/oauth2/authorize?client_id=1201100920189096018&permissions=1102196361408&scope=bot%20applications.commands) • [Join Community](https://discord.com/invite/Bktvgd3Ncn)
 
 # Overview
 
-Peaches is a programmable slash command and trigger Discord bot written in Go. If you have created custom commands using YAGPDB, this will be a very familiar experience as it follows a similar style.
-
-The bot is currently in the early stages of development so some bugs are expected. They will be fixed as quickly as possible. Please don't hesitate to join the Discord Support Server with any questions you have or to report any issues you encounter.
+Peaches is a customizable slash command, utility and games bot written in Go. You can create your own commands and guild triggers to personalize its behavior to suit your community!
 
 # Guild Requirements
 
