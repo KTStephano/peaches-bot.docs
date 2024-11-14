@@ -522,6 +522,16 @@ This is used when creating a new role.
 .ParentID | ID | **optional** | ID of the parent category - if empty puts it in the default channel list at the top of the server  
 .NSFW | Bool | **optional** | true if NSFW channel, false if not
 
+### type DatabaseEntry
+
+This is only returned from the dbGet* functions. As a result, it can't be created in user code.
+
+.CreatedAt | *time.Time | Timestamp of when the entry was created or overwritten
+.ExpiresAt | *time.Time | Timestamp of when the entry will expire and go out of scope (may be empty if not created with `dbSetExpire`)
+.ID        | ID | 64-bit ID component from `dbSet id key data`
+.Key       | String | Key component from `dbSet id key data`
+.Value     | Any | Data component from `dbSet id key data`
+
 # Functions
 
 ### addOptions ...args
