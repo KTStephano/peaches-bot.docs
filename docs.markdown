@@ -526,7 +526,7 @@ This is used when creating a new role.
 
 This is only returned from the dbGet* functions. As a result, it can't be created in user code.
 
-.CreatedAt | *time.Time | Timestamp of when the entry was created or overwritten
+.CreatedAt | *time.Time | Timestamp of when the entry was first created or overwritten
 .ExpiresAt | *time.Time | Timestamp of when the entry will expire and go out of scope (may be empty if not created with `dbSetExpire`)
 .ID        | ID | 64-bit ID component from `dbSet id key data`
 .Key       | String | Key component from `dbSet id key data`
@@ -736,6 +736,10 @@ Retrieves a single database entry represented by id, key pair. ID should be an i
 Sets a single database entry represented by id, key pair to be data. ID should be an int64 type whereas key should be a String type.
 
 Keep in mind that by default, all integer types are converted to floating point by the DB manager. For this reason, if you are trying to store something like an ID which is an int64, convert it to a string first.
+
+### dbSetExpire id key data expireAfter
+
+This is the same as `dbSet`, except it takes an expireAfter argument measured in seconds. After that entry has gone out of scope (expired), calls to `dbGet` with that ID-Key pair will return nil.
 
 ### dbDel id key
 
