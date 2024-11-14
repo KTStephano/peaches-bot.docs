@@ -140,6 +140,7 @@ When the **trigger execution** stage is run, it is initialized with a context th
 .ChannelID | The ID of the channel in which the message was sent
 .GuildID | The ID of the guild in which the message was sent
 .Content | The content of the message
+.ContentWithMentionsReplaced | The content of the message but with @uid replaced with the username
 .Timestamp | The time at which the messsage was sent
 .EditedTimestamp | The time at which the last edit of the message
 .MentionRoles | The roles mentioned in the message
@@ -463,6 +464,7 @@ Allows you to bundle multiple types together into a single message. All fields f
 .Content | String | **optional** | Regular text to accompany message
 .Embeds | Array[[Embed](/docs#type-embed)] | **optional** | Array of embeds to include with the message (up to 10)
 .Components | Array[[Button](/docs#type-button)] or Array[Array[[Button](/docs#type-button)]] | **optional** | Allows for the adding of buttons to the message
+.Files | Array[*discordgo.File] | **optional** | Allows privileged code to send file objects with the message
 
 ### type EmojiComponent
 
@@ -840,3 +842,13 @@ If a permission in the array is not already present in the channel's permissions
 Overwrites all existing channel permissions by setting them to `permissions`. `permissions` should be an Array of [PermissionOverwrite](/docs/#type-permissionoverwrite).
 
 This has the effect of deleting existing channel permissions not present in the array, overwriting the ones that are, and adding the ones that aren't.
+
+### ignoreBots
+
+This is only needed for guilds that run a private custom instance of the bot. It ends execution early if the triggering event was bot-generated.
+
+### downloadAttachment attachment
+
+**Note:** Only bots listed as privileged can run this.
+
+`attachment1` should be of type *discordgo.MessageAttachment. The bot will attempt to download the attachment and return a *discordgo.File if it succeeded. This can then be used with [MessageComplex](/docs#type-messagecomplex) to send it to a channel.
