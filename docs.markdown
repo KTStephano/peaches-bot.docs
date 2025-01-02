@@ -518,7 +518,7 @@ This is used when creating a new role.
 .Name | String | **required** | Name of the new channel
 .Topic | String | **optional** | Topic of the new channel
 .Slowmode | Integer | **optional** | Slowmode (in seconds) for the new channel
-.PermissionOverwrites | Array[PermissionOverwrite](/docs/#type-permissionoverwrite) | **optional** | List of permission overwrites - if left empty, it will sync with parent category
+.PermissionOverwrites | Array[[PermissionOverwrite](/docs#type-permissionoverwrite)] | **optional** | List of permission overwrites - if left empty, it will sync with parent category
 .ParentID | ID | **optional** | ID of the parent category - if empty puts it in the default channel list at the top of the server  
 .NSFW | Bool | **optional** | true if NSFW channel, false if not
 
@@ -632,6 +632,22 @@ Takes a float-convertible number and returns the floor (round down) of the numbe
 
 Takes a float-convertible number and returns the ceil (round up) of the number.
 
+### bitwiseAnd x y
+
+Returns x & y as a uint64
+
+### bitwiseOr x y
+
+Returns x | y as a uint64
+
+### bitwiseXor x y
+
+Returns x ^ y as a uint64
+
+### bitwiseNot x
+
+Returns ~x as a uint64
+
 ### randChoice array
 
 Takes an Array input and returns a random element from it.
@@ -730,6 +746,10 @@ Returns true if userID has roleID and false if not.
 ### dbGet id key
 
 Retrieves a single database entry represented by id, key pair. ID should be an int64 type whereas key should be a String type.
+
+### dbGetMultiple id limit
+
+Retrieves up to `limit` entries from the database where the id matches. Key is not taken into account at all.
 
 ### dbSet id key data
 
