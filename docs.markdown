@@ -604,13 +604,21 @@ Replaces the first occurrance of `old` with `new` and returns a new string.
 
 Replaces all occurrances of `old` with `new` and returns a new string.
 
-### add ...args
+### add x y ...rest
 
-Takes a list of float-convertible arguments and returns a float64 (double) sum.
+Takes a list of arguments and returns either an int64 or float64 sum (depends on type of first argument).
 
-### mult ...args
+### mult x y ...rest
 
-Takes a list of float-convertible arguments and returns a float64 (double) product.
+Takes a list of arguments and returns either an int64 or float64 product (depends on type of first argument).
+
+### sub x y
+
+Returns either int64 or float64 subtraction (depends on type of first argument).
+
+### div x y
+
+Returns either int64 or float64 division (depends on type of first argument).
 
 ### sqrt num
 
