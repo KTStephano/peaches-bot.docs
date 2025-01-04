@@ -755,7 +755,9 @@ Retrieves up to `limit` entries from the database where the id matches. Key is n
 
 Sets a single database entry represented by id, key pair to be data. ID should be an int64 type whereas key should be a String type.
 
-Keep in mind that by default, all integer types are converted to floating point by the DB manager. For this reason, if you are trying to store something like an ID which is an int64, convert it to a string first.
+Keep in mind that by default, all integer types are converted to floating point by the DB manager and time types are converted to string. For this reason, if you are trying to store something like an ID which is an int64, convert it to a string first.
+
+There are conversion functions `toInt64`, `toFloat64`, `toString`, `toTime` you can use for data you retrieve from the database.
 
 ### dbSetExpire id key data expireAfter
 
@@ -822,6 +824,12 @@ Marks a thread as unlocked. `threadID` should not refer to an archived thread.
 Executes a trigger from the Function category. `function` should be the name of the function as a string (case sensitive). `data` can contain information you want to pass to the function which will get placed into its `context.ExecData` entry. `delay` is optional and can be left out. It is measured in seconds, with a max of 60.
 
 If delay is either left out or not specified, exec calls the function immediately and returns whatever the function returns (if anything). Otherwise it schedules it to run and returns empty (nil).
+
+### schedUnique function key delayMinutes
+
+This is a premium feature. Executes a trigger from the Function category after `delayMinutes` have passed. The functions are unique by `key` (type: string, case sensitive). These functions will only execute once, and calling `schedUnique` with the same key twice will cancel the first one. In addition, bot restarts will preserve these scheduled functions.
+
+Delay in minutes must be between 1 and 10080.
 
 ### createRole role
 

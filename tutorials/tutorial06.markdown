@@ -32,7 +32,25 @@ If no entry was present, this will be nil.
 
 ### dbSet id key data
 
-Sets a single database entry represented by id, key pair to be data. ID should be an int64 type whereas key should be a String type. The data itself can be anything that can be converted to JSON format. This includes ints and floats (ints are converted to float by default when storing them), but also strings, maps and arrays. Since ints are converted to float by the DB manager, if you are trying to store something like an ID which is an int64 type, you should convert it to a string first. You can always convert it back when reading from the DB by using `toInt64`.
+Sets a single database entry represented by id, key pair to be data. ID should be an int64 type whereas key should be a String type. The data you provide will either be converted to a `float64` or a `string`. So integer values will become float64 and time values will become string. Data you retrieve can be converted using `toInt64`, `toFloat64`, `toString` or `toTime`. For example:
+
+{% highlight golang %}
+{% raw %}
+{{dbSet 0 "time" currentTime}}
+{{$db := (dbGet 0 "time").Value}}
+{{$time := toTime $db}} // Convert from string -> time
+{% endraw %}
+{% endhighlight %}
+
+Since int64 gets converted to float64, if you need to deal with something like member IDs, channel IDs, message IDs, etc., you can first call `toString` before storing it in the database, and then `toInt64` after retrieving it from the database.
+
+{% highlight golang %}
+{% raw %}
+{{dbSet 0 "ChannelID" (toString .Channel.ID)}}
+{{$db := (dbGet 0 "ChannelID").Value}}
+{{$cid := toInt64 $db}} // Convert from string -> int64
+{% endraw %}
+{% endhighlight %}
 
 Currently the maximum size for each entry is 8 KiB.
 
