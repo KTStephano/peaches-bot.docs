@@ -31,6 +31,12 @@ The second is the **trigger execution** stage. There are multiple types of trigg
 ### SqrtE
 ### Phi
 ### SqrtPhi
+### Nanosecond
+### Microsecond
+### Millisecond
+### Second
+### Minute
+### Hour
 
 # Context
 
