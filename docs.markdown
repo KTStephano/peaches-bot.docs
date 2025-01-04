@@ -893,6 +893,15 @@ If a permission in the array is already present in the channel's permissions, it
 
 If a permission in the array is not already present in the channel's permissions, it is added.
 
+### updateChannelPermissions channelID addPermissions removeOverwrites
+
+Performs an update of the channel permissions by first removing the existing overwrites for role/user IDs listed in `removeOverwrites`, then it updates the permissions from `addPermission`. This is done by the following:
+* If an overwrite is present on the channel that it also in `addPermissions`, it is overwritten to the new value.
+* If an overwrite does not exist for the channel that is in `addPermissions`, it is added.
+
+`addPermissions` should be an Array of [PermissionOverwrite](/docs/#type-permissionoverwrite).
+`removeOverwrites` should be an Array of either IDs or int64.
+
 ### setChannelPermissions channelID permissions
 
 Overwrites all existing channel permissions by setting them to `permissions`. `permissions` should be an Array of [PermissionOverwrite](/docs/#type-permissionoverwrite).
