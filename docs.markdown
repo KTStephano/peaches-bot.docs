@@ -208,7 +208,7 @@ Can be one of ActionsRowComponent, ButtonComponent, SelectMenuComponent, TextInp
 
 ### type Array[Any]
 
-A Array is a dynamic array of objects with type Any. It will try to use existing space when appending items, but once space is used up it will perform a resize+copy and return a pointer to the new Array.
+A Array is a dynamic, 0-indexed array of objects with type Any. It will try to use existing space when appending items, but once space is used up it will perform a resize+copy and return a pointer to the new Array. For this reason you should always capture the return value of functions that modify Arrays such as `append`.
 
 **Fields**
 
@@ -216,51 +216,23 @@ None
 
 **Functions**
 
-.Append ...args | returns Array | Takes a list of objects to append to the array
-.Contains arg | returns bool |
-.Get index | returns any |
+None
 
 **Examples**
 
 {% highlight golang %}
 {% raw %}
 {{$array := Array}}
-{{$array = $array.Append 1 2 "hello" true false 4 5 6}}
-{{contains $array 1}} {{/* true */}}
-{{contains $array 100}} {{/* false */}}
-{% endraw %}
-{% endhighlight %}
-
-### type SMap[String]Any
-
-An SMap (String Map) maps string keys to any type.
-
-**Fields**
-
-None
-
-**Functions**
-
-.Get key | returns value | Takes a string key and returns its value (or nil)
-.Insert key value | returns none | Inserts or updates a key, value pair
-.Remove key | returns none | Removes entry from map
-
-**Examples** 
-
-{% highlight golang %}
-{% raw %}
-{{/* SMap key value key value .... */}}
-{{$map := SMap "hello" true "world" 123 "!" 5.0}}
-{{contains $map "hello"}} {{/* true */}}
-{{contains $map "earth"}} {{/* false */}}
-{{$map.Insert "earth" true}}
-{{$map.Remove "hello"}}
+{{$array = append $array 1 2 "hello" true false 4 5 6}}
+{{contains $array 1}} // true
+{{contains $array 100}} // false
+{{index $array 2}} // returns "hello" which exists at index 2 in the array
 {% endraw %}
 {% endhighlight %}
 
 ### type Map[Comparable]Any
 
-A Map maps any comparable type to a value. This can include int, bool, float, pointers, etc.
+A Map maps any comparable type to a value. This can include int, bool, float, strings, pointers, etc. There are certain cases where a new map might get created during a modify operation, so for this reason you should always capture the output of functions that modify maps (similar to `append` with arrays). For keys that use alphanumeric only (starting with alphabetical character), special . syntax is available (see example below).
 
 **Fields**
 
@@ -268,18 +240,27 @@ None
 
 **Functions**
 
-.Get key | returns value | Takes a key and returns its value (or nil)
-.Insert key value | returns none | Inserts or updates a key, value pair
-.Remove key | returns none | Removes entry from map
+None
 
 **Examples** 
 
 {% highlight golang %}
 {% raw %}
-{{/* Map key value key value .... */}}
-{{$map := Map 512 true "hello" false}}
-{{contains $map 512}} {{/* true */}}
-{{contains $map true}} {{/* false */}}
+// Map key value key value ....
+{{$map := Map 512 true "hello" false "world" 5.0}}
+
+{{contains $map 512}} // true
+{{contains $map true}} // false
+{{contains $map "hello"}} // true
+{{contains $map "earth"}} // false
+
+{{$map = insert $map "earth" 81}}
+{{$map = remove $map "hello"}}
+
+// Special . syntax for alphanumeric keys (where first character is alphabetical)
+{{$map.earth}} // returns 81
+{{$map.hello}} // returns empty (nil) since "hello" was removed
+{{$map.world}} // returns 5.0
 {% endraw %}
 {% endhighlight %}
 
@@ -689,6 +670,87 @@ Takes a container (array, map, string) and an item and returns true if that item
 {% endraw %}
 {% endhighlight %}
 
+### index container key
+
+Performs an index operation with `key` on `container` and returns the value. It works on arrays, maps and strings.
+
+**Examples** 
+
+{% highlight golang %}
+{% raw %}
+{{$a := Array 1 2 3 4}}
+{{$m := Map 1024 true 8192 false}}
+{{$sm := SMap "hello" true "world" false}}
+{{$msg := print 
+    (index $a 2) "\n" // gets index 2 from $a
+    (index $m 1024) "\n" // gets key 1024 from $m
+    (index $sm "hello") "\n" // gets key "hello" from $sm
+}}
+{% endraw %}
+{% endhighlight %}
+
+### append container ...items
+
+Takes a container (array or bot's runtime array) and a list of items and appends them to the list. You should always capture the return value of `append` since it will often return a new array object. This happens in 2 main situations: 1) the first array ran out of space and needed to be regenerated, and 2) the input was a bot runtime array (passed to your code by the bot), which are immutable and require a full copy in order to modify.
+
+**Examples** 
+
+{% highlight golang %}
+{% raw %}
+{{$a := Array}}
+{{$a = append 1 2 "hello" true}}
+{% endraw %}
+{% endhighlight %}
+
+### slice container start (end)
+
+This takes an existing string or array and slices it, returning a view into the original container. `end` is an optional index and is exclusive, whereas `start` is a required index and is inclusive. If `end` is not given then the length of the array/string is used in its place.
+
+**Examples** 
+
+{% highlight golang %}
+{% raw %}
+{{$a := Array true false 3 4 5}}
+{{slice $a 1}} // returns array[false 3 4 5]
+{{slice $a 1 2}} // returns array[false]
+{% endraw %}
+{% endhighlight %}
+
+### insert container key value
+
+Attempts to insert `key`-`value` pair into `container`. This works on arrays and maps. In the case of arrays, the index needs to already be a valid location (meaning it will not allocate new memory as part of the operation). Similar to `append`, you should always capture the return value of `insert` because it may allocate a new map. This only happens in cases where you try to modify a bot runtime map which are immutable, meaning it first needs to perform a full copy before you can modify it.
+
+**Examples** 
+
+{% highlight golang %}
+{% raw %}
+{{$m := Map}}
+{{$m = insert $m 1024 true}} // ok
+{{$m = insert $m "hello" "world"}} // ok
+
+{$a := Array 1 2 3}
+{{$a = insert $a 0 "hello"}} // ok: tries to insert "hello" into array location 0 which already exists
+{{$a = insert $a 81 "world"}} // bad: tries to insert "world" into array location 81 which does not exist yet
+{% endraw %}
+{% endhighlight %}
+
+### remove container key
+
+Attempts to remove the key-value pair from `container` at location `key`. This works on maps only. If you need a general purpose structure that allows you to insert and delete freely, arrays are not a good choice since they only support insert/append. Similar to `insert` and `append`, you should always capture the return value of `remove` since it may allocate a new map. This only happens in cases where you try to modify a bot runtime map which are immutable, meaning it first needs to perform a full copy before you can modify it.
+
+**Examples** 
+
+{% highlight golang %}
+{% raw %}
+{{$m := SMap "hello" true "world" true}}
+{{$m = remove $m "hello"}} // removes "hello" from map
+{% endraw %}
+{% endhighlight %}
+
+### len container
+
+Returns the length of `container`. This works on arrays, maps and strings.
+
 ### prefix string prefix
 
 Returns true if string starts with prefix.
@@ -884,6 +946,10 @@ Overwrites the specified channel's name with `name`.
 ### setChannelTopic channelID topic
 
 Overwrites the specified channel's topic with `topic`.
+
+## getPermissionsIn channelID roleOrUserID
+
+Returns a [PermissionOverwrite](/docs/#type-permissionoverwrite) for `roleOrUserID` in `channelID`. If no permission overwrites exist for that role or user, empty (nil) is returned.
 
 ### editChannelPermissions channelID permissions
 
