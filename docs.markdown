@@ -947,7 +947,7 @@ Overwrites the specified channel's name with `name`.
 
 Overwrites the specified channel's topic with `topic`.
 
-## getPermissionsIn channelID roleOrUserID
+### getPermissionsIn channelID roleOrUserID
 
 Returns a [PermissionOverwrite](/docs/#type-permissionoverwrite) for `roleOrUserID` in `channelID`. If no permission overwrites exist for that role or user, empty (nil) is returned.
 

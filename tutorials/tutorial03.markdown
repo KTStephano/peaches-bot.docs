@@ -73,6 +73,20 @@ It's also possible to overwrite existing values in an array with `insert`. Here 
 {% endraw %}
 {% endhighlight %}
 
+With the above example, you could verify the change by using the `index` keyword. It takes a container and a key (index) and returns the value at that key (index).
+
+{% highlight golang %}
+{% raw %}
+{{$a := Array 1 2 3 4 5 6 7 8 9 10}}
+
+{{$before := index $a 1}}
+{{$a = insert $a 1 "hello"}}
+{{$after := index $a 1}}
+
+{{respond (print "before: " $before ", after: " $after)}}
+{% endraw %}
+{% endhighlight %}
+
 # Map
 
 A map is a general-purpose associative container. It allows for key-value pairs to be stored together for fast lookup, insert/overwrite and removal. This is similar to an array since they map integer indices to a value, except with a general map you can use any comparable type (bool, int, float, string, pointer, etc.). Like arrays, they are limited to 1000 elements to prevent bot abuse.
@@ -117,12 +131,19 @@ For keys that are strings and only use alphanumeric characters (where the first 
 
 {% highlight golang %}
 {% raw %}
-{{$sm := Map "hello" 1 "world" 2 "earth" true}}
+{{$sm := Map "hello" 1 "world" 2 "earth" true 1024 "ten twenty four"}}
 {{respond $sm.hello}}  // shows 1
 {{respond $sm.earth}}  // shows true
 {{respond $sm.planet}} // shows empty (nil) since planet is not a string key in the map
+
+{{respond (index $sm "hello")}}  // Same as $sm.hello
+{{respond (index $sm "earth")}}  // same as $sm.earth
+{{respond (index $sm "planet")}} // same as $sm.planet
+{{respond (index $sm 1024)}} // not possible to do $sm.1024, but index works fine with it
 {% endraw %}
 {% endhighlight %}
+
+It should be noted that `index` is more versatile in this case since it can be used with all key types, where as . syntax only works with certain very specific key situations.
 
 # Contains
 
