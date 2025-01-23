@@ -170,7 +170,7 @@ When the **trigger execution** stage is run, it is initialized with a context th
 
 ### context.MessagesDeleted
 
-This is an array of message IDs that were recently deleted. This is only valid for the Messages Deleted trigger which requires premium guild status.
+This is an array of message IDs that were recently deleted. This is only valid for the Messages Deleted trigger which requires premium guild status. When this is present, .Channel will also be valid and specify which channel the list of messages were deleted from.
 
 ### context.Inputs
 
