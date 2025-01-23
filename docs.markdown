@@ -1043,6 +1043,12 @@ This has the effect of deleting existing channel permissions not present in the 
 
 This is only needed for guilds that run a private custom instance of the bot. It ends execution early if the triggering event was bot-generated.
 
+### purgeOlderThan channelID age limit
+
+This requires premium guild status. It purges messages that are older than `age` which should be of type Duration which can be created using the `toDuration` function. `limit` should be no more than 5000.
+
+One limitation is messages older than Discord's maximum. Discord does not allow bots to bulk delete these types of messages.
+
 ### downloadAttachment attachment
 
 **Note:** Only bots listed as privileged can run this.
