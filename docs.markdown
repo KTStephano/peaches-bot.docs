@@ -168,6 +168,10 @@ When the **trigger execution** stage is run, it is initialized with a context th
 .Thread | The thread that was started from this message, includes thread member object
 .StickerItems | An array of Sticker objects, if any were sent
 
+### context.MessagesDeleted
+
+This is an array of message IDs that were recently deleted. This is only valid for the Messages Deleted trigger which requires premium guild status.
+
 ### context.Inputs
 
 An array of inputs to a Slash Command. Type is [*SlashCommandInputData](/docs#type-slashcommandinputdata).
