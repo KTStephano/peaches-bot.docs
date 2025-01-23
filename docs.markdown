@@ -569,6 +569,39 @@ Takes a list of arguments and converts them to a string. This is equivalent to S
 
 Takes a list of arguments and converts them to a string, inserting a newline at the end. This is equivalent to Sprintln in other languages.
 
+### joinStr separator ...args
+
+Takes a list of arguments and a separator and returns a string where `separator` is inserted between each element in `...args`. If one of the arguments is an Array of strings, it will iterate over each string in the Array and insert the separator.
+
+### joinArray ...arrays
+
+Takes a list of Array and combines them into a single Array. This works by creating a new Array, then iterating over each element of each array in `arrays` and appending them to the new Array.
+
+### flatten array
+
+Takes an Array of Arrays and flattens it down to a single Array. This works by creating a new Array, iterating over each element of each Array in `array` and appending them to the new Array.
+
+### joinMap ...maps
+
+Takes a list of Maps and joins them into a single Map. This works by creating a new Map, iterating over each key/value pair in each of `maps` and inserting them into the new Map.
+
+### sanitize string elems (replaceWith)
+
+Sanitizes `string` by iterating over it and removing any occurrence of any string in `elems`. By default it will delete these occurrences completely, but it is possible to use the optional `replaceWith` argument to replace any occurrences of `elems` with `replaceWith`.
+
+**Examples**
+
+{% highlight golang %}
+{% raw %}
+// Deletes any occurrences of , or ! - result is "Hello world"
+{{sanitize "Hello, world!" (Array "," "!")}}
+// Replaces any occurrences of , or ! with ... - result is "Hello... world..."
+{{sanitize "Hello, world!" (Array "," "!") "..."}}
+// Result of split using "" as separator is equivalent to (Array "," "!" "?" "." "[" "]")
+{{sanitize "Hello, world!" (split ",!?.[]" "")}}
+{% endraw %}
+{% endhighlight %}
+
 ### lower string
 
 Takes a string and converts all characters to lowercase.
@@ -738,6 +771,10 @@ Attempts to insert `key`-`value` pair into `container`. This works on arrays and
 
 Attempts to remove the key-value pair from `container` at location `key`. This works on maps only. If you need a general purpose structure that allows you to insert and delete freely, arrays are not a good choice since they only support insert/append. Similar to `insert` and `append`, you should always capture the return value of `remove` since it may allocate a new map. This only happens in cases where you try to modify a bot runtime map which are immutable, meaning it first needs to perform a full copy before you can modify it.
 
+### reverse container
+
+Reverses the contents of `container`, which should be of type string or Array.
+
 **Examples** 
 
 {% highlight golang %}
@@ -782,6 +819,12 @@ Sends a DM to user represented by `id` with message. Message can either be a Str
 ### getMessage channelID messageID
 
 Returns a *Message object for the given channelID, messageID pair.
+
+### getChannelMessagesMatching channelID pattern limit
+
+**This requires privileged guild status**
+
+Retrieves up to `limit` messages (max 100) from `channelID` matching regex `pattern`.
 
 ### sendMessageRetID channelID message
 
@@ -886,6 +929,24 @@ Attempts to convert string to a duration. It accepts formatting such as "1h45m" 
 ### createThread channelID thread
 
 `thread` should be either a [Thread](/docs/#type-thread) or a [ForumThread](/docs/#type-forumthread)
+
+### deleteThread thread
+
+`thread` should be either its ID or its channel object (threads are represented as channels in Discord).
+
+### addThreadMember thread member
+
+`thread` should be either its ID or its channel object (threads are represented as channels in Discord).
+`member` should either be their Member/User object or their ID.
+
+This function adds someone to a thread, meaning it will show up in their follow list and they will be able to view it (if private thread).
+
+### removeThreadMember thread member
+
+`thread` should be either its ID or its channel object (threads are represented as channels in Discord).
+`member` should either be their Member/User object or their ID.
+
+This function removes someone from a thread, meaning it will disappear from their follow list and will become invisible to them (if private thread).
 
 ### lockThread threadID
 
