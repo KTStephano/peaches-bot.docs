@@ -553,6 +553,10 @@ Converts arg to float64 (double). Returns 0.0 if it fails.
 
 Converts arg to an ID type. An ID represents a Discord snowflake, which is a 64-bit value. The underlying type is int64.
 
+### hexToInt arg
+
+Takes a string of format "0x..." or "#..." and converts it to a 64-bit decimal value.
+
 ### currentTime
 
 Returns current time stamp, converted to US/Denver location.
